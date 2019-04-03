@@ -12,111 +12,99 @@
         <!--Botones para las pestañas de la pantalla-->
         <div class="container">
           <div class="row justify-content-between ">
-            <div class="col-6 bg-primary" ><a href="Agenda.html"><p class="h4 text-center text-dark">Listado de Materias</p></a></div>
-            <div class="col-6" ><a href="MisAsesorias.html"><p class="h4 text-center">Mis Asesorias</p></a></div>
+            <div class="col-6 bg-primary" ><a href="ver_asesorias.php"><p class="h4 text-center text-dark">Ver Asesorías</p></a></div>
+            <div class="col-6" ><a href="MisAsesorias.html"><p class="h4 text-center">Mis Asesorías</p></a></div>
           </div>
         </div>
          <!--Encabezado de la pestaña-->
         <div class="container">
             <div class="row bg-primary">
                 <div class="col-12">
-                    <p class="h1">Listado de Materias</p>
+                    <p class="h1">Listado de Asesorias</p>
                 </div>
             </div>
         </div>
-        <!--Targetas-->
+  <!--Targetas-->
         <div class="container">
-          <div class="row">       
-            <div class="col-md">        
-                <div class="card text-center">
-                  <div class="card-body">
-                    <img class="card-img-top" src="../img/algebra.jpg" height="250" alt="">
-                    <h4 class="card-title">algebra</h4>
-                    <p class="card-text"> asesores para temas de algebra </p>
-                    <a href="#" class="btn btn-primary">Entrar</a>
-                  </div>
-                </div>          
-            </div>
-      
-            <div class="col-md">        
-                <div class="card text-center">
-                  <div class="card-body">
-                    <img class="card-img-top" src="../img/algebra.jpg" height="250" alt="">
-                    <h4 class="card-title">Física</h4>
-                    <p class="card-text"> asesores para temas de Física </p>
-                    <a href="#" class="btn btn-primary">Entrar</a>
-                  </div>
-                </div>          
+          <div class="card-deck mt-3">       
+            <div class="card text-center border-info">
+              <div class="card-body">
+                <a href="tabla_asesores.php"><img class="card-img-top" src="../img/algebra.jpg" height="250" alt=""></a>
+                <h4 class="card-title">Algebra</h4>
+                <p class="card-text"> asesores para temas de algebra </p>
+              </div>
+            </div>          
+              
+            <div class="card text-center border-info">
+              <div class="card-body">
+                <a href="tabla_asesores.php"><img class="card-img-top" src="../img/calculod.jpg" height="250" alt=""></a>
+                <h4 class="card-title">Cálculo Diferencial</h4>
+                <p class="card-text"> asesores para temas de cálculo diferencial </p>
+              </div>
             </div>
             
-            <div class="col-md">        
-                <div class="card text-center">
-                  <div class="card-body">
-                      <img class="card-img-top" src="../img/algebra.jpg" height="250" alt="">
-                      <h4 class="card-title">cálculo</h4>
-                      <p class="card-text"> asesores para temas de cálculo </p>
-                    <a href="#" class="btn btn-primary">Entrar</a>
-                  </div>
-                </div>          
-            </div>      
+            <div class="card text-center border-info">
+              <div class="card-body">
+                <a href="tabla_asesores.php"><img class="card-img-top" src="../img/Fisica.jpg" height="250" alt=""></a>
+                <h4 class="card-title">Fisica</h4>
+                <p class="card-text"> asesores para temas de física </p>
+              </div>
+            </div>
+          </div>
+<!-- segunda fila de targetas-->
+          <div class="card-deck mt-3">       
+            <div class="card text-center border-info">
+              <div class="card-body">
+                <a href="tabla_asesores.php"><img class="card-img-top" src="../img/programacion.jpg" height="250" alt=""></a>
+                <h4 class="card-title">Programación</h4>
+                <p class="card-text"> asesores para temas de programación </p>
+              </div>
+            </div>          
+              
+            <div class="card text-center border-info">
+              <div class="card-body">
+                <a href="tabla_asesores.php"><img class="card-img-top" src="../img/quimica.jpg" height="250" alt=""></a>
+                <h4 class="card-title">Química</h4>
+                <p class="card-text"> asesores para temas de química </p>
+              </div>
+            </div>
+            
+            <div class="card text-center border-info">
+              <div class="card-body">
+                <a href="tabla_asesores.php"><img class="card-img-top" src="../img/Geometria.jpg" height="250" alt=""></a>
+                <h4 class="card-title">Geometría Análitica</h4>
+                <p class="card-text"> asesores para temas de geometría análitica </p>
+              </div>
+            </div>
+          </div>
+<!--Tercer Fila de Targetas-->
+          <div class="card-deck mt-3">       
+            <div class="card text-center border-info">
+              <div class="card-body">
+                <a href="tabla_asesores.php"><img class="card-img-top" src="../img/aLineal.png" height="250" alt=""></a>
+                <h4 class="card-title">Algebra lineal</h4>
+                <p class="card-text"> asesores para temas de algebra lineal </p>
+              </div>
+            </div>          
+              
+            <div class="card text-center border-info">
+              <div class="card-body">
+                <a href="tabla_asesores.php"><img class="card-img-top" src="../img/calculoi.jpg" height="250" alt=""></a>
+                <h4 class="card-title">Cálculo Integral</h4>
+                <p class="card-text"> asesores para temas de cálculo integral </p>
+              </div>
+            </div>
+            
+            <div class="card text-center border-info">
+              <div class="card-body">
+                <a href="tabla_asesores.php"><img class="card-img-top" src="../img/mecanica.jpg" height="250" alt=""></a>
+                <h4 class="card-title">Mecánica</h4>
+                <p class="card-text"> asesores para temas de Mecánica </p>
+              </div>
+            </div>
           </div>
         </div>
-        <!--Tabla con la lista de asesores disponibles para cada materia-->
-        <div class="container">
-                <table class="table table-responsive-sm table-bordered table-hover">
-                  <thead> 
-                    <tr> 
-                      <th>img</th> 
-                      <th>Nombre</th>
-                      <th>Horario</th>
-                      <th>calificacion</th>
-                      <th> </th>
-                    </tr> 
-                  </thead>
-                  <tbody>
-                    <tr> 
-                      <td>Foto</td>
-                      <td>Fulanito_de_tal</td> 
-                      <td>Todo el dia</td>
-                      <td>5-estrellas</td>
-                      <td>
-                        <form action="agrega.php">
-                          <div class="form-group">
-                            <button type="submit" class="btn btn-light">Agregar</button>
-                          </div>
-                        </form>
-                      </td> 
-                    </tr>
-                    <tr> 
-                        <td>Foto</td>
-                        <td>Fulanito_de_tal</td> 
-                        <td>Todo el dia</td>
-                        <td>5-estrellas</td>
-                        <td>
-                          <form action="agrega.php">
-                            <div class="form-group">
-                              <button type="submit" class="btn btn-light">Agregar</button>
-                            </div>
-                          </form>
-                        </td>  
-                    </tr>
-                    <tr> 
-                        <td>Foto</td>
-                        <td>Fulanito_de_tal</td> 
-                        <td>Todo el dia</td>
-                        <td>5-estrellas</td>
-                        <td>
-                          <form action="agrega.php">
-                            <div class="form-group">
-                              <button type="submit" class="btn btn-light">Agregar</button>
-                            </div>
-                          </form>
-                        </td>  
-                    </tr>
-
-                  </tbody>
-                </table>
-             </div> 
+            
         <!-- Termina el Contenido -->
         <script src="../js/jquery-3.3.1.slim.min.js"></script>
         <script src="../js/popper.min.js"></script>
