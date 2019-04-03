@@ -9,6 +9,23 @@
     </head>
     <body>
         <!-- Empieza el Contenido -->
+        <!--Conectando con la base de datos-->
+        <?php
+        $servername = "localhost";
+        $username = "root";
+        $password = '';
+        $dbname = "javerim";
+        
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        } 
+        
+        $tablaAsesor = "SELECT * FROM asesor";
+        $resultAsesor = $conn->query($tablaAsesor);
+        ?>
         <!--Tabla con la lista de asesores disponibles para cada materia-->
         <div class="container">
                 <table class="table table-responsive-sm table-bordered table-hover">
@@ -16,52 +33,31 @@
                     <tr> 
                       <th>img</th> 
                       <th>Nombre</th>
-                      <th>Horario</th>
-                      <th>calificacion</th>
-                      <th> </th>
+                      <th>Telefono</th>
+                      <th>correo</th>
+                      <th>carrera</th>
+                      <th>semestre</th>
                     </tr> 
                   </thead>
                   <tbody>
-                    <tr> 
-                      <td>Foto</td>
-                      <td>Fulanito_de_tal</td> 
-                      <td>Todo el dia</td>
-                      <td>5-estrellas</td>
-                      <td>
-                        <form action="agrega.php">
-                          <div class="form-group">
-                            <button type="submit" class="btn btn-light">Agregar</button>
-                          </div>
-                        </form>
-                      </td> 
-                    </tr>
-                    <tr> 
-                        <td>Foto</td>
-                        <td>Fulanito_de_tal</td> 
-                        <td>Todo el dia</td>
-                        <td>5-estrellas</td>
-                        <td>
-                          <form action="agrega.php">
-                            <div class="form-group">
-                              <button type="submit" class="btn btn-light">Agregar</button>
-                            </div>
-                          </form>
-                        </td>  
-                    </tr>
-                    <tr> 
-                        <td>Foto</td>
-                        <td>Fulanito_de_tal</td> 
-                        <td>Todo el dia</td>
-                        <td>5-estrellas</td>
-                        <td>
-                          <form action="agrega.php">
-                            <div class="form-group">
-                              <button type="submit" class="btn btn-light">Agregar</button>
-                            </div>
-                          </form>
-                        </td>  
-                    </tr>
-
+                    <?php
+                      if ($resultAsesor->num_rows > 0) {
+                        // output data of each row
+                        while($row = $resultAsesor->fetch_assoc()) {
+                            echo "<tr>";
+                            echo '<td><img src="../img/contacts_3695.ico" height="50" alt=""></td>';
+                            echo "<td>". $row["nombre_asesor"] ."</td>";
+                            echo "<td>". $row["celular_asesor"] ."</td>";
+                            echo "<td>". $row["correo_asesor"] ."</td>";
+                            echo "<td>". $row["carrera_asesor"] ."</td>";
+                            echo "<td>". $row["semestre_asesor"] ."</td>";
+                            echo '<td><button type="submit" class="btn btn-primary">Agregar</button></td>';
+                            echo "<tr>";
+                        }
+                      } else {
+                        echo "0 results";
+                      }
+                    ?>
                   </tbody>
                 </table>
              </div> 
