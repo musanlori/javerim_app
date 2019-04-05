@@ -363,3 +363,37 @@ InnoDB: directories yourself, InnoDB does not create them.
 2019-04-03 15:33:11 4788 [Note] Server socket created on IP: '::'.
 2019-04-03 15:33:11 4788 [Note] C:\xampp\mysql\bin\mysqld.exe: ready for connections.
 Version: '10.1.38-MariaDB'  socket: ''  port: 3306  mariadb.org binary distribution
+2019-04-03 16:57:21 2544 [Note] C:\xampp\mysql\bin\mysqld.exe: Normal shutdown
+2019-04-03 16:57:21 2544 [Note] Event Scheduler: Purging the queue. 0 events
+2019-04-03 16:57:21 8060 [Note] InnoDB: FTS optimize thread exiting.
+2019-04-03 16:57:21 2544 [Note] InnoDB: Starting shutdown...
+2019-04-03 16:57:22 2544 [Note] InnoDB: Waiting for page_cleaner to finish flushing of buffer pool
+2019-04-03 16:57:23 2544 [Note] InnoDB: Shutdown completed; log sequence number 2525644
+2019-04-03 16:57:24 2544 [Note] C:\xampp\mysql\bin\mysqld.exe: Shutdown complete
+
+2019-04-05 12:10:44 df0 InnoDB: Warning: Using innodb_additional_mem_pool_size is DEPRECATED. This option may be removed in future releases, together with the option innodb_use_sys_malloc and with the InnoDB's internal memory allocator.
+2019-04-05 12:10:44 3568 [Note] InnoDB: innodb_empty_free_list_algorithm has been changed to legacy because of small buffer pool size. In order to use backoff, increase buffer pool at least up to 20MB.
+
+2019-04-05 12:10:44 3568 [Note] InnoDB: Using mutexes to ref count buffer pool pages
+2019-04-05 12:10:44 3568 [Note] InnoDB: The InnoDB memory heap is disabled
+2019-04-05 12:10:44 3568 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2019-04-05 12:10:44 3568 [Note] InnoDB: _mm_lfence() and _mm_sfence() are used for memory barrier
+2019-04-05 12:10:44 3568 [Note] InnoDB: Compressed tables use zlib 1.2.11
+2019-04-05 12:10:44 3568 [Note] InnoDB: Using generic crc32 instructions
+2019-04-05 12:10:44 3568 [Note] InnoDB: Initializing buffer pool, size = 16.0M
+2019-04-05 12:10:44 3568 [Note] InnoDB: Completed initialization of buffer pool
+2019-04-05 12:10:44 3568 [Note] InnoDB: Highest supported file format is Barracuda.
+2019-04-05 12:10:44 df0  InnoDB: Operating system error number 3 in a file operation.
+InnoDB: The error means the system cannot find the path specified.
+InnoDB: If you are installing InnoDB, remember that you must create
+InnoDB: directories yourself, InnoDB does not create them.
+2019-04-05 12:10:44 3568 [ERROR] InnoDB: Could not find a valid tablespace file for 'cursos/mensajes'. See http://dev.mysql.com/doc/refman/5.6/en/innodb-troubleshooting-datadict.html for how to resolve the issue.
+2019-04-05 12:10:44 3568 [ERROR] InnoDB: Tablespace open failed for '"cursos"."mensajes"', ignored.
+2019-04-05 12:10:45 3568 [Note] InnoDB: 128 rollback segment(s) are active.
+2019-04-05 12:10:45 3568 [Note] InnoDB: Waiting for purge to start
+2019-04-05 12:10:45 3568 [Note] InnoDB:  Percona XtraDB (http://www.percona.com) 5.6.42-84.2 started; log sequence number 2525644
+2019-04-05 12:10:45 1384 [Note] InnoDB: Dumping buffer pool(s) not yet started
+2019-04-05 12:10:45 3568 [Note] Plugin 'FEEDBACK' is disabled.
+2019-04-05 12:10:45 3568 [Note] Server socket created on IP: '::'.
+2019-04-05 12:10:46 3568 [Note] C:\xampp\mysql\bin\mysqld.exe: ready for connections.
+Version: '10.1.38-MariaDB'  socket: ''  port: 3306  mariadb.org binary distribution
