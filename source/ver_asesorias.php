@@ -26,15 +26,15 @@
         </div>
   <!--Targetas-->
         <div class="container">
-          <div class="card-deck mt-3">       
+          <div class="card-deck mt-3">
             <div class="card text-center border-info">
               <div class="card-body">
                 <a href="tabla_asesores.php"><img class="card-img-top" src="../img/algebra.jpg" height="250" alt=""></a>
                 <h4 class="card-title">Algebra</h4>
                 <p class="card-text"> asesores para temas de algebra </p>
               </div>
-            </div>          
-              
+            </div>
+
             <div class="card text-center border-info">
               <div class="card-body">
                 <a href="tabla_asesores.php"><img class="card-img-top" src="../img/calculod.jpg" height="250" alt=""></a>
@@ -42,7 +42,7 @@
                 <p class="card-text"> asesores para temas de cálculo diferencial </p>
               </div>
             </div>
-            
+
             <div class="card text-center border-info">
               <div class="card-body">
                 <a href="tabla_asesores.php"><img class="card-img-top" src="../img/Fisica.jpg" height="250" alt=""></a>
@@ -52,15 +52,15 @@
             </div>
           </div>
 <!-- segunda fila de targetas-->
-          <div class="card-deck mt-3">       
+          <div class="card-deck mt-3">
             <div class="card text-center border-info">
               <div class="card-body">
                 <a href="tabla_asesores.php"><img class="card-img-top" src="../img/programacion.jpg" height="250" alt=""></a>
                 <h4 class="card-title">Programación</h4>
                 <p class="card-text"> asesores para temas de programación </p>
               </div>
-            </div>          
-              
+            </div>
+
             <div class="card text-center border-info">
               <div class="card-body">
                 <a href="tabla_asesores.php"><img class="card-img-top" src="../img/quimica.jpg" height="250" alt=""></a>
@@ -68,7 +68,7 @@
                 <p class="card-text"> asesores para temas de química </p>
               </div>
             </div>
-            
+
             <div class="card text-center border-info">
               <div class="card-body">
                 <a href="tabla_asesores.php"><img class="card-img-top" src="../img/Geometria.jpg" height="250" alt=""></a>
@@ -78,15 +78,15 @@
             </div>
           </div>
 <!--Tercer Fila de Targetas-->
-          <div class="card-deck mt-3">       
+          <div class="card-deck mt-3">
             <div class="card text-center border-info">
               <div class="card-body">
                 <a href="tabla_asesores.php"><img class="card-img-top" src="../img/aLineal.png" height="250" alt=""></a>
                 <h4 class="card-title">Algebra lineal</h4>
                 <p class="card-text"> asesores para temas de algebra lineal </p>
               </div>
-            </div>          
-              
+            </div>
+
             <div class="card text-center border-info">
               <div class="card-body">
                 <a href="tabla_asesores.php"><img class="card-img-top" src="../img/calculoi.jpg" height="250" alt=""></a>
@@ -94,7 +94,7 @@
                 <p class="card-text"> asesores para temas de cálculo integral </p>
               </div>
             </div>
-            
+
             <div class="card text-center border-info">
               <div class="card-body">
                 <a href="tabla_asesores.php"><img class="card-img-top" src="../img/mecanica.jpg" height="250" alt=""></a>
@@ -104,7 +104,7 @@
             </div>
           </div>
         </div>
-            
+
         <!-- Termina el Contenido -->
         <script src="../js/jquery-3.3.1.slim.min.js"></script>
         <script src="../js/popper.min.js"></script>
