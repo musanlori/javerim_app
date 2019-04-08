@@ -16,15 +16,47 @@
     </div>
   </div>
   <!--lista de asesorias a Tomar-->
-  <div class= "container- fluid">
-    <div class="card-deck mt-4">
-      <div class="card text-center border-info">
-          <div class="card-body">
-            <img class="card-img-top" src="../img/calculod.jpg" height="250" alt=""></img>
+  <div  class= "container">
+
+      <div class="card-deck mt-3">
+
+        <div class="card text-center border-info">
+            <div class="card-header">
+              <h3>Cálculo Diferencial</h3>
+            </div>
+            <img class="card-img-top" src="../img/Materias/calculod.jpg" class="center" height="250" alt="">
+            <div class="card-body">
+             
+            </div>
+        </div>
+
+        <div class="card text-center border-info">
+          <div class="card-header">
+              <h3>Álgebra Lineal</h3>
           </div>
+            <img class="card-img-top" src="../img/Materias/aLineal.png" height="250" alt="">
+          <div class="card-body">
+            
+          </div>
+        </div>
+
+        <div class="card text-center border-info">
+          <div class="card-header">
+              <h3>Química</h3>
+          </div>
+            <img class="card-img-top" src="../img/Materias/quimica.jpg" class="center" height="250" alt="">
+          <div class="card-body">
+            
+          </div>
+        </div>
+
       </div>
-    </div>
+
   </div>
+
+  
+
+      
 
   <div class= "container- fluid">
 
@@ -43,7 +75,7 @@
 
 
       <div class="col-2 offset-1"  style="background-color:#bbb">
-        <div class="col"><img src="termodinamicaaplicada.jpg" alt="pato" class="center" width="170" height="150"></div>
+        <div class="col"> </div>
         <h5 class="text-center">Termodinamica aplicada<br><br> 28/04/2019<br><br> 11:15 hrs.<br><br> Biblioteca Antonio Dovalí Jaime</h5>
       </div>
 
@@ -84,7 +116,10 @@
 
   </div>
 
-
+<!-- Termina el Contenido -->
+        <script src="../js/jquery-3.3.1.slim.min.js"></script>
+        <script src="../js/popper.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
 
 
 
