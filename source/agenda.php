@@ -9,112 +9,120 @@
 </head>
 
 <body>
-  <!--Titulo 1: asesorias a Tomar-->
-  <div class= "container-fluid">
+  <!--Titulo 1: asesorias a cursar-->
+  <div class= "container">
     <div class="row ">
-      <div class="col-12 bg-primary"><p class="text-center">Asesorias a Tomar</p></div>
+      <div class="col-12 bg-primary"><h3 class="text-center">Asesorias a cursar</h3></div>
     </div>
   </div>
-  <!--lista de asesorias a Tomar-->
+  <!--lista de asesorias a Cursar-->
   <div  class= "container">
 
       <div class="card-deck mt-3">
 
         <div class="card text-center border-info">
             <div class="card-header">
-              <h3>Cálculo Diferencial</h3>
+              <h3 ><span class="glyphicon glyphicon-certificate"></span></h3> 
             </div>
             <img class="card-img-top" src="../img/Materias/calculod.jpg" class="center" height="250" alt="">
             <div class="card-body">
-             
+              <h5 class="card-title">Cálculo Diferencial</h5>
+              <p class="card-text">18/05/19<br>15:16<br>Biblioteca Antonio Dovalí Jaime</p>       
+            </div>
+            <div class="card-footer">
+              Alejandra Fernandez Martinez
             </div>
         </div>
 
         <div class="card text-center border-info">
           <div class="card-header">
-              <h3>Álgebra Lineal</h3>
+              
           </div>
             <img class="card-img-top" src="../img/Materias/aLineal.png" height="250" alt="">
           <div class="card-body">
-            
+            <h5 class="card-title">Álgebra Lineal</h5>
+            <p class="card-text">22/04/19<br>09:32<br>Biblioteca Antonio Dovalí Jaime</p>  
+          </div>
+          <div class="card-footer">
+              Rommel Sanchez gonzalez
           </div>
         </div>
 
         <div class="card text-center border-info">
           <div class="card-header">
-              <h3>Química</h3>
+              
           </div>
             <img class="card-img-top" src="../img/Materias/quimica.jpg" class="center" height="250" alt="">
           <div class="card-body">
-            
+           <h5 class="card-title">Química</h5> 
+           <p class="card-text">19/04/19<br>13:45<br>Biblioteca Antonio Dovalí Jaime</p>  
+          </div>
+        
+          <div class="card-footer">
+              Rolando Ramírez Solano
+          </div>
+      </div>
+
+  </div>
+</div>
+<!--Titulo 2: asesorias a impartir-->
+  <div class= "container">
+    <div class="row ">
+      <div class="col-12 bg-primary"><h3 class="text-center">Asesorias a impartir</h3></div>
+    </div>
+  </div>
+<!--lista de asesorias a impartir-->  
+<div  class= "container">
+
+      <div class="card-deck mt-3">
+
+        <div class="card text-center border-info">
+            <div class="card-header">
+              <h3 ><span class="glyphicon glyphicon-certificate"></span></h3> 
+            </div>
+            <img class="card-img-top" src="../img/Materias/Fisica.jpg" class="center" height="250" alt="">
+            <div class="card-body">
+              <h5 class="card-title">Física</h5>
+              <p class="card-text">11/05/19<br>11:05<br>Biblioteca Antonio Dovalí Jaime</p>       
+            </div>
+            <div class="card-footer">
+              Jose Ayala Soto
+            </div>
+        </div>
+
+        <div class="card text-center border-info">
+          <div class="card-header">
+              
+          </div>
+            <img class="card-img-top" src="../img/Materias/mecanica.jpg" height="250" alt="">
+          <div class="card-body">
+            <h5 class="card-title">Mecánica</h5>
+            <p class="card-text">29/04/19<br>13:22<br>Biblioteca Antonio Dovalí Jaime</p>  
+          </div>
+          <div class="card-footer">
+              Germán Carrera Pérez
           </div>
         </div>
 
+        <div class="card text-center border-info">
+          <div class="card-header">
+              
+          </div>
+            <img class="card-img-top" src="../img/Materias/programacion.jpg" class="center" height="250" alt="">
+          <div class="card-body">
+           <h5 class="card-title">Programación</h5> 
+           <p class="card-text">07/05/19<br>16:15<br>Biblioteca Antonio Dovalí Jaime</p>  
+          </div>
+        
+          <div class="card-footer">
+              Hania Rodriguez Quintero
+          </div>
       </div>
 
   </div>
-
+</div>
   
-
-      
-
-  <div class= "container- fluid">
-
-          <h3 class="text-center"> Asesorias a impartir </h1>
-  </div>
-
-
-
-  <div class= "container- fluid">
-
-    <div class="row">
-      <div class="col-2"   style="background-color:#aaa">
-        <div class="col"><img src="calculovectorial.jpg" class="img-thumbnail" ></div>
-        <h5 class="text-center">Calculo Vectorial<br><br> 19/05/2019<br><br> 16:15 hrs.<br><br> Biblioteca Antonio Dovalí Jaime</h5>
-     </div>
-
-
-      <div class="col-2 offset-1"  style="background-color:#bbb">
-        <div class="col"> </div>
-        <h5 class="text-center">Termodinamica aplicada<br><br> 28/04/2019<br><br> 11:15 hrs.<br><br> Biblioteca Antonio Dovalí Jaime</h5>
-      </div>
-
-
-      <div class="col-2 offset-1"  style="background-color:#aaa">
-        <div class="col"><img src="electricidad.jpg" alt="pato" class="center" width="170" height="150"></div>
-        <h5 class="text-center">Mecanica<br><br> 13/04/2019<br><br> 11:45 hrs.<br><br> Biblioteca Antonio Dovalí Jaime</h5>
-      </div>
-
-      <div class="col-2 offset-1"  style="background-color:#bbb">
-        <div class="col"><img src="geo.jpg" alt="pato" class="center" width="170" height="150"></div>
-        <h5 class="text-center">Probabilidad y estadistica<br><br> 19/04/2019<br><br> 13:25 hrs.<br><br> Biblioteca Antonio Dovalí Jaime</h5>
-      </div>
-
-
-      <div class="w-100"></div>
-      <div class="col-2"  style="background-color:#aaa">
-        <h5 class="text-center"><br><br>Juanito Perengano Fernandez</h5>
-      </div>
-
-
-      <div class="col-2 offset-1"  style="background-color:#bbb">
-        <h5 class="text-center"><br><br>Rosa ditode la colina</h5>
-      </div>
-
-
-      <div class="col-2 offset-1"  style="background-color:#aaa">
-        <h5 class="text-center"><br><br>Fernando Rangel Guevara</h5>
-      </div>
-
-      <div class="col-2 offset-1"  style="background-color:#bbb">
-        <h5 class="text-center"><br><br>Bruce Lee Onichan</h5>
-      </div>
-
-    </div>
-
-  </div>
-
-  </div>
+ 
 
 <!-- Termina el Contenido -->
         <script src="../js/jquery-3.3.1.slim.min.js"></script>
