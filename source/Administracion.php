@@ -44,13 +44,13 @@ catch(PDOException $e)
                  <a class="nav-link" href="#"><i class="fas fa-id-badge"></i> Perfil<span class="sr-only">(current)</span></a> 
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="#">Notificaciones</a>
+                  <a class="nav-link" href="#">Asesorias</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="#">Agenda</a>
+                  <a class="nav-link" href="Administracion.php">Mis Asesorias</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link disabled" href="#">Editar Disponibilidad</a>
+                  <a class="nav-link disabled" href="#">Agenda</a>
               </li>
           </ul>
            
