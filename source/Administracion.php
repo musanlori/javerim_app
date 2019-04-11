@@ -30,7 +30,7 @@ catch(PDOException $e)
 </head>
 <body>
    
-    <h1>Pruebas</h1>
+    <h1>Mis Asesorias</h1>
     
 <!-------------------------------------------------NavBar--------------------------------------------------------->
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
