@@ -9,58 +9,64 @@
     </head>
     <body>
         <!-- Empieza el Contenido -->
-        <!--Conectando con la base de datos-->
-        <?php
-        $servername = "localhost";
-        $username = "root";
-        $password = '';
-        $dbname = "javerim";
-        
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        } 
-        
-        $tablaAsesor = "SELECT * FROM asesor";
-        $resultAsesor = $conn->query($tablaAsesor);
-        ?>
-        <!--Tabla con la lista de asesores disponibles para cada materia-->
-        <div class="container">
-                <table class="table table-responsive-sm table-bordered table-hover">
-                  <thead> 
-                    <tr> 
-                      <th>img</th> 
-                      <th>Nombre</th>
-                      <th>Telefono</th>
-                      <th>correo</th>
-                      <th>carrera</th>
-                      <th>semestre</th>
-                    </tr> 
-                  </thead>
-                  <tbody>
-                    <?php
-                      if ($resultAsesor->num_rows > 0) {
-                        // output data of each row
-                        while($row = $resultAsesor->fetch_assoc()) {
-                            echo "<tr>";
-                            echo '<td><img src="../img/contacts_3695.ico" height="50" alt=""></td>';
-                            echo "<td>". $row["nombre_asesor"] ."</td>";
-                            echo "<td>". $row["celular_asesor"] ."</td>";
-                            echo "<td>". $row["correo_asesor"] ."</td>";
-                            echo "<td>". $row["carrera_asesor"] ."</td>";
-                            echo "<td>". $row["semestre_asesor"] ."</td>";
-                            echo '<td><button type="submit" class="btn btn-primary">Agregar</button></td>';
-                            echo "<tr>";
-                        }
-                      } else {
-                        echo "0 results";
-                      }
-                    ?>
-                  </tbody>
-                </table>
-             </div> 
+        <div class="container-fluid">
+            <!--Conectando con la base de datos-->
+            <table class = "table-responsive-sm table-bordered table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th> Asesor </th>
+                <th> Materia </th>
+                <th> Tema </th>
+                <th> Dia </th>
+                <th> Horario </th>
+                <th> Lugar </th>
+              </tr>
+            </thead>
+              <?php
+                $nombreMat = $_GET['nomMat'];
+                echo $nombreMat;
+                class TableRows extends RecursiveIteratorIterator { 
+                    function __construct($it) { 
+                        parent::__construct($it, self::LEAVES_ONLY); 
+                    }
+
+                    function current() {
+                        return "<td width = '250px'> " . parent::current(). " </td>";
+                    }
+
+                    function beginChildren() { 
+                        echo "<tr>"; 
+                    } 
+
+                    function endChildren() { 
+                        echo "<td><button type='submit' class='btn btn-primary'>+</button></td></tr>" . "\n";
+                    } 
+                } 
+
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "javerim";
+
+                try {
+                    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    $stmt = $conn->prepare("SELECT asesor.nombre_asesor, clase.nombre_asig, clase.Tema_asig, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig WHERE clase.nombre_asig ='$nombreMat'"); 
+                    $stmt->execute();
+
+                    // set the resulting array to associative
+                    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+                    foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) { 
+                        echo $v;
+                    }
+                }
+                catch(PDOException $e) {
+                    echo "Error: " . $e->getMessage();
+                }
+                $conn = null;
+              ?>
+            </table>
+        </div>
         <!-- Termina el Contenido -->
         <script src="../js/jquery-3.3.1.slim.min.js"></script>
         <script src="../js/popper.min.js"></script>

@@ -29,7 +29,7 @@
           <div class="card-deck mt-3">
             <div class="card text-center border-info">
               <div class="card-body">
-                <a href="tabla_asesores.php"><img class="card-img-top" src="../img/Materias/algebra.jpg" height="250" alt=""></a>
+                <a href="tabla_asesores.php?nomMat=Algebra"><img class="card-img-top" src="../img/Materias/algebra.jpg" height="250" alt=""></a>
                 <h4 class="card-title">Algebra</h4>
                 <p class="card-text"> asesores para temas de algebra </p>
               </div>
@@ -37,7 +37,7 @@
 
             <div class="card text-center border-info">
               <div class="card-body">
-                <a href="tabla_asesores.php"><img class="card-img-top" src="../img/Materias/calculod.jpg" height="250" alt=""></a>
+                <a href="tabla_asesores.php?nomMat=Calculo Diferencial"><img class="card-img-top" src="../img/Materias/calculod.jpg" height="250" alt=""></a>
                 <h4 class="card-title">Cálculo Diferencial</h4>
                 <p class="card-text"> asesores para temas de cálculo diferencial </p>
               </div>
@@ -45,7 +45,7 @@
 
             <div class="card text-center border-info">
               <div class="card-body">
-                <a href="tabla_asesores.php"><img class="card-img-top" src="../img/Materias/Fisica.jpg" height="250" alt=""></a>
+                <a href="tabla_asesores.php?nomMat=Fisica"><img class="card-img-top" src="../img/Materias/Fisica.jpg" height="250" alt=""></a>
                 <h4 class="card-title">Fisica</h4>
                 <p class="card-text"> asesores para temas de física </p>
               </div>
@@ -55,7 +55,7 @@
           <div class="card-deck mt-3">
             <div class="card text-center border-info">
               <div class="card-body">
-                <a href="tabla_asesores.php"><img class="card-img-top" src="../img/Materias/programacion.jpg" height="250" alt=""></a>
+                <a href="tabla_asesores.php?nomMat=Programacion"><img class="card-img-top" src="../img/Materias/programacion.jpg" height="250" alt=""></a>
                 <h4 class="card-title">Programación</h4>
                 <p class="card-text"> asesores para temas de programación </p>
               </div>
@@ -63,7 +63,7 @@
 
             <div class="card text-center border-info">
               <div class="card-body">
-                <a href="tabla_asesores.php"><img class="card-img-top" src="../img/Materias/quimica.jpg" height="250" alt=""></a>
+                <a href="tabla_asesores.php?nomMat=Quimica"><img class="card-img-top" src="../img/Materias/quimica.jpg" height="250" alt=""></a>
                 <h4 class="card-title">Química</h4>
                 <p class="card-text"> asesores para temas de química </p>
               </div>
@@ -71,7 +71,7 @@
 
             <div class="card text-center border-info">
               <div class="card-body">
-                <a href="tabla_asesores.php"><img class="card-img-top" src="../img/Materias/Geometria.jpg" height="250" alt=""></a>
+                <a href="tabla_asesores.php?nomMat=Geometria Analitica"><img class="card-img-top" src="../img/Materias/Geometria.jpg" height="250" alt=""></a>
                 <h4 class="card-title">Geometría Análitica</h4>
                 <p class="card-text"> asesores para temas de geometría análitica </p>
               </div>
@@ -81,7 +81,7 @@
           <div class="card-deck mt-3">
             <div class="card text-center border-info">
               <div class="card-body">
-                <a href="tabla_asesores.php"><img class="card-img-top" src="../img/Materias/aLineal.png" height="250" alt=""></a>
+                <a href="tabla_asesores.php?nomMat=Algebra Lineal"><img class="card-img-top" src="../img/Materias/aLineal.png" height="250" alt=""></a>
                 <h4 class="card-title">Algebra lineal</h4>
                 <p class="card-text"> asesores para temas de algebra lineal </p>
               </div>
@@ -89,7 +89,7 @@
 
             <div class="card text-center border-info">
               <div class="card-body">
-                <a href="tabla_asesores.php"><img class="card-img-top" src="../img/Materias/calculoi.jpg" height="250" alt=""></a>
+                <a href="tabla_asesores.php?nomMat=Calculo Integral"><img class="card-img-top" src="../img/Materias/calculoi.jpg" height="250" alt=""></a>
                 <h4 class="card-title">Cálculo Integral</h4>
                 <p class="card-text"> asesores para temas de cálculo integral </p>
               </div>
@@ -97,7 +97,7 @@
 
             <div class="card text-center border-info">
               <div class="card-body">
-                <a href="tabla_asesores.php"><img class="card-img-top" src="../img/Materias/mecanica.jpg" height="250" alt=""></a>
+                <a href="tabla_asesores.php?nomMat=Mecanica"><img class="card-img-top" src="../img/Materias/mecanica.jpg" height="250" alt=""></a>
                 <h4 class="card-title">Mecánica</h4>
                 <p class="card-text"> asesores para temas de Mecánica </p>
               </div>
