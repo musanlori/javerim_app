@@ -29,6 +29,11 @@ catch(PDOException $e)
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css" integrity="sha384-Mmxa0mLqhmOeaE8vgOSbKacftZcsNYDjQzuCOm6D02luYSzBG8vpaOykv9lFQ51Y" crossorigin="anonymous">
 </head>
 <body>
+<<<<<<< HEAD
+=======
+   
+    <h1>Mis Asesorias</h1>
+>>>>>>> 8d2ff36b65f8bb04c86f213a139c42c411e04bf1
     
 <!-------------------------------------------------NavBar--------------------------------------------------------->
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
