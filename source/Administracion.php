@@ -31,27 +31,21 @@ catch(PDOException $e)
 <body>
     
 <!-------------------------------------------------NavBar--------------------------------------------------------->
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          
-          <!-- logo -->
-          <a class="navbar-brand" href="#">
-            <img src="../img/iconos/unam.jpg" width="30" height="30" alt="">
-          </a>
-          
+  <!--barra de navegacion-->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+    <!-- logo -->
+      <a class="navbar-brand" href="#">
+        <img src="../img/iconos/unam.jpg" width="30" height="30" alt="">
+      </a>
+
           <!-- enlaces -->
-          <div class="collapse navbar-collapse" id="opciones">   
+          <div class="collapse navbar-collapse" id="opciones">
             <ul class="navbar-nav">
               <li class="nav-item">
-
-              <li class="nav-item">
-                  <a class="nav-link" href="Administracion.php">Mis Asesorias</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link disabled" href="#">Agenda</a>
-
                 <a class="nav-link" href="ver_asesorias.php">Asesorías</a>
               </li>
               <li class="nav-item">
@@ -62,7 +56,7 @@ catch(PDOException $e)
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">acerca de</a>
-              </li>            
+              </li>
             </ul>
           </div>
         </nav>
@@ -74,6 +68,14 @@ catch(PDOException $e)
             </div>
           </div>
         </div>
+  <!--Titulo 1: asesorias a cursar-->
+<!--
+  <div class= "container">
+    <div class="row ">
+      <div class="col-12 bg-primary"><h3 class="text-center">Administración</h3></div>
+    </div>
+  </div>
+-->
 <!---------------------------------------------------AGREGAR--------------------------------------------------------->
      <form action="Administracion.php" method="POST">
         <?php

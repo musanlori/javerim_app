@@ -10,7 +10,7 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=javerim", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connected successfully"; 
+    //echo "Connected successfully"; 
     }
 catch(PDOException $e)
     {
@@ -37,10 +37,11 @@ if(!$resultado){
     die();
 }
 
-if( password_verify( $contrasena_login , $resultado['contrasena']) ){
+if( password_verify( $contrasena_login, $resultado['contrasena']) ){
     //las contraseñas son iguales
     $_SESSION['admin'] = $correo_login;
-    //header('Location: restringido.php');
+    echo 'Las contraseñas son iguales';
+    header('Location:bienvenido.php');
 
 }else{
     echo 'No son iguales las contraseñas!';
