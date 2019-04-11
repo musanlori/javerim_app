@@ -9,20 +9,42 @@
     </head>
     <body>
         <!-- Empieza el Contenido -->
-        <!--Botones para las pestañas de la pantalla-->
-        <div class="container">
-          <div class="row justify-content-between ">
-            <div class="col-6 bg-primary" ><a href="ver_asesorias.php"><p class="h4 text-center text-dark">Ver Asesorías</p></a></div>
-            <div class="col-6" ><a href="MisAsesorias.html"><p class="h4 text-center">Mis Asesorías</p></a></div>
+        <!--barra de navegacion-->
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <!-- logo -->
+          <a class="navbar-brand" href="#">
+            <img src="../img/iconos/unam.jpg" width="30" height="30" alt="">
+          </a>
+          
+          <!-- enlaces -->
+          <div class="collapse navbar-collapse" id="opciones">   
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="ver_asesorias.php">Asesorías</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Administracion.php">Administracion</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="agenda.php">Agenda</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">acerca de</a>
+              </li>            
+            </ul>
           </div>
-        </div>
-         <!--Encabezado de la pestaña-->
+        </nav>
+        <!--Titulo-->
         <div class="container">
-            <div class="row bg-primary">
-                <div class="col-12">
-                    <p class="h1">Listado de Asesorias</p>
-                </div>
+          <div class="row">
+            <div class="col-6">
+              <h1>Asesorías</h1>
             </div>
+          </div>
         </div>
   <!--Targetas-->
         <div class="container">

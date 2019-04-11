@@ -10,6 +10,43 @@
 
 <body>
   <!--Pantalla Agenda Javerim-->
+  <!--barra de navegacion-->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+    <!-- logo -->
+      <a class="navbar-brand" href="#">
+        <img src="../img/iconos/unam.jpg" width="30" height="30" alt="">
+      </a>
+
+          <!-- enlaces -->
+          <div class="collapse navbar-collapse" id="opciones">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="ver_asesorias.php">Asesorías</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Administracion.php">Administracion</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="agenda.php">Agenda</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">acerca de</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <!--Titulo-->
+        <div class="container">
+          <div class="row">
+            <div class="col-6">
+              <h1>Agenda</h1>
+            </div>
+          </div>
+        </div>
   <!--Titulo 1: asesorias a cursar-->
   <div class= "container">
     <div class="row ">
@@ -17,113 +54,54 @@
     </div>
   </div>
   <!--lista de asesorias a Cursar-->
-  <div  class= "container">
+    <table class= "table-responsive-small table-bordered table-hover">
+      <tr><th>asignatura</th><th>fecha</th><th>hora</th><th>asesor</th><th>Lugar de la sesión</th><th>Rating</th>
+  <?php
 
-      <div class="card-deck mt-3">
+class TableRows extends RecursiveIteratorIterator {
+    function __construct($it) {
+        parent::__construct($it, self::LEAVES_ONLY);
+    }
 
-        <div class="card text-center border-info">
-            <div class="card-header">
-              <h3 ><span class="glyphicon glyphicon-certificate"></span></h3> 
-            </div>
-            <img class="card-img-top" src="../img/Materias/calculod.jpg" class="center" height="250" alt="">
-            <div class="card-body">
-              <h5 class="card-title">Cálculo Diferencial</h5>
-              <p class="card-text">18/05/19<br>15:16<br>Biblioteca Antonio Dovalí Jaime</p>       
-            </div>
-            <div class="card-footer">
-              Alejandra Fernandez Martinez
-            </div>
-        </div>
+    function current() {
+        return "<td style='width:250px;border:1px solid black;'>" . parent::current(). "</td>";
+    }
 
-        <div class="card text-center border-info">
-          <div class="card-header">
-              
-          </div>
-            <img class="card-img-top" src="../img/Materias/aLineal.png" height="250" alt="">
-          <div class="card-body">
-            <h5 class="card-title">Álgebra Lineal</h5>
-            <p class="card-text">22/04/19<br>09:32<br>Biblioteca Antonio Dovalí Jaime</p>  
-          </div>
-          <div class="card-footer">
-              Rommel Sanchez gonzalez
-          </div>
-        </div>
+    function beginChildren() {
+        echo "<tr>";
+    }
 
-        <div class="card text-center border-info">
-          <div class="card-header">
-              
-          </div>
-            <img class="card-img-top" src="../img/Materias/quimica.jpg" class="center" height="250" alt="">
-          <div class="card-body">
-           <h5 class="card-title">Química</h5> 
-           <p class="card-text">19/04/19<br>13:45<br>Biblioteca Antonio Dovalí Jaime</p>  
-          </div>
-        
-          <div class="card-footer">
-              Rolando Ramírez Solano
-          </div>
-      </div>
+    function endChildren() {
+        echo "</tr>" . "\n";
+    }
+}
 
-  </div>
-</div>
-<!--Titulo 2: asesorias a impartir-->
-  <div class= "container">
-    <div class="row ">
-      <div class="col-12 bg-primary"><h3 class="text-center">Asesorias a impartir</h3></div>
-    </div>
-  </div>
-<!--lista de asesorias a impartir-->  
-<div  class= "container">
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "javerim";
 
-      <div class="card-deck mt-3">
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $conn->prepare("SELECT clase.nombre_asig, cita.fecha_cita, cita.hora_cita, asesor.nombre_asesor,sesiones.lugar_sesion ,cita.rating_asesor  FROM `cita` INNER JOIN asesor ON cita.id_asesor=asesor.id_asesor INNER JOIN alumnos ON cita.id_alumno= alumnos.id_alumno INNER JOIN sesiones ON asesor.id_asesor=sesiones.id_asesor INNER JOIN clase ON sesiones.id_clase=clase.id_asig WHERE alumnos.id_alumno=2" );
+    $stmt->execute();
 
-        <div class="card text-center border-info">
-            <div class="card-header">
-              <h3 ><span class="glyphicon glyphicon-certificate"></span></h3> 
-            </div>
-            <img class="card-img-top" src="../img/Materias/Fisica.jpg" class="center" height="250" alt="">
-            <div class="card-body">
-              <h5 class="card-title">Física</h5>
-              <p class="card-text">11/05/19<br>11:05<br>Biblioteca Antonio Dovalí Jaime</p>       
-            </div>
-            <div class="card-footer">
-              Jose Ayala Soto
-            </div>
-        </div>
+    // set the resulting array to associative
+    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
+        echo $v;
+    }
+}
+catch(PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
 
-        <div class="card text-center border-info">
-          <div class="card-header">
-              
-          </div>
-            <img class="card-img-top" src="../img/Materias/mecanica.jpg" height="250" alt="">
-          <div class="card-body">
-            <h5 class="card-title">Mecánica</h5>
-            <p class="card-text">29/04/19<br>13:22<br>Biblioteca Antonio Dovalí Jaime</p>  
-          </div>
-          <div class="card-footer">
-              Germán Carrera Pérez
-          </div>
-        </div>
+    $conn = null;
+?>
 
-        <div class="card text-center border-info">
-          <div class="card-header">
-              
-          </div>
-            <img class="card-img-top" src="../img/Materias/programacion.jpg" class="center" height="250" alt="">
-          <div class="card-body">
-           <h5 class="card-title">Programación</h5> 
-           <p class="card-text">07/05/19<br>16:15<br>Biblioteca Antonio Dovalí Jaime</p>  
-          </div>
-        
-          <div class="card-footer">
-              Hania Rodriguez Quintero
-          </div>
-      </div>
+</tabla>
 
-  </div>
-</div>
-  
- 
 
 <!-- Termina el Contenido -->
         <script src="../js/jquery-3.3.1.slim.min.js"></script>

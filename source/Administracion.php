@@ -9,7 +9,7 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=javerim", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connected successfully"; 
+    //echo "Connected successfully"; 
     }
 catch(PDOException $e)
     {
@@ -29,33 +29,51 @@ catch(PDOException $e)
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css" integrity="sha384-Mmxa0mLqhmOeaE8vgOSbKacftZcsNYDjQzuCOm6D02luYSzBG8vpaOykv9lFQ51Y" crossorigin="anonymous">
 </head>
 <body>
-   
-    <h1>Mis Asesorias</h1>
     
 <!-------------------------------------------------NavBar--------------------------------------------------------->
-   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-       <a class="navbar-brand" href="#">Javerim</a>
-       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-           <span class="navbar-toggler-icon"></span>
-       </button>
-       <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-              <li class="nav-item active">
-                 <a class="nav-link" href="#"><i class="fas fa-id-badge"></i> Perfil<span class="sr-only">(current)</span></a> 
-              </li>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <!-- logo -->
+          <a class="navbar-brand" href="#">
+            <img src="../img/iconos/unam.jpg" width="30" height="30" alt="">
+          </a>
+          
+          <!-- enlaces -->
+          <div class="collapse navbar-collapse" id="opciones">   
+            <ul class="navbar-nav">
               <li class="nav-item">
-                  <a class="nav-link" href="#">Asesorias</a>
-              </li>
+
               <li class="nav-item">
                   <a class="nav-link" href="Administracion.php">Mis Asesorias</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link disabled" href="#">Agenda</a>
+
+                <a class="nav-link" href="ver_asesorias.php">Asesorías</a>
               </li>
-          </ul>
-           
-       </div>
-   </nav>
+              <li class="nav-item">
+                <a class="nav-link" href="Administracion.php">Administracion</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="agenda.php">Agenda</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">acerca de</a>
+              </li>            
+            </ul>
+          </div>
+        </nav>
+        <!--Titulo-->
+        <div class="container">
+          <div class="row">
+            <div class="col-6">
+              <h1>Administración</h1>
+            </div>
+          </div>
+        </div>
 <!---------------------------------------------------AGREGAR--------------------------------------------------------->
      <form action="Administracion.php" method="POST">
         <?php
@@ -218,12 +236,7 @@ catch(PDOException $e)
               <?php endforeach ?>
           </div>
       </div>
-       
-   
-       
-       
-   
-     
+ 
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>  
