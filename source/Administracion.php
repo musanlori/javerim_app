@@ -95,7 +95,7 @@ catch(PDOException $e)
                 $conn = new PDO("mysql:host=$servername;dbname=javerim", $username, $password);
                 // set the PDO error mode to exception
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $sql = "INSERT INTO `sesiones` (`id_sesion`, `dia_semana`, `horario`, `lugar`, `id_asesor`, `id_clase`) VALUES (NULL, '$dia', '$hora', '$lugar', '2', '$materia')";
+                $sql = "INSERT INTO `sesiones` (`id_sesion`, `dia_semana`, `horario_sesion`, `lugar_sesion`, `id_asesor`, `id_clase`) VALUES (NULL, '$dia', '$hora', '$lugar', '2', '$materia')";
                 // use exec() because no results are returned
                 $conn->exec($sql);
                 echo "New record created successfully";
@@ -209,7 +209,7 @@ catch(PDOException $e)
     try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT clase.nombreC, sesiones.id_sesion, sesiones.dia_semana, sesiones.horario, sesiones.lugar FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id INNER JOIN clase ON sesiones.id_clase= clase.idC"); 
+    $stmt = $conn->prepare("SELECT clase.nombre_asig, sesiones.id_sesion, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig"); 
     $stmt->execute();
     $resultado =$stmt->fetchAll();
     }
@@ -225,10 +225,10 @@ catch(PDOException $e)
              <?php foreach ($resultado as $dato): ?>
               <div class="col-md-6">
                  <div class="alert alert-primary">
-                    <b>Materia: </b> <?php echo $dato['nombreC'] ?> <br>
+                    <b>Materia: </b> <?php echo $dato['nombre_asig'] ?> <br>
                     <b>Dia: </b> <?php echo $dato['dia_semana'] ?>
-                    <b>Hora: </b> <?php echo $dato['horario'] ?> <br>
-                    <b>Lugar: </b> <?php echo $dato['lugar'] ?>
+                    <b>Hora: </b> <?php echo $dato['horario_sesion'] ?> <br>
+                    <b>Lugar: </b> <?php echo $dato['lugar_sesion'] ?>
                     <a href="delete.php?id=<?php echo $dato['id_sesion'] ?>" class="float-right ml-3">
                         <i class="fas fa-minus-circle"></i>
                     </a>
