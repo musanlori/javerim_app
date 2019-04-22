@@ -1,0 +1,32 @@
+.bg-jav{
+    text-aling: right;
+    background-color: blue;
+}
+.text-act{
+    color: white;
+}
+
+.text-nac{
+    color: rgb(3, 3, 100);
+}
+
+.text-cMat{
+    color: green;
+}
+
+.titulo-nac{
+    border-style: solid;
+    border-color: rgb(3, 3, 100);
+}
+
+.titulo-act{
+    text-aling: center;
+    background-color: rgb(3, 3, 100);
+}
+
+a:link{
+    text-decoration: none;
+}
+a:link{
+    text-decoration: none;
+}
