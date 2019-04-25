@@ -118,12 +118,12 @@ catch(PDOException $e)
                        <label name="materia"><b>Materia: </b></label>
                        <select name="materia">
                        <?php
-                           $sqlquery=$conn->prepare('SELECT nombreC,idC FROM clase ORDER BY idC DESC');
+                           $sqlquery=$conn->prepare('SELECT nombre_asig,id_asig FROM clase ORDER BY id_asig DESC');
                            $sqlquery->execute();
                            while($row=$sqlquery->fetch(PDO::FETCH_ASSOC)){
                                extract($row)    
                         ?>
-                            <option value="<?php echo $row['idC']; ?>"> <?php echo $row['idC']; echo $row['nombreC']; ?></option>
+                            <option value="<?php echo $row['id_asig']; ?>"> <?php echo $row['id_asig']; echo $row['nombre_asig']; ?></option>
                             <?php } ?>
                         </select>
                        <!--<label name="tema"><b>Tema: </b></label>
