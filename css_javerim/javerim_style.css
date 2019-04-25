@@ -10,10 +10,6 @@
     color: rgb(3, 3, 100);
 }
 
-.text-cMat{
-    color: green;
-}
-
 .titulo-nac{
     border-style: solid;
     border-color: rgb(3, 3, 100);
@@ -30,3 +26,9 @@ a:link{
 a:link{
     text-decoration: none;
 }
+
+.cartas {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    color: green;
+    border-radius: 5px 5px 0 0;
+  }

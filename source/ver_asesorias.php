@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>javerin_sc_II</title>
+        <title>Panel de Asesorias</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie-edge">
@@ -52,78 +52,55 @@
           </div>
         </div>
   <!--Targetas-->
-        <div class="container">
-          <div class="card-deck mt-3">
-            <div class="card text-center text-cMat shadow border-light rounded">
-              <div class="card-body">
-                <a href="tabla_asesores.php?nomMat=Algebra"><img class="card-img-top" src="../img/Materias/algebra.jpg" height="250" alt=""></a>
-                <h4 class="card-title">Algebra</h4>
-              </div>
-            </div>
+  <?php
+    try {
+      //CONECCION 
+      $servername = "localhost";
+      $username = "root";
+      $password = "";
+      $dbname = "javerim";
 
-            <div class="card text-center text-cMat shadow border-light rounded">
-              <div class="card-body">
-                <a href="tabla_asesores.php?nomMat=Calculo Diferencial"><img class="card-img-top" src="../img/Materias/calculod.jpg" height="250" alt=""></a>
-                <h4 class="card-title">Cálculo Diferencial</h4>
-              </div>
-            </div>
+      try {
+          $conn = new PDO("mysql:host=$servername;dbname=javerim", $username, $password);
+          // set the PDO error mode to exception
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          //echo "Connected successfully"; 
+          }
+      catch(PDOException $e)
+          {
+          echo "Connection failed: " . $e->getMessage();
+          }
 
-            <div class="card text-center text-cMat shadow border-light rounded">
-              <div class="card-body">
-                <a href="tabla_asesores.php?nomMat=Fisica"><img class="card-img-top" src="../img/Materias/Fisica.jpg" height="250" alt=""></a>
-                <h4 class="card-title">Fisica</h4>
-              </div>
+          $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          $stmt = $conn->prepare("SELECT nombre_asig FROM clase"); 
+          $stmt->execute();
+          $resultado =$stmt->fetchAll();
+          }
+    catch(PDOException $e) {
+      echo "Error: " . $e->getMessage();
+    }
+  ?>
+          <div class="container">  
+            <div class="row">
+                <?php
+                $depName = ' ';
+                foreach ($resultado as $dato):
+                  if($depName != $dato['nombre_asig']){ ?>
+                  <div class="col-4 mt-5 border shadow text-center cartas">
+                    <a href="tabla_asesores.php?nomMat=<?php echo $dato['nombre_asig'] ?>">
+                      <img src="../img/iconos/contacts_3695.ico" height="100" alt="">
+                      <br>
+                      <?php echo $dato['nombre_asig'] ?> <br>
+                    </a>  
+                  </div>
+                  <?php
+                  }
+                    $depName = $dato['nombre_asig'];
+                  ?>
+                <?php endforeach ?>
             </div>
           </div>
-<!-- segunda fila de targetas-->
-          <div class="card-deck mt-3">
-            <div class="card text-center text-cMat shadow border-light rounded">
-              <div class="card-body">
-                <a href="tabla_asesores.php?nomMat=Programacion"><img class="card-img-top" src="../img/Materias/programacion.jpg" height="250" alt=""></a>
-                <h4 class="card-title">Programación</h4>
-                <p class="card-text"> asesores para temas de programación </p>
-              </div>
-            </div>
-
-            <div class="card text-center text-cMat shadow border-light rounded">
-              <div class="card-body">
-                <a href="tabla_asesores.php?nomMat=Quimica"><img class="card-img-top" src="../img/Materias/quimica.jpg" height="250" alt=""></a>
-                <h4 class="card-title">Química</h4>
-                <p class="card-text"> asesores para temas de química </p>
-              </div>
-            </div>
-
-            <div class="card text-center text-cMat shadow border-light rounded">
-              <div class="card-body">
-                <a href="tabla_asesores.php?nomMat=Geometria Analitica"><img class="card-img-top" src="../img/Materias/Geometria.jpg" height="250" alt=""></a>
-                <h4 class="card-title">Geometría Análitica</h4>
-              </div>
-            </div>
-          </div>
-<!--Tercer Fila de Targetas-->
-          <div class="card-deck text-cMat mt-3">
-            <div class="card text-center text-cMat shadow border-light rounded">
-              <div class="card-body">
-                <a href="tabla_asesores.php?nomMat=Algebra Lineal"><img class="card-img-top" src="../img/Materias/aLineal.png" height="250" alt=""></a>
-                <h4 class="card-title">Algebra lineal</h4>
-              </div>
-            </div>
-
-            <div class="card text-center text-cMat shadow border-light rounded">
-              <div class="card-body">
-                <a href="tabla_asesores.php?nomMat=Calculo Integral"><img class="card-img-top" src="../img/Materias/calculoi.jpg" height="250" alt=""></a>
-                <h4 class="card-title">Cálculo Integral</h4>
-              </div>
-            </div>
-
-            <div class="card text-center text-cMat shadow border-light rounded">
-              <div class="card-body">
-                <a href="tabla_asesores.php?nomMat=Mecanica"><img class="card-img-top" src="../img/Materias/mecanica.jpg" height="250" alt=""></a>
-                <h4 class="card-title">Mecánica</h4>
-              </div>
-            </div>
-          </div>
-        </div>
 
         <!-- Termina el Contenido -->
         <script src="../js/jquery-3.3.1.slim.min.js"></script>

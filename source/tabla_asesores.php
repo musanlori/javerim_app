@@ -43,8 +43,8 @@
             <br><br>
             <div class="container">
                 <div class="row">
-                    <div class="col-6 titulo-act text-center">
-                        <a href="ver_asesorias.php"><h1 class="text-act">Asesorías</h1></a>
+                    <div class="col-6 titulo-nac text-center">
+                        <a href="ver_asesorias.php"><h1 class="text-nac">Asesorías</h1></a>
                     </div>
                     <div class="col-6 titulo-nac text-center">
                         <a href="agenda.php"><h1 class="text-nac">Agenda</h1></a>
