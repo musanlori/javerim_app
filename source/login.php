@@ -56,8 +56,8 @@ $escoger_login=$_POST['escoger'];
         }
     }
     
-
-if( password_verify( $contrasena_login, $resultado['contrasena']) ){
+if($escoger_login=="alumnos"){
+    if(password_verify($contrasena_login, $resultado['contrasena_alumno']) ){
     //las contraseñas son iguales
     $_SESSION['admin'] = $correo_login;
     echo 'Las contraseñas son iguales';
@@ -67,5 +67,20 @@ if( password_verify( $contrasena_login, $resultado['contrasena']) ){
     echo 'No son iguales las contraseñas!';
     die();
 }
+    
+}else{
+    if(password_verify($contrasena_login, $resultado['contrasena_asesor']) ){
+    //las contraseñas son iguales
+    $_SESSION['admin'] = $correo_login;
+    echo 'Las contraseñas son iguales';
+    header('Location:Administracion.php');
+
+}else{
+    echo 'No son iguales las contraseñas!';
+    die();
+}
+    
+}
+
 
 ?>

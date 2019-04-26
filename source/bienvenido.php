@@ -13,22 +13,22 @@ session_start();
 </head>
 <body>
 <!--  -----------------------------------NAVBAR-------------------------------------------------------------------------->
-    <!--barra de navegacion-->
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-    <!-- logo -->
-      <a class="navbar-brand" href="#">
-        <img src="../img/iconos/unam.jpg" width="30" height="30" alt="">
-      </a>
-
+  <!--barra de navegacion-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-jav">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones" >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <!-- logo -->
+          <a class="navbar-brand" href="#">
+            <img src="../img/iconos/unam.jpg" width="30" height="30" alt="">
+          </a>
+          
           <!-- enlaces -->
-          <div class="collapse navbar-collapse" id="opciones">
+          <div class="collapse navbar-collapse" id="opciones">   
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="ver_asesorias.php">Asesorías</a>
+                <a class="nav-link " href="ver_asesorias.php">Asesorías</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="Administracion.php">Administracion</a>
@@ -38,7 +38,7 @@ session_start();
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">acerca de</a>
-              </li>
+              </li>            
             </ul>
           </div>
         </nav>
@@ -51,6 +51,7 @@ session_start();
           </div>
         </div>
 <!----------------------------------------SESION----------------------------------------------------------------->
+<!--
   
 <?php
 //------------------------SE NECESITA TENER LA UNA SESION INICIADA PARA VER ESTA PAGINA
@@ -64,6 +65,7 @@ if( isset($_SESSION['admin']) ){
 
 
 ?> 
+-->
    
    
     <script src="js/jquery-3.3.1.min.js"></script>
