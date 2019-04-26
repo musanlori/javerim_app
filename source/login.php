@@ -20,6 +20,7 @@ catch(PDOException $e)
 $correo_login = $_POST['correo'];
 $contrasena_login = $_POST['contrasena'];
 $escoger_login=$_POST['escoger'];
+$id;
 
     if($escoger_login=="alumnos"){
         try {
