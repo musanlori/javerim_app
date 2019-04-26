@@ -21,21 +21,41 @@ $correo_login = $_POST['correo'];
 $contrasena_login = $_POST['contrasena'];
 $escoger_login=$_POST['escoger'];
 
-    try {
+    if($escoger_login=="alumnos"){
+        try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT*FROM $escoger_login WHERE correo='$correo_login'"); 
+    $stmt = $conn->prepare("SELECT*FROM alumnos WHERE correo_alumno='$correo_login'"); 
     $stmt->execute();
     $resultado =$stmt->fetch();
     }
     catch(PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
-if(!$resultado){
-    //matar la operación
-    echo 'No exite usuario';
-    die();
-}
+        if(!$resultado){
+        //matar la operación
+        echo 'No exite usuario';
+        die();
+        }
+        
+    }else{
+        try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $conn->prepare("SELECT*FROM asesor WHERE correo_asesor='$correo_login'"); 
+    $stmt->execute();
+    $resultado =$stmt->fetch();
+    }
+    catch(PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+        if(!$resultado){
+        //matar la operación
+        echo 'No exite usuario';
+        die();
+        }
+    }
+    
 
 if( password_verify( $contrasena_login, $resultado['contrasena']) ){
     //las contraseñas son iguales

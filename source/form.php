@@ -88,7 +88,7 @@
                     <input type="password" name="contrasena" placeholder="********"><br>
                     <select name="escoger" id="escoger">
                         <option value="asesor">Asesor</option>
-                        <option value="alumno">Alumno</option>
+                        <option value="alumnos">Alumno</option>
                     </select><br>
                     <button type="sunmit" class="btn btn-primary">Iniciar sesion</button>
                 </form>
