@@ -7,6 +7,8 @@
         <meta http-equiv="x-ua-compatible" content="ie-edge">
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="../css_javerim/javerim_style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     </head>
     <body>
         <!-- Empieza el Contenido -->
@@ -55,62 +57,64 @@
             <div class="container-fluid">
             
             <!--Conectando con la base de datos-->
-            <table class = "table-responsive-sm table-bordered table-hover">
-            <thead class="thead-dark">
-              <tr>
-                <th> Asesor </th>
-                <th> Materia </th>
-                <th> Tema </th>
-                <th> Dia </th>
-                <th> Horario </th>
-                <th> Lugar </th>
-              </tr>
-            </thead>
-              <?php
-                $nombreMat = $_GET['nomMat'];
+        <?php
+            $nombreMat = $_GET['nomMat'];
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "javerim";
+            try {
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // $stmt = $conn->prepare("SELECT clase.nombre_asig, sesiones.id_sesion, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig"); 
+            $stmt = $conn->prepare("SELECT asesor.nombre_asesor, clase.nombre_asig, clase.Tema_asig, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig WHERE clase.nombre_asig ='$nombreMat'"); 
                 
-                class TableRows extends RecursiveIteratorIterator { 
-                    function __construct($it) { 
-                        parent::__construct($it, self::LEAVES_ONLY); 
-                    }
-
-                    function current() {
-                        return "<td width = '250px'> " . parent::current(). " </td>";
-                    }
-
-                    function beginChildren() { 
-                        echo "<tr>"; 
-                    } 
-
-                    function endChildren() { 
-                        echo "<td><button type='submit' class='btn btn-primary'>+</button></td></tr>" . "\n";
-                    } 
-                } 
-
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $dbname = "javerim";
-
-                try {
-                    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    $stmt = $conn->prepare("SELECT asesor.nombre_asesor, clase.nombre_asig, clase.Tema_asig, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig WHERE clase.nombre_asig ='$nombreMat'"); 
-                    $stmt->execute();
-
-                    // set the resulting array to associative
-                    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
-                    foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) { 
-                        echo $v;
-                    }
-                }
-                catch(PDOException $e) {
-                    echo "Error: " . $e->getMessage();
-                }
-                $conn = null;
-              ?>
-            </table>
-        </div>
+            $stmt->execute();
+            $resultado =$stmt->fetchAll();
+            }
+            catch(PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+                
+                
+            ?>
+            
+            <div class="container">
+                <div class="row justify-content-around">
+                    <?php foreach ($resultado as $dato): ?>
+                    <div class="col-md-5 mt-5 border shadow">
+                        <br>
+                        <div class="row justify-content-between">
+                            <div class="col-4">
+                                <img src="../img/iconos/contacts_3695.ico" class="rounded-circle" alt="photo">
+                            </div>
+                            <div class="col-6">
+                                <b> </b> <?php echo $dato['nombre_asesor'] ?> <br>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span> <br>
+                                <img src="../img/iconos/1x/baseline_calendar_today_black_18dp.png" alt="calendar">
+                                <b> </b> <?php echo $dato['dia_semana'] ?>
+                                <img src="../img/iconos/1x/baseline_query_builder_black_18dp.png" alt="calendar">
+                                <b> </b> <?php echo $dato['horario_sesion'] ?> <br>
+                                <img src="../img/iconos/1x/baseline_location_on_black_18dp.png" alt="calendar">
+                                <b> </b> <?php echo $dato['lugar_sesion'] ?> <br>
+                                
+                            </div>
+                            <div class="col-12">
+                                <a href="delete.php?id=<?php echo $dato['id_sesion'] ?>">
+                                    <button type='submit' class='btn btn-success btn-block'>Agendar Asesoria</button>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                    <?php endforeach ?>
+                </div>
+            </div>
         <!-- Termina el Contenido -->
         <script src="../js/jquery-3.3.1.slim.min.js"></script>
         <script src="../js/popper.min.js"></script>
