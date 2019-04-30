@@ -54,56 +54,80 @@
     </div>
   </div>
   <!--lista de asesorias a Cursar-->
-    <table class= "table-responsive-small table-bordered table-hover">
-      <tr><th>asignatura</th><th>fecha</th><th>hora</th><th>asesor</th><th>Lugar de la sesión</th><th>Rating</th>
   <?php
+  try {
+    //CONECCION
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "javerim";
 
-class TableRows extends RecursiveIteratorIterator {
-    function __construct($it) {
-        parent::__construct($it, self::LEAVES_ONLY);
-    }
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=javerim", $username, $password);
+        // set the PDO error mode to exception
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //echo "Connected successfully";
+        }
+    catch(PDOException $e)
+        {
+        echo "Connection failed: " . $e->getMessage();
+        }
 
-    function current() {
-        return "<td style='width:250px;border:1px solid black;'>" . parent::current(). "</td>";
-    }
-
-    function beginChildren() {
-        echo "<tr>";
-    }
-
-    function endChildren() {
-        echo "</tr>" . "\n";
-    }
-}
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "javerim";
-
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT clase.nombre_asig, cita.fecha_cita, cita.hora_cita, asesor.nombre_asesor,sesiones.lugar_sesion ,cita.rating_asesor  FROM `cita` INNER JOIN asesor ON cita.id_asesor=asesor.id_asesor INNER JOIN alumnos ON cita.id_alumno= alumnos.id_alumno INNER JOIN sesiones ON asesor.id_asesor=sesiones.id_asesor INNER JOIN clase ON sesiones.id_clase=clase.id_asig WHERE alumnos.id_alumno=2" );
-    $stmt->execute();
-
-    // set the resulting array to associative
-    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-    foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
-        echo $v;
-    }
-}
-catch(PDOException $e) {
-    echo "Error: " . $e->getMessage();
-}
-
-    $conn = null;
-?>
-
-</tabla>
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stmt = $conn->prepare("SELECT clase.nombre_asig, cita.fecha_cita, cita.hora_cita, asesor.nombre_asesor,sesiones.lugar_sesion ,cita.rating_asesor  FROM `cita` INNER JOIN asesor ON cita.id_asesor=asesor.id_asesor INNER JOIN alumnos ON cita.id_alumno= alumnos.id_alumno INNER JOIN sesiones ON asesor.id_asesor=sesiones.id_asesor INNER JOIN clase ON sesiones.id_clase=clase.id_asig WHERE alumnos.id_alumno=2");
+        $stmt->execute();
+        $resultado =$stmt->fetchAll();
+        }
+        catch(PDOException $e) {
+          echo "Error: " . $e->getMessage();
+        }
+      ?>
 
 
-<!-- Termina el Contenido -->
+      <div class="container">
+        <div class="row">
+            <?php
+            $depName = ' ';
+            $depFecha = ' ';
+            $depHora = ' ';
+            $depAsesor = ' ';
+            $depSesiones = ' ';
+            $depRating = ' ';
+            foreach ($resultado as $dato):
+              if($depName != $dato['nombre_asig'])
+              if($depFecha != $dato['fecha_cita'])
+              if($depHora != $dato['hora_cita'])
+              if($depAsesor != $dato['nombre_asesor'])
+              if($depAsesor != $dato['lugar_sesion'])
+              if($depRating != $dato['rating_asesor'])
+              { ?>
+              <div class="col-4 mt-5 border shadow text-center cartas">
+                  <img src="../img/iconos/contacts_3695.ico" height="100" alt="">
+                  <br>
+                  <?php echo $dato['nombre_asig'] ?> <br>
+                  <?php echo $dato['fecha_cita'] ?> <br>
+                  <?php echo $dato['hora_cita'] ?> <br>
+                  <?php echo $dato['nombre_asesor'] ?> <br>
+                  <?php echo $dato['lugar_sesion'] ?> <br>
+                  <?php echo $dato['rating_asesor'] ?> <br>
+                </a>
+              </div>
+              <?php
+              }
+                $depName = $dato['nombre_asig'];
+                $depFecha = $dato['fecha_cita'];
+                $depHora = $dato['hora_cita'];
+                $depAsesor = $dato['nombre_asesor'];
+                $depAsesor = $dato['lugar_sesion'];
+                $depAsesor = $dato['rating_asesor'];
+              ?>
+            <?php endforeach ?>
+        </div>
+      </div>
+
+
+<!--Termina el Contenido -->
         <script src="../js/jquery-3.3.1.slim.min.js"></script>
         <script src="../js/popper.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
