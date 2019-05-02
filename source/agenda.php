@@ -86,44 +86,39 @@
 
 
       <div class="container">
-        <div class="row">
-            <?php
-            $depName = ' ';
-            $depFecha = ' ';
-            $depHora = ' ';
-            $depAsesor = ' ';
-            $depSesiones = ' ';
-            $depRating = ' ';
-            foreach ($resultado as $dato):
-              if($depName != $dato['nombre_asig'])
-              if($depFecha != $dato['fecha_cita'])
-              if($depHora != $dato['hora_cita'])
-              if($depAsesor != $dato['nombre_asesor'])
-              if($depAsesor != $dato['lugar_sesion'])
-              if($depRating != $dato['rating_asesor'])
-              { ?>
-              <div class="col-4 mt-5 border shadow text-center cartas">
-                  <img src="../img/iconos/contacts_3695.ico" height="100" alt="">
+          <div class="row justify-content-around">
+              <?php foreach ($resultado as $dato): ?>
+              <div class="col-md-5 mt-5 border shadow">
                   <br>
-                  <?php echo $dato['nombre_asig'] ?> <br>
-                  <?php echo $dato['fecha_cita'] ?> <br>
-                  <?php echo $dato['hora_cita'] ?> <br>
-                  <?php echo $dato['nombre_asesor'] ?> <br>
-                  <?php echo $dato['lugar_sesion'] ?> <br>
-                  <?php echo $dato['rating_asesor'] ?> <br>
-                </a>
+                  <div class="row justify-content-between">
+                      <div class="col-4">
+                          <img src="../img/iconos/contacts_3695.ico" class="rounded-circle" alt="photo">
+                      </div>
+                      <div class="col-6">
+                        <a href="">
+                          <img src="../img/iconos/2x/baseline_delete_black_18dp.png" align="right" alt="calendar"> <br>
+                        </a>
+                          <b> </b> <?php echo $dato['nombre_asig'] ?> <br>
+                          <b> </b> <?php echo "Asesor: ". $dato['nombre_asesor'] ?> <br>
+                          <img src="../img/iconos/1x/baseline_calendar_today_black_18dp.png" alt="calendar">
+                          <b> </b> <?php echo $dato['fecha_cita'] ?>
+                          <img src="../img/iconos/1x/baseline_query_builder_black_18dp.png" alt="calendar">
+                          <b> </b> <?php echo $dato['hora_cita'] ?> <br>
+                          <img src="../img/iconos/1x/baseline_location_on_black_18dp.png" alt="calendar">
+                          <b> </b> <?php echo $dato['lugar_sesion'] ?> <br>
+
+                      </div>
+                      <div class="col-12">
+                          <a href="">
+                              <button type='submit' class='btn btn-success btn-block'>Calificar asesoría</button>
+                          </a>
+                      </div>
+                  </div>
+
+
               </div>
-              <?php
-              }
-                $depName = $dato['nombre_asig'];
-                $depFecha = $dato['fecha_cita'];
-                $depHora = $dato['hora_cita'];
-                $depAsesor = $dato['nombre_asesor'];
-                $depAsesor = $dato['lugar_sesion'];
-                $depAsesor = $dato['rating_asesor'];
-              ?>
-            <?php endforeach ?>
-        </div>
+              <?php endforeach ?>
+          </div>
       </div>
 
 
