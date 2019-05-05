@@ -11,7 +11,7 @@
     <body>
         <!-- Empieza el Contenido -->
         <!--barra de navegacion-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-jav">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones" >
             <span class="navbar-toggler-icon"></span>
           </button>

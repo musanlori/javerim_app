@@ -13,7 +13,7 @@
     <body>
         <!-- Empieza el Contenido -->
             <!--barra de navegacion-->
-            <nav class="navbar navbar-expand-lg navbar-dark bg-jav">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones" >
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -65,8 +65,7 @@
             $dbname = "javerim";
             try {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        // $stmt = $conn->prepare("SELECT clase.nombre_asig, sesiones.id_sesion, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig"); 
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
             $stmt = $conn->prepare("SELECT asesor.nombre_asesor, clase.nombre_asig, clase.Tema_asig, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig WHERE clase.nombre_asig ='$nombreMat'"); 
                 
             $stmt->execute();
@@ -104,9 +103,49 @@
                                 
                             </div>
                             <div class="col-12">
-                                <a href="delete.php?id=<?php echo $dato['id_sesion'] ?>">
-                                    <button type='submit' class='btn btn-success btn-block'>Agendar Asesoria</button>
-                                </a>
+                                <button type='submit' class='btn btn-success btn-block' data-toggle="modal" data-target="#diag_conf">Agendar Asesoria</button>
+                                <div class="modal fade" id="diag_conf">
+                                    <div class="modal-dialog modal-md modal-dialog-centered">
+                                        <div class="modal-content">
+                                    
+                                            <!-- cabecera del diálogo -->
+                                            <div class="modal-header bg-primary text-light">
+                                                <h4 class="modal-title">Confirmar Asesoria</h4>
+                                                <button type="button" class="close" data-dismiss="modal">X</button>
+                                            </div>
+                                        
+                                            <!-- cuerpo del diálogo -->
+                                            <div class="modal-body">
+                                                <div class="container-fluid">   
+                                                    <div class="row">       
+                                                        <div class="col">        
+                                                            <div class="card text-center">
+                                                                <img src="../img/iconos/contacts_3695.ico" class="card-img-top rounded-circle" alt="photo">            
+                                                                <div class="card-body">
+                                                                    <h4 class="card-title"> <?php echo $dato['nombre_asesor'] ?> </h4>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span> <br>
+                                                                    <p class="card-text"><?php echo $dato['dia_semana'] ?></p>
+                                                                    <p class="card-text"><?php echo $dato['horario_sesion'] ?></p>
+                                                                    <p class="card-text"><?php echo $dato['lugar_sesion'] ?></p>
+                                                                </div>
+                                                            </div>          
+                                                        </div>   
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                            <!-- pie del diálogo -->
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-success btn-block" data-dismiss="modal">Confirmar</button>
+                                            </div>
+                                    
+                                        </div>
+                                    </div>
+                                </div> 
                             </div>
                         </div>
                         
@@ -114,6 +153,7 @@
                     </div>
                     <?php endforeach ?>
                 </div>
+                <br>
             </div>
         <!-- Termina el Contenido -->
         <script src="../js/jquery-3.3.1.slim.min.js"></script>
