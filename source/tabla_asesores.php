@@ -77,17 +77,18 @@
                 
                 
             ?>
-            
+            <!--Definicion del espacio para las targetas que muestran a los asesores disponibles-->
             <div class="container">
                 <div class="row justify-content-around">
+                    <!--generacion del Listado-->
                     <?php foreach ($resultado as $dato): ?>
                     <div class="col-md-5 mt-5 border shadow">
                         <br>
                         <div class="row justify-content-between">
-                            <div class="col-4">
+                            <div class="col-4"><!--Foto-->
                                 <img src="../img/iconos/contacts_3695.ico" class="rounded-circle" alt="photo">
                             </div>
-                            <div class="col-6">
+                            <div class="col-6"><!--datos asesor-->
                                 <b> </b> <?php echo $dato['nombre_asesor'] ?> <br>
                                 <span class="fa fa-star checked"></span>
                                 <span class="fa fa-star checked"></span>
@@ -102,7 +103,7 @@
                                 <b> </b> <?php echo $dato['lugar_sesion'] ?> <br>
                                 
                             </div>
-                            <div class="col-12">
+                            <div class="col-12"><!--Boton/cuadro de dialogo-->
                                 <button type='submit' class='btn btn-success btn-block' data-toggle="modal" data-target="#diag_conf">Agendar Asesoria</button>
                                 <div class="modal fade" id="diag_conf">
                                     <div class="modal-dialog modal-md modal-dialog-centered">
@@ -122,7 +123,7 @@
                                                             <div class="card text-center">
                                                                 <img src="../img/iconos/contacts_3695.ico" class="card-img-top rounded-circle" alt="photo">            
                                                                 <div class="card-body">
-                                                                    <h4 class="card-title"> <?php echo $dato['nombre_asesor'] ?> </h4>
+                                                                    <h4 class="card-title"> <?php echo $dato['nombre_asesor']; ?> </h4>
                                                                     <span class="fa fa-star checked"></span>
                                                                     <span class="fa fa-star checked"></span>
                                                                     <span class="fa fa-star checked"></span>
@@ -138,11 +139,15 @@
                                                 </div>
                                             </div>
                                         
-                                            <!-- pie del diálogo -->
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-success btn-block" data-dismiss="modal">Confirmar</button>
-                                            </div>
-                                    
+                                            <!-- pie del diálogo: insercion de datos en la DB javerin -->
+                                            <form method="POST">
+                                                <a href="confirmado.php?nom_Asesor=<?php echo $dato['nombre_asesor'] ?>">
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-success btn-block">Confirmar</button>
+                                                    </div>
+                                                </a>
+                                            </form>
+                                            
                                         </div>
                                     </div>
                                 </div> 
