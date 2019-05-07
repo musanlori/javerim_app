@@ -11,7 +11,7 @@
     <body>
         <!-- Empieza el Contenido -->
         <!--barra de navegacion-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-jav">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones" >
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -82,12 +82,12 @@
     }
   ?>
           <div class="container">  
-            <div class="row">
+            <div class="row justify-content-around">
                 <?php
                 $depName = ' ';
                 foreach ($resultado as $dato):
                   if($depName != $dato['nombre_asig']){ ?>
-                  <div class="col-4 mt-5 border shadow text-center cartas">
+                  <div class="col-sm-3 mt-3 ml-3 mr-3 border shadow text-center cartas">
                     <a href="tabla_asesores.php?nomMat=<?php echo $dato['nombre_asig'] ?>">
                       <img src="../img/iconos/contacts_3695.ico" height="100" alt="">
                       <br>

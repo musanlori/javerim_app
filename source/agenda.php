@@ -54,56 +54,75 @@
     </div>
   </div>
   <!--lista de asesorias a Cursar-->
-    <table class= "table-responsive-small table-bordered table-hover">
-      <tr><th>asignatura</th><th>fecha</th><th>hora</th><th>asesor</th><th>Lugar de la sesión</th><th>Rating</th>
   <?php
+  try {
+    //CONECCION
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "javerim";
 
-class TableRows extends RecursiveIteratorIterator {
-    function __construct($it) {
-        parent::__construct($it, self::LEAVES_ONLY);
-    }
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=javerim", $username, $password);
+        // set the PDO error mode to exception
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //echo "Connected successfully";
+        }
+    catch(PDOException $e)
+        {
+        echo "Connection failed: " . $e->getMessage();
+        }
 
-    function current() {
-        return "<td style='width:250px;border:1px solid black;'>" . parent::current(). "</td>";
-    }
-
-    function beginChildren() {
-        echo "<tr>";
-    }
-
-    function endChildren() {
-        echo "</tr>" . "\n";
-    }
-}
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "javerim";
-
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT clase.nombre_asig, cita.fecha_cita, cita.hora_cita, asesor.nombre_asesor,sesiones.lugar_sesion ,cita.rating_asesor  FROM `cita` INNER JOIN asesor ON cita.id_asesor=asesor.id_asesor INNER JOIN alumnos ON cita.id_alumno= alumnos.id_alumno INNER JOIN sesiones ON asesor.id_asesor=sesiones.id_asesor INNER JOIN clase ON sesiones.id_clase=clase.id_asig WHERE alumnos.id_alumno=2" );
-    $stmt->execute();
-
-    // set the resulting array to associative
-    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-    foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
-        echo $v;
-    }
-}
-catch(PDOException $e) {
-    echo "Error: " . $e->getMessage();
-}
-
-    $conn = null;
-?>
-
-</tabla>
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stmt = $conn->prepare("SELECT clase.nombre_asig, cita.fecha_cita, cita.hora_cita, asesor.nombre_asesor,sesiones.lugar_sesion ,cita.rating_asesor  FROM `cita` INNER JOIN asesor ON cita.id_asesor=asesor.id_asesor INNER JOIN alumnos ON cita.id_alumno= alumnos.id_alumno INNER JOIN sesiones ON asesor.id_asesor=sesiones.id_asesor INNER JOIN clase ON sesiones.id_clase=clase.id_asig WHERE alumnos.id_alumno=2");
+        $stmt->execute();
+        $resultado =$stmt->fetchAll();
+        }
+        catch(PDOException $e) {
+          echo "Error: " . $e->getMessage();
+        }
+      ?>
 
 
-<!-- Termina el Contenido -->
+      <div class="container">
+          <div class="row justify-content-around">
+              <?php foreach ($resultado as $dato): ?>
+              <div class="col-md-5 mt-5 border shadow">
+                  <br>
+                  <div class="row justify-content-between">
+                      <div class="col-4">
+                          <img src="../img/iconos/contacts_3695.ico" class="rounded-circle" alt="photo">
+                      </div>
+                      <div class="col-6">
+                        <a href="">
+                          <img src="../img/iconos/2x/baseline_delete_black_18dp.png" align="right" alt="calendar"> <br>
+                        </a>
+                          <b> </b> <?php echo $dato['nombre_asig'] ?> <br>
+                          <b> </b> <?php echo "Asesor: ". $dato['nombre_asesor'] ?> <br>
+                          <img src="../img/iconos/1x/baseline_calendar_today_black_18dp.png" alt="calendar">
+                          <b> </b> <?php echo $dato['fecha_cita'] ?>
+                          <img src="../img/iconos/1x/baseline_query_builder_black_18dp.png" alt="calendar">
+                          <b> </b> <?php echo $dato['hora_cita'] ?> <br>
+                          <img src="../img/iconos/1x/baseline_location_on_black_18dp.png" alt="calendar">
+                          <b> </b> <?php echo $dato['lugar_sesion'] ?> <br>
+
+                      </div>
+                      <div class="col-12">
+                          <a href="">
+                              <button type='submit' class='btn btn-success btn-block'>Calificar asesoría</button>
+                          </a>
+                      </div>
+                  </div>
+
+
+              </div>
+              <?php endforeach ?>
+          </div>
+      </div>
+
+
+<!--Termina el Contenido -->
         <script src="../js/jquery-3.3.1.slim.min.js"></script>
         <script src="../js/popper.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>

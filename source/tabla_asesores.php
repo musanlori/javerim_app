@@ -7,11 +7,13 @@
         <meta http-equiv="x-ua-compatible" content="ie-edge">
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="../css_javerim/javerim_style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     </head>
     <body>
         <!-- Empieza el Contenido -->
             <!--barra de navegacion-->
-            <nav class="navbar navbar-expand-lg navbar-dark bg-jav">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones" >
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -55,62 +57,109 @@
             <div class="container-fluid">
             
             <!--Conectando con la base de datos-->
-            <table class = "table-responsive-sm table-bordered table-hover">
-            <thead class="thead-dark">
-              <tr>
-                <th> Asesor </th>
-                <th> Materia </th>
-                <th> Tema </th>
-                <th> Dia </th>
-                <th> Horario </th>
-                <th> Lugar </th>
-              </tr>
-            </thead>
-              <?php
-                $nombreMat = $_GET['nomMat'];
+        <?php
+            $nombreMat = $_GET['nomMat'];
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "javerim";
+            try {
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
+            $stmt = $conn->prepare("SELECT asesor.nombre_asesor, clase.nombre_asig, clase.Tema_asig, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig WHERE clase.nombre_asig ='$nombreMat'"); 
                 
-                class TableRows extends RecursiveIteratorIterator { 
-                    function __construct($it) { 
-                        parent::__construct($it, self::LEAVES_ONLY); 
-                    }
-
-                    function current() {
-                        return "<td width = '250px'> " . parent::current(). " </td>";
-                    }
-
-                    function beginChildren() { 
-                        echo "<tr>"; 
-                    } 
-
-                    function endChildren() { 
-                        echo "<td><button type='submit' class='btn btn-primary'>+</button></td></tr>" . "\n";
-                    } 
-                } 
-
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $dbname = "javerim";
-
-                try {
-                    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    $stmt = $conn->prepare("SELECT asesor.nombre_asesor, clase.nombre_asig, clase.Tema_asig, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig WHERE clase.nombre_asig ='$nombreMat'"); 
-                    $stmt->execute();
-
-                    // set the resulting array to associative
-                    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
-                    foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) { 
-                        echo $v;
-                    }
-                }
-                catch(PDOException $e) {
-                    echo "Error: " . $e->getMessage();
-                }
-                $conn = null;
-              ?>
-            </table>
-        </div>
+            $stmt->execute();
+            $resultado =$stmt->fetchAll();
+            }
+            catch(PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+                
+                
+            ?>
+            <!--Definicion del espacio para las targetas que muestran a los asesores disponibles-->
+            <div class="container">
+                <div class="row justify-content-around">
+                    <!--generacion del Listado-->
+                    <?php foreach ($resultado as $dato): ?>
+                    <div class="col-md-5 mt-5 border shadow">
+                        <br>
+                        <div class="row justify-content-between">
+                            <div class="col-4"><!--Foto-->
+                                <img src="../img/iconos/contacts_3695.ico" class="rounded-circle" alt="photo">
+                            </div>
+                            <div class="col-6"><!--datos asesor-->
+                                <b> </b> <?php echo $dato['nombre_asesor'] ?> <br>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span> <br>
+                                <img src="../img/iconos/1x/baseline_calendar_today_black_18dp.png" alt="calendar">
+                                <b> </b> <?php echo $dato['dia_semana'] ?>
+                                <img src="../img/iconos/1x/baseline_query_builder_black_18dp.png" alt="calendar">
+                                <b> </b> <?php echo $dato['horario_sesion'] ?> <br>
+                                <img src="../img/iconos/1x/baseline_location_on_black_18dp.png" alt="calendar">
+                                <b> </b> <?php echo $dato['lugar_sesion'] ?> <br>
+                                
+                            </div>
+                            <div class="col-12"><!--Boton/cuadro de dialogo-->
+                                <button type='submit' class='btn btn-success btn-block' data-toggle="modal" data-target="#diag_conf">Agendar Asesoria</button>
+                                <div class="modal fade" id="diag_conf">
+                                    <div class="modal-dialog modal-md modal-dialog-centered">
+                                        <div class="modal-content">
+                                    
+                                            <!-- cabecera del diálogo -->
+                                            <div class="modal-header bg-primary text-light">
+                                                <h4 class="modal-title">Confirmar Asesoria</h4>
+                                                <button type="button" class="close" data-dismiss="modal">X</button>
+                                            </div>
+                                        
+                                            <!-- cuerpo del diálogo -->
+                                            <div class="modal-body">
+                                                <div class="container-fluid">   
+                                                    <div class="row">       
+                                                        <div class="col">        
+                                                            <div class="card text-center">
+                                                                <img src="../img/iconos/contacts_3695.ico" class="card-img-top rounded-circle" alt="photo">            
+                                                                <div class="card-body">
+                                                                    <h4 class="card-title"> <?php echo $dato['nombre_asesor']; ?> </h4>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star checked"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span> <br>
+                                                                    <p class="card-text"><?php echo $dato['dia_semana'] ?></p>
+                                                                    <p class="card-text"><?php echo $dato['horario_sesion'] ?></p>
+                                                                    <p class="card-text"><?php echo $dato['lugar_sesion'] ?></p>
+                                                                </div>
+                                                            </div>          
+                                                        </div>   
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                            <!-- pie del diálogo: insercion de datos en la DB javerin -->
+                                            <form method="POST">
+                                                <a href="confirmado.php?nom_Asesor=<?php echo $dato['nombre_asesor'] ?>">
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-success btn-block">Confirmar</button>
+                                                    </div>
+                                                </a>
+                                            </form>
+                                            
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                    <?php endforeach ?>
+                </div>
+                <br>
+            </div>
         <!-- Termina el Contenido -->
         <script src="../js/jquery-3.3.1.slim.min.js"></script>
         <script src="../js/popper.min.js"></script>
