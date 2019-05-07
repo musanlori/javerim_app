@@ -1,5 +1,7 @@
 <?php
+session_start();
 //CONECCION 
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -16,6 +18,14 @@ catch(PDOException $e)
     echo "Connection failed: " . $e->getMessage();
     }
 
+//------------------------SE NECESITA TENER LA UNA SESION INICIADA PARA VER ESTA PAGINA
+//if( isset($_SESSION['admin']) ){
+//    echo 'Bienvenido! '.$_SESSION['admin'];
+//    echo '<br><a href="cerrar.php">Cerrar Sesión</a>';
+//}else{
+//    header('Location:form.php');
+//}
+
 ?>
 
 
@@ -25,6 +35,7 @@ catch(PDOException $e)
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Administración</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../img/iconos/javerim.png" >
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../css_javerim/javerim_style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css" integrity="sha384-Mmxa0mLqhmOeaE8vgOSbKacftZcsNYDjQzuCOm6D02luYSzBG8vpaOykv9lFQ51Y" crossorigin="anonymous">
@@ -77,6 +88,29 @@ catch(PDOException $e)
     </div>
   </div>
 -->
+
+
+<?php
+if( isset($_SESSION['admin']) ):
+    $sesion=$_SESSION['admin'];
+    echo 'Bienvenido! '.$sesion;
+    echo '<br><a href="cerrar.php">Cerrar Sesión</a>';
+    
+    
+    try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   // $stmt = $conn->prepare("SELECT clase.nombre_asig, sesiones.id_sesion, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig"); 
+    $stmt = $conn->prepare("SELECT id_asesor FROM asesor WHERE correo_asesor='$sesion'"); 
+        
+    $stmt->execute();
+    $resultado =$stmt->fetchAll();
+    }
+    catch(PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+//
+?>
 <!---------------------------------------------------AGREGAR--------------------------------------------------------->
      <form action="Administracion.php" method="POST">
         <?php
@@ -241,6 +275,14 @@ catch(PDOException $e)
               <?php endforeach ?>
           </div>
       </div>
+      
+
+<?php
+else:
+?>
+<h3>hola</h3>
+<?php endif;
+?>
  
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/popper.min.js"></script>

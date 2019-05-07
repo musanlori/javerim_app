@@ -60,8 +60,10 @@ $id;
 if($escoger_login=="alumnos"){
     if(password_verify($contrasena_login, $resultado['contrasena_alumno']) ){
     //las contraseñas son iguales
+
     $_SESSION['admin'] = $correo_login;
     echo 'Las contraseñas son iguales';
+        
     header('Location:bienvenido.php');
 
 }else{
