@@ -38,7 +38,6 @@ catch(PDOException $e)
     <link rel="shortcut icon" type="image/x-icon" href="../img/iconos/javerim.png" >
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../css_javerim/javerim_style.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css" integrity="sha384-Mmxa0mLqhmOeaE8vgOSbKacftZcsNYDjQzuCOm6D02luYSzBG8vpaOykv9lFQ51Y" crossorigin="anonymous">
 </head>
 <body>
     
@@ -68,7 +67,16 @@ catch(PDOException $e)
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">acerca de</a>
-              </li>            
+              </li> 
+              <li>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+              </li>           
             </ul>
           </div>
         </nav>
@@ -104,12 +112,19 @@ if( isset($_SESSION['admin']) ):
     $stmt = $conn->prepare("SELECT id_asesor FROM asesor WHERE correo_asesor='$sesion'"); 
         
     $stmt->execute();
-    $resultado =$stmt->fetchAll();
+    $resul =$stmt->fetchAll();
     }
     catch(PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
 //
+    foreach($resul as $iden){
+        //echo $iden['id_asesor'];
+        $idasesor=$iden['id_asesor'];
+    }
+    
+    
+    //echo $idasesor;
 ?>
 <!---------------------------------------------------AGREGAR--------------------------------------------------------->
      <form action="Administracion.php" method="POST">
@@ -130,10 +145,10 @@ if( isset($_SESSION['admin']) ):
                 $conn = new PDO("mysql:host=$servername;dbname=javerim", $username, $password);
                 // set the PDO error mode to exception
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $sql = "INSERT INTO `sesiones` (`id_sesion`, `dia_semana`, `horario_sesion`, `lugar_sesion`, `id_asesor`, `id_clase`) VALUES (NULL, '$dia', '$hora', '$lugar', '2', '$materia')";
+                $sql = "INSERT INTO `sesiones` (`id_sesion`, `dia_semana`, `horario_sesion`, `lugar_sesion`, `id_asesor`, `id_clase`) VALUES (NULL, '$dia', '$hora', '$lugar', '$idasesor', '$materia')";
                 // use exec() because no results are returned
                 $conn->exec($sql);
-                echo "New record created successfully";
+                //echo "New record created successfully";
                 }
             catch(PDOException $e)
                 {
@@ -245,7 +260,7 @@ if( isset($_SESSION['admin']) ):
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    // $stmt = $conn->prepare("SELECT clase.nombre_asig, sesiones.id_sesion, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig"); 
-    $stmt = $conn->prepare("SELECT nombre_asig, dia_semana, horario_sesion, lugar_sesion,id_sesion FROM sesiones,clase WHERE id_asesor=2"); 
+    $stmt = $conn->prepare("SELECT clase.nombre_asig, sesiones.id_sesion, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig WHERE sesiones.id_asesor='$idasesor'"); 
         
     $stmt->execute();
     $resultado =$stmt->fetchAll();
@@ -261,14 +276,16 @@ if( isset($_SESSION['admin']) ):
           <div class="row">
              <?php foreach ($resultado as $dato): ?>
               <div class="col-md-6">
-                 <div class="alert alert-primary">
-                    <b>Materia: </b> <?php echo $dato['nombre_asig'] ?> <br>
-                    <b>Dia: </b> <?php echo $dato['dia_semana'] ?>
-                    <b>Hora: </b> <?php echo $dato['horario_sesion'] ?> <br>
-                    <b>Lugar: </b> <?php echo $dato['lugar_sesion'] ?>
-                    <a href="delete.php?id=<?php echo $dato['id_sesion'] ?>" class="float-right ml-3">
-                        <i class="fas fa-minus-circle"></i>
+                 <div class="card-body bg-light text-dark">
+                   <a href="delete.php?id=<?php echo $dato['id_sesion'] ?>" class="float-right ml-3">
+                        <img src="../img/iconos/1x/baseline_delete_black_18dp.png" class="card-img-top rounded-circle" alt="trash">
                     </a>
+                    <b>Materia: </b> <?php echo $dato['nombre_asig'] ?> <br>
+                    <p class="card-text">
+                    <b>Dia: </b> <?php echo $dato['dia_semana'] ?><br>
+                    <b>Hora: </b> <?php echo $dato['horario_sesion'] ?><br>
+                    <b>Lugar: </b> <?php echo $dato['lugar_sesion'] ?>
+                    </p>
                  </div>
                   
               </div>
@@ -282,10 +299,9 @@ else:
 ?>
 <h3>hola</h3>
 <?php endif;
-?>
- 
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/popper.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>  
+?> 
+        <script src="../js/jquery-3.3.1.slim.min.js"></script>
+        <script src="../js/popper.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
