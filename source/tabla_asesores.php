@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>javerin_sc_II</title>
+        <title>Asesores_Disponibles</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie-edge">
@@ -104,7 +104,10 @@
                                 
                             </div>
                             <div class="col-12"><!--Boton/cuadro de dialogo-->
-                                <button type='submit' class='btn btn-success btn-block' data-toggle="modal" data-target="#diag_conf">Agendar Asesoria</button>
+                                <button type='submit' class='btn btn-success btn-block' data-toggle="modal" data-target="#diag_conf" 
+                                    onclick="verDatos('<?php echo $dato['nombre_asesor']?>','<?php echo $dato['dia_semana'] ?>','<?php echo $dato['horario_sesion']?>','<?php echo $dato['lugar_sesion'] ?>')">
+                                    Agendar Asesoria
+                                </button>
                                 <div class="modal fade" id="diag_conf">
                                     <div class="modal-dialog modal-md modal-dialog-centered">
                                         <div class="modal-content">
@@ -123,15 +126,15 @@
                                                             <div class="card text-center">
                                                                 <img src="../img/iconos/contacts_3695.ico" class="card-img-top rounded-circle" alt="photo">            
                                                                 <div class="card-body">
-                                                                    <h4 class="card-title"> <?php echo $dato['nombre_asesor']; ?> </h4>
+                                                                    <h4 class="card-title"> <output id="showName"></output> </h4>
                                                                     <span class="fa fa-star checked"></span>
                                                                     <span class="fa fa-star checked"></span>
                                                                     <span class="fa fa-star checked"></span>
                                                                     <span class="fa fa-star"></span>
                                                                     <span class="fa fa-star"></span> <br>
-                                                                    <p class="card-text"><?php echo $dato['dia_semana'] ?></p>
-                                                                    <p class="card-text"><?php echo $dato['horario_sesion'] ?></p>
-                                                                    <p class="card-text"><?php echo $dato['lugar_sesion'] ?></p>
+                                                                    <p class="card-text"><output id="showDate"></output></p>
+                                                                    <p class="card-text"><output id="showTime"></output></p>
+                                                                    <p class="card-text"><output id="showSite"></output></p>
                                                                 </div>
                                                             </div>          
                                                         </div>   
@@ -141,7 +144,7 @@
                                         
                                             <!-- pie del diálogo: insercion de datos en la DB javerin -->
                                             <form method="POST">
-                                                <a href="confirmado.php?nom_Asesor=<?php echo $dato['nombre_asesor'] ?>">
+                                                <a href="confirmado.php?nom_Asesor= Correccion">
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-success btn-block">Confirmar</button>
                                                     </div>
@@ -164,5 +167,18 @@
         <script src="../js/jquery-3.3.1.slim.min.js"></script>
         <script src="../js/popper.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+        //recibe los datsos a mostrar desde la targeta y los envia al modal
+        function verDatos(name, fecha, hora, lugar) {
+
+            $('#showName').val(name);
+            $('#showDate').val(fecha);
+            $('#showTime').val(hora);
+            $('#showSite').val(lugar);
+
+            console.info("Mesaje de log, ", n1);
+            //$('#efirstname').css("display","none");
+        }
+        </script>
     </body>
 </html>
