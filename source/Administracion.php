@@ -42,7 +42,7 @@ catch(PDOException $e)
 <body>
     
 <!-------------------------------------------------NavBar--------------------------------------------------------->
-  <!--barra de navegacion-->
+   <!--barra de navegacion-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-jav">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones" >
             <span class="navbar-toggler-icon"></span>
@@ -66,16 +66,10 @@ catch(PDOException $e)
                 <a class="nav-link" href="agenda.php">Agenda</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">acerca de</a>
+                <a class="nav-link" href="form.php">Registro e Inicio</a>
               </li> 
               <li>
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
+                <a class="nav-link" href="#">acerca de</a>
               </li>           
             </ul>
           </div>
@@ -164,7 +158,8 @@ if( isset($_SESSION['admin']) ):
          <div class="container">
            <div class="row">
                <div class="col-md-6">
-                   <div class="alert alert-primary">
+                   <div class="card-body bg-light text-dark">
+                      <p>
                        <label name="materia"><b>Materia: </b></label>
                        <select name="materia">
                        <?php
@@ -195,13 +190,14 @@ if( isset($_SESSION['admin']) ):
                        <label name="lugar"><b>Lugar: </b></label>
                        <input type="text" name="lugar">
                        <button class="btn  btn-primary" name="agregar">Agregar</button>
+                       </p>
                    </div>
                </div>
            </div>  
          </div>
          <?php endif ?>
          <button class="btn btn-primary btn-circle fixed float-right" name="añadir">
-            <i class="fas fa-plus"></i>
+            <img src="../img/iconos/2x/baseline_add_white_18dp.png" alt="add">
         </button>
      </form>
      
@@ -271,7 +267,7 @@ if( isset($_SESSION['admin']) ):
          
 		
     ?>
-      
+     
       <div class="container">
           <div class="row">
              <?php foreach ($resultado as $dato): ?>
@@ -293,11 +289,15 @@ if( isset($_SESSION['admin']) ):
           </div>
       </div>
       
+    
+
+
+       
 
 <?php
 else:
 ?>
-<h3>hola</h3>
+<h3>Tienes que iniciar sesión</h3>
 <?php endif;
 ?> 
         <script src="../js/jquery-3.3.1.slim.min.js"></script>
