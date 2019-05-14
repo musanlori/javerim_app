@@ -1,5 +1,5 @@
 <?php 
-$recibi = $_GET['nom_Asesor'];
-echo "confirmado";
+$recibi = $_POST['getName'];
+echo "confirmado: ";
 echo "recibi: ".$recibi;
 ?>

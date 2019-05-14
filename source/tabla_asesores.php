@@ -8,7 +8,12 @@
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="../css_javerim/javerim_style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+        <style type="text/css">
+        .noborder{
+            border: 0;
+            text-align: center;
+        }
+        </style>
     </head>
     <body>
         <!-- Empieza el Contenido -->
@@ -119,38 +124,35 @@
                                             </div>
                                         
                                             <!-- cuerpo del diálogo -->
-                                            <div class="modal-body">
-                                                <div class="container-fluid">   
-                                                    <div class="row">       
-                                                        <div class="col">        
-                                                            <div class="card text-center">
-                                                                <img src="../img/iconos/contacts_3695.ico" class="card-img-top rounded-circle" alt="photo">            
-                                                                <div class="card-body">
-                                                                    <h4 class="card-title"> <output id="showName"></output> </h4>
-                                                                    <span class="fa fa-star checked"></span>
-                                                                    <span class="fa fa-star checked"></span>
-                                                                    <span class="fa fa-star checked"></span>
-                                                                    <span class="fa fa-star"></span>
-                                                                    <span class="fa fa-star"></span> <br>
-                                                                    <p class="card-text"><output id="showDate"></output></p>
-                                                                    <p class="card-text"><output id="showTime"></output></p>
-                                                                    <p class="card-text"><output id="showSite"></output></p>
-                                                                </div>
-                                                            </div>          
-                                                        </div>   
+                                            <form method="POST" action="confirmado.php">
+                                                <div class="modal-body">
+                                                    <div class="container-fluid">   
+                                                        <div class="row">       
+                                                            <div class="col">        
+                                                                <div class="card text-center">
+                                                                    <img src="../img/iconos/contacts_3695.ico" class="card-img-top rounded-circle" alt="photo">            
+                                                                    <div class="card-body">
+                                                                        <h4 class="card-title"><input type="text" id="showName" name="getName" readonly="readonly" class="noborder"/></h4>
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star"></span>
+                                                                        <span class="fa fa-star"></span> <br>
+                                                                        <p class="card-text"><output id="showDate"></output></p>
+                                                                        <p class="card-text"><output id="showTime"></output></p>
+                                                                        <p class="card-text"><output id="showSite"></output></p>
+                                                                    </div>
+                                                                </div>          
+                                                            </div>   
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        
-                                            <!-- pie del diálogo: insercion de datos en la DB javerin -->
-                                            <form method="POST">
-                                                <a href="confirmado.php?nom_Asesor= Correccion">
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-success btn-block">Confirmar</button>
-                                                    </div>
-                                                </a>
-                                            </form>
                                             
+                                                <!-- pie del diálogo: insercion de datos en la DB javerin -->
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-success btn-block">Confirmar</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div> 
@@ -179,6 +181,11 @@
             console.info("Mesaje de log, ", n1);
             //$('#efirstname').css("display","none");
         }
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#')
+            });
         </script>
     </body>
 </html>

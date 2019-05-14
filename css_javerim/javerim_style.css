@@ -36,3 +36,8 @@ a:link{
 .checked{
     color: orange;
 }
+
+.unborder{
+    border: 0;
+    text-align: center;
+}
