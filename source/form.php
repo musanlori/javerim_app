@@ -74,24 +74,49 @@ else:
         <div class="row">
             <div class="col-md-6 form-group">
                 <h2>Registro</h2>
-                <form action="user.php" method="POST">
-            
-                    <input type="text" name="nombre" placeholder="Nombre"> <br>
-             
-                    <input type="text" name="celular" placeholder="Celular"><br>
-           
-                    <input type="text" name="correo" placeholder="email"><br>
-             
-                    <input type="text" name="carrera" placeholder="Carrera"><br>
-               
-                    <input type="text" name="semestre" placeholder="Semestre"><br>
-                    <input type="password" name="contrasena" placeholder="********"><br>
-                    <input type="password" name="contrasena2" placeholder="Ingrese nuevamente Contraseña"><br>
-                    
+                <form action="user.php" method="POST" class="was-validated">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="nombre" placeholder="Nombre" required>
+                    <div class="valid-feedback">:).</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="correo" placeholder="email" required>
+                    <div class="valid-feedback">:).</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="carrera" placeholder="Carrera" required>
+                    <div class="valid-feedback">:).</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="semestre" placeholder="Semestre" required>
+                    <div class="valid-feedback">:).</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="semestre" placeholder="Semestre" required>
+                    <div class="valid-feedback">:).</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="contrasena" placeholder="********" required>
+                    <div class="valid-feedback">:).</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="contrasena2" placeholder="Ingrese nuevamente Contraseña" required>
+                    <div class="valid-feedback">:).</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+                <div class="form-group">
                     <select name="escoger" id="escoger">
                         <option value="asesor">Asesor</option>
                         <option value="alumnos">Alumno</option>
                     </select><br>
+                </div>
+                    
                     
                     <button type="submit" class="btn btn-primary">Registrarse</button>
                 </form>
@@ -110,6 +135,30 @@ else:
             </div>
         </div>
     </div>
+    
+    
+    
+    
+<script>
+// Disable form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Get the forms we want to add validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
 <?php endif;
 ?>
         

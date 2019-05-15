@@ -25,7 +25,14 @@ catch(PDOException $e)
     $contrasena2=$_POST['contrasena2'];
     $escoger=$_POST['escoger'];
 
+
+//COMPROBAR QUE NO ESTE VACIO
+if($nombre==""||$celular=""||$correo=""||$carrera=""||$semestre=""||$contrasena=""||$contrasena2=""){
+    echo "Campo vacio";
+    header('location:form.php');
+}else{
     
+
 //COMPROBAR SI EXISTE EL USUARIO
 if($escoger=="alumnos"){
     try {
@@ -108,5 +115,5 @@ if(password_verify($contrasena2,$contrasena)){
     
 }
 
-
+}
 ?>
