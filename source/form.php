@@ -84,6 +84,7 @@ else:
                     <input type="text" class="form-control" name="correo" placeholder="email" required>
                     <div class="valid-feedback">:).</div>
                     <div class="invalid-feedback">Falta correo.</div>
+                    <div id="checkusername" class=""></div>
                 </div>
                 <div class="form-group">
                     <select class="form-group" name="carrera" id="carrera">
@@ -145,8 +146,8 @@ else:
                 </form>
             </div>
             <div class="col-md-6">
-                <form action="login.php" method="POST">
-                   <h2>Login</h2>
+                <form action="login.php" method="POST" class="was-validated">
+                   <h2>Iniciar Sesión</h2>
                     <input type="text" name="correo" placeholder="correo"><br>
                     <input type="password" name="contrasena" placeholder="********"><br>
                     <select name="escoger" id="escoger">
@@ -182,6 +183,11 @@ else:
   }, false);
 })();
 </script>
+
+<script>
+
+
+    </script>
 <?php endif;
 ?>
         
