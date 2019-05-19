@@ -71,7 +71,7 @@
             try {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
-            $stmt = $conn->prepare("SELECT asesor.nombre_asesor, clase.nombre_asig, clase.Tema_asig, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig WHERE clase.nombre_asig ='$nombreMat'"); 
+            $stmt = $conn->prepare("SELECT asesor.id_asesor, asesor.nombre_asesor, clase.nombre_asig, clase.Tema_asig, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig WHERE clase.nombre_asig ='$nombreMat'"); 
                 
             $stmt->execute();
             $resultado =$stmt->fetchAll();
@@ -110,7 +110,7 @@
                             </div>
                             <div class="col-12"><!--Boton/cuadro de dialogo-->
                                 <button type='submit' class='btn btn-success btn-block' data-toggle="modal" data-target="#diag_conf" 
-                                    onclick="verDatos('<?php echo $dato['nombre_asesor']?>','<?php echo $dato['dia_semana'] ?>','<?php echo $dato['horario_sesion']?>','<?php echo $dato['lugar_sesion'] ?>')">
+                                    onclick="verDatos('<?php echo $dato['id_asesor']?>','<?php echo $dato['nombre_asesor']?>','<?php echo $dato['dia_semana'] ?>','<?php echo $dato['horario_sesion']?>','<?php echo $dato['lugar_sesion'] ?>')">
                                     Agendar Asesoria
                                 </button>
                                 <div class="modal fade" id="diag_conf">
@@ -132,15 +132,16 @@
                                                                 <div class="card text-center">
                                                                     <img src="../img/iconos/contacts_3695.ico" class="card-img-top rounded-circle" alt="photo">            
                                                                     <div class="card-body">
+                                                                        <input type="text" id="hideID" name="getID" readonly="readonly" class="noborder"/>
                                                                         <h4 class="card-title"><input type="text" id="showName" name="getName" readonly="readonly" class="noborder"/></h4>
                                                                         <span class="fa fa-star checked"></span>
                                                                         <span class="fa fa-star checked"></span>
                                                                         <span class="fa fa-star checked"></span>
                                                                         <span class="fa fa-star"></span>
                                                                         <span class="fa fa-star"></span> <br>
-                                                                        <p class="card-text"><output id="showDate"></output></p>
-                                                                        <p class="card-text"><output id="showTime"></output></p>
-                                                                        <p class="card-text"><output id="showSite"></output></p>
+                                                                        <p class="card-text"><input type = "text" id="showDate" name="getDate" readonly="readonly" class="noborder"/></p>
+                                                                        <p class="card-text"><input type = "text" id="showTime" name="getTime" readonly="readonly" class="noborder"/></p>
+                                                                        <p class="card-text"><input type = "text" id="showSite" name="getSite" readonly="readonly" class="noborder"/></p>
                                                                     </div>
                                                                 </div>          
                                                             </div>   
@@ -171,15 +172,15 @@
         <script src="../js/bootstrap.min.js"></script>
         <script type="text/javascript">
         //recibe los datsos a mostrar desde la targeta y los envia al modal
-        function verDatos(name, fecha, hora, lugar) {
-
+        function verDatos(id, name, fecha, hora, lugar) {
+            
+            $('#hideID').val(id);
             $('#showName').val(name);
             $('#showDate').val(fecha);
             $('#showTime').val(hora);
             $('#showSite').val(lugar);
 
-            console.info("Mesaje de log, ", n1);
-            //$('#efirstname').css("display","none");
+            $('#hideID').css("display","none");
         }
         </script>
         <script type="text/javascript">
