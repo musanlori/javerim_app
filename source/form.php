@@ -74,31 +74,80 @@ else:
         <div class="row">
             <div class="col-md-6 form-group">
                 <h2>Registro</h2>
-                <form action="user.php" method="POST">
-            
-                    <input type="text" name="nombre" placeholder="Nombre"> <br>
-             
-                    <input type="text" name="celular" placeholder="Celular"><br>
-           
-                    <input type="text" name="correo" placeholder="email"><br>
-             
-                    <input type="text" name="carrera" placeholder="Carrera"><br>
-               
-                    <input type="text" name="semestre" placeholder="Semestre"><br>
-                    <input type="password" name="contrasena" placeholder="********"><br>
-                    <input type="password" name="contrasena2" placeholder="Ingrese nuevamente Contraseña"><br>
-                    
+                <form action="user.php" method="POST" class="was-validated">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="nombre" placeholder="Nombre" required>
+                    <div class="valid-feedback">:).</div>
+                    <div class="invalid-feedback">Falta nombre.</div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="correo" placeholder="email" required>
+                    <div class="valid-feedback">:).</div>
+                    <div class="invalid-feedback">Falta correo.</div>
+                    <div id="checkusername" class=""></div>
+                </div>
+                <div class="form-group">
+                    <select class="form-group" name="carrera" id="carrera">
+                       <option selected>Carrera</option>
+                        <option value="Ingeniería Ambiental">Ingeniería Ambiental</option>
+                        <option value="Ingeniería Civil">Ingeniería Civil</option>
+                        <option value="Ingeniería en Computación">Ingeniería en Computación</option>
+                        <option value="Ingeniería Eléctrica y Electrónica">Ingeniería Eléctrica y Electrónica</option>
+                        <option value="Ingeniería Geofísica">Ingeniería Geofísica</option>
+                        <option value="Ingeniería Geológica">Ingeniería Geológica</option>
+                        <option value="Ingeniería Geomática">Ingeniería Geomática</option>
+                        <option value="Ingeniería Mecánica">Ingeniería Mecánica</option>
+                        <option value="Ingeniería de Minas y Metalurgia">Ingeniería de Minas y Metalurgia</option>
+                        <option value="Ingeniería Petrolera">Ingeniería Petrolera</option>
+                        <option value="Ingeniería en Sistemas Biomédicos">Ingeniería en Sistemas Biomédicos</option>
+                        <option value="Ingeniería en Telecomunicaciones">Ingeniería en Telecomunicaciones</option>
+                    </select><br>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="celular" placeholder="Celular" required>
+                    <div class="valid-feedback">:).</div>
+                    <div class="invalid-feedback">Falta celular.</div>
+                </div>
+                <div class="form-group">
+                    <select name="semestre" id="semestre">
+                      <option selected>Semestre</option>
+                       <option value="1">1</option>
+                       <option value="2">2</option>
+                       <option value="3">3</option>
+                       <option value="4">4</option>
+                       <option value="5">5</option>
+                       <option value="6">6</option>
+                       <option value="7">7</option>
+                       <option value="8">8</option>
+                       <option value="9">9</option>
+                       <option value="10">10</option>
+
+                    </select><br>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="contrasena" placeholder="********" required>
+                    <div class="valid-feedback">:).</div>
+                    <div class="invalid-feedback">Falta contraseña.</div>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="contrasena2" placeholder="Ingrese nuevamente Contraseña" required>
+                    <div class="valid-feedback">:).</div>
+                    <div class="invalid-feedback">Ingrese nuevamente.</div>
+                </div>
+                <div class="form-group">
                     <select name="escoger" id="escoger">
                         <option value="asesor">Asesor</option>
                         <option value="alumnos">Alumno</option>
                     </select><br>
+                </div>
+                    
                     
                     <button type="submit" class="btn btn-primary">Registrarse</button>
                 </form>
             </div>
             <div class="col-md-6">
-                <form action="login.php" method="POST">
-                   <h2>Login</h2>
+                <form action="login.php" method="POST" class="was-validated">
+                   <h2>Iniciar Sesión</h2>
                     <input type="text" name="correo" placeholder="correo"><br>
                     <input type="password" name="contrasena" placeholder="********"><br>
                     <select name="escoger" id="escoger">
@@ -110,6 +159,35 @@ else:
             </div>
         </div>
     </div>
+    
+    
+    
+    
+<script>
+// Disable form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Get the forms we want to add validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+
+<script>
+
+
+    </script>
 <?php endif;
 ?>
         
