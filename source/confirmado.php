@@ -104,7 +104,6 @@
 
         if ($intDay != -1) {
             $FechaProx = $intDay - $valor_Dia_Actual;
-            echo "Res: ". $FechaProx;
             #Cita dentro de la misma semana
             if($FechaProx > 0){
                 $Cita = date("d-m-Y",strtotime($fecha_actual." + ". $FechaProx ." days"));
@@ -126,7 +125,6 @@
                 }
             }
         }
-        echo "<br>". $Cita;
         #fin algoritmo
         #Conexion con la base de datos para insertar Info.
             $conn = new mysqli($servername, $username, $password, $dbname);
@@ -138,10 +136,40 @@
             VALUES ('$Cita', '$horaSesion', '5', '2', '$clv_asesor')";
 
             if ($conn->query($tabla_Cita) === TRUE) {
-                echo "Datos Insertados" . '<br>';
+            ?>
+                <div class="container-fluid">
+                    <div class="row justify-content-around bordered">
+                        <div class="col-8 text-center jumbotron">
+                            <h1 class="text-success">Solicitud Procesada</h1>
+                            <p>
+                                Se ha agendado correctamente la asesoria; Por favor, dirijase a 'Agenda' para verificar<br>
+                                o pulse en continuar (o pesataña 'Asesorias') para agregar una nueva cita<br>
+                                <?php echo "Prixima Cita: ". $Cita;?><br>
+                                <?php echo 'faltan : ' .$FechaProx. ' Dias para su Asesoria'?>
+                            </p>
+                            <a href="ver_asesorias.php"> Continuar </a>
+
+                        </div>
+                    </div>
+                </div> 
+            <?php
             } else {
-                echo "Error: " . $tabla_Cita . "<br>" . $conn->error;
-            }
+            ?>
+               <div class="container">
+                    <div class="row justify-content-around">
+                        <div class="col-8 text-center">
+                            <div class="alert alert-danger">
+                                <h3>ERROR: insercion de Datos en tabla</h3>
+                                <p>Lo sentimos: se ha producido un Error al tratar de agendar su cita<br>
+                                    Pongase en contacto con el equipo de UNAM Mobile para que se pueda corregir este Error
+                                </p>
+                                <a href="ver_asesorias.php">Continuar</a>
+                            </div>
+                        </div>
+                    </div>
+               </div> 
+            
+            <?php }
 
         ?>
         <!-- Termina el Contenido -->
