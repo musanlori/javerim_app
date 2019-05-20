@@ -70,7 +70,17 @@ if( isset($_SESSION['admin']) ):
     echo '<br><a href="cerrar.php">Cerrar Sesión</a>';
 else:
     ?>
-    <div class="container">
+    <div class="text-center">
+       <div class="btn-group btn-group-lg btn-center">
+          <button id="iniciarSesion1" type="button" class="btn btn-primary" data-target="#iniciarSesion" data-toggle="collapse" aria-expanded="false" aria-controls="iniciarSesion">Iniciar Sesión</button>
+          <button id="registro1" type="button" class="btn btn-primary" data-target="#registro" data-toggle="collapse" aria-expanded="false" aria-controls="registro">Registrarse</button>
+          
+        </div>
+        
+    </div>
+    
+    
+    <div class="container collapse" id="registro">
         <div class="row">
             <div class="col-md-6 form-group">
                 <h2>Registro</h2>
@@ -142,9 +152,39 @@ else:
                 </div>
                     
                     
-                    <button type="submit" class="btn btn-primary">Registrarse</button>
+                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Registrarse</button>
                 </form>
             </div>
+            
+        </div>
+    </div>
+    
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Ya puedes iniciar Sesión</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Modal body..
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+    
+    <div class="container collapse" id="iniciarSesion">
+        <div class="row">
             <div class="col-md-6">
                 <form action="login.php" method="POST" class="was-validated">
                    <h2>Iniciar Sesión</h2>
@@ -160,7 +200,17 @@ else:
         </div>
     </div>
     
-    
+
+<script>
+$(document).ready(function(){
+  $(".registro1").click(function(){
+    $(".collapse").collapse('hide');
+  });
+  $(".iniciarSesion1").click(function(){
+    $(".collapse").collapse('hide');
+  });
+});
+</script>    
     
     
 <script>

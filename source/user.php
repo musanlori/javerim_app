@@ -31,7 +31,11 @@ catch(PDOException $e)
   //  echo "Campo vacio";
     //header('location:form.php');
 //}else{
-    
+//if($nombre==""){
+  //      echo 'no hay nombre';
+        
+    //    die();
+    //}  
 
 //COMPROBAR SI EXISTE EL USUARIO
 if($escoger=="alumnos"){
@@ -107,12 +111,12 @@ if(password_verify($contrasena2,$contrasena)){
         $conn->exec($sql);
     
         $conn = null;
-        header('location:Administracion.php');
+        header('location:form.php');
         echo "New record created successfully";
     }
     
 }else{
-    header('location:Administracion.php');
+    header('location:form.php');
     echo 'La contraseñano es valida';
     
 }
