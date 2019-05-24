@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-04-2019 a las 21:02:54
+-- Tiempo de generación: 24-05-2019 a las 21:04:25
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -31,11 +31,21 @@ SET time_zone = "+00:00";
 CREATE TABLE `alumnos` (
   `id_alumno` int(80) NOT NULL,
   `nombre_alumno` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
-  `cel_alumno` int(80) NOT NULL,
+  `cel_alumno` varchar(80) COLLATE utf8_spanish_ci NOT NULL,
   `correo_alumno` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
   `carrera_alumno` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
-  `semestre_alumno` int(80) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `semestre_alumno` int(80) NOT NULL,
+  `contrasena_alumno` varchar(255) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci ROW_FORMAT=COMPACT;
+
+--
+-- Volcado de datos para la tabla `alumnos`
+--
+
+INSERT INTO `alumnos` (`id_alumno`, `nombre_alumno`, `cel_alumno`, `correo_alumno`, `carrera_alumno`, `semestre_alumno`, `contrasena_alumno`) VALUES
+(1, 'Ricardo N', '5576778990', 'ricardo@email.com', 'Ingeniaría en Computación', 8, 'yomeroR'),
+(2, 'Hannia N', '5576758990', 'hannia@email.com', 'Ingeniaría en Computación', 6, 'yomeroH'),
+(3, 'Benjamín N', '5576758910', 'benja@email.com', 'Ingeniaría Eléctrica Electrónica', 8, 'yomeroB');
 
 -- --------------------------------------------------------
 
@@ -46,29 +56,28 @@ CREATE TABLE `alumnos` (
 CREATE TABLE `asesor` (
   `id_asesor` int(80) NOT NULL,
   `nombre_asesor` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
-  `celular_asesor` int(80) NOT NULL,
+  `celular_asesor` varchar(80) COLLATE utf8_spanish_ci NOT NULL,
   `correo_asesor` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
   `carrera_asesor` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
-  `semestre_asesor` int(80) NOT NULL
+  `semestre_asesor` int(80) NOT NULL,
+  `contrasena_asesor` varchar(255) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `asesor`
 --
 
-INSERT INTO `asesor` (`id_asesor`, `nombre_asesor`, `celular_asesor`, `correo_asesor`, `carrera_asesor`, `semestre_asesor`) VALUES
-(1, 'Ricardo', 2147483647, 'ricardo@correo.com', 'computacion', 10),
-(2, 'Javier N', 2147483647, 'javier@correo.com', ' Ing Petro-quÃ­mica', 2),
-(3, 'Mario N', 2147483647, 'mario@correo.com', ' Ing Telecomunicaciones', 1),
-(4, 'Karen N', 2147483647, 'karen@correo.com', ' Ing BiomÃ©dica', 5),
-(5, 'Omar N', 2147483647, 'omar@correo.com', ' Ing MecÃ¡nica', 8),
-(6, 'Elsa', 2147483647, 'elsa@correo.com', ' Ing MecÃ¡nica', 3),
-(7, 'Carlos N', 2147483647, 'Carlos@correo.com', ' Ing ElÃ©ctrica', 6),
-(8, 'Benjamin N', 2147483647, 'benja@correo.com', ' Ing ElÃ©ctrica', 8),
-(10, 'Fernanda N', 2147483647, 'fernanda@correo.com', ' Ing Mecatronica', 9),
-(11, 'Mauricio N', 2147483647, 'mauricio@correo.com', ' Ing Industrial', 10),
-(12, 'Bryan N', 2147483647, 'bryan@correo.com', ' Ing civil', 10),
-(13, 'Diego N', 2147483647, 'diego@correo.com', ' Ing Minas', 4);
+INSERT INTO `asesor` (`id_asesor`, `nombre_asesor`, `celular_asesor`, `correo_asesor`, `carrera_asesor`, `semestre_asesor`, `contrasena_asesor`) VALUES
+(1, 'Karla N', '5564792109', 'karla@correo.com', 'Ingeniería en Computación', 9, 'asesor1'),
+(2, 'Rolando N', '5564279210', 'Rolando@correo.com', 'Ingeniería Industrial', 7, 'asesor2'),
+(3, 'Mauricio N', '5561279210', 'mauricio@correo.com', 'Ingeniería en Computación', 9, 'asesor3'),
+(4, 'Karen N', '5561275210', 'karen@correo.com', 'Ingeniería en Sistemas Bio-médicos', 4, 'asesor4'),
+(5, 'Jaqueline N', '5561275211', 'yaqui@correo.com', 'Ingeniería en Sistemas Bio-médicos', 5, 'asesor5'),
+(6, 'Perla N', '5561273211', 'perla@correo.com', 'Ingeniería en Minas y Metalurgia', 3, 'asesor6'),
+(7, 'Nayeli N', '5563273214', 'nayeli@correo.com', 'Ingeniería Mecatrónica', 7, 'asesor7'),
+(8, 'Bryan N', '5523273214', 'bryan@correo.com', 'Ingeniería Civil', 8, 'asesor8'),
+(9, 'Reina N', '5523273239', 'reina@correo.com', 'Ingeniería Petrolera', 10, 'asesor9'),
+(10, 'Mario N', '5523273239', 'reina@correo.com', 'Ingeniería Industrial', 6, 'asesor10');
 
 -- --------------------------------------------------------
 
@@ -78,12 +87,20 @@ INSERT INTO `asesor` (`id_asesor`, `nombre_asesor`, `celular_asesor`, `correo_as
 
 CREATE TABLE `cita` (
   `id_cita` int(80) NOT NULL,
-  `fecha_cita` int(80) NOT NULL,
+  `fecha_cita` varchar(80) COLLATE utf8_spanish_ci NOT NULL,
   `hora_cita` time NOT NULL,
   `rating_asesor` int(80) NOT NULL,
   `id_alumno` int(80) NOT NULL,
   `id_asesor` int(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `cita`
+--
+
+INSERT INTO `cita` (`id_cita`, `fecha_cita`, `hora_cita`, `rating_asesor`, `id_alumno`, `id_asesor`) VALUES
+(28, '21-05-2019', '12:45:00', 5, 2, 4),
+(29, '22-05-2019', '12:00:00', 5, 2, 7);
 
 -- --------------------------------------------------------
 
@@ -98,6 +115,22 @@ CREATE TABLE `clase` (
   `semstre_asig` int(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
+--
+-- Volcado de datos para la tabla `clase`
+--
+
+INSERT INTO `clase` (`id_asig`, `nombre_asig`, `Tema_asig`, `semstre_asig`) VALUES
+(2, 'Algebra', 'Matrices', 1),
+(3, 'Algebra', 'Conjuntos', 1),
+(4, 'Calculo Diferencial', 'Limites', 1),
+(5, 'Calculo Diferencial', 'Derivadas', 1),
+(6, 'Calculo Integral', 'Métodos de integración', 2),
+(7, 'Calculo Integral', 'Función exponencial', 2),
+(8, 'Cinematica y Dinamica', 'Cinemática de la partícula', 3),
+(9, 'Ecuaciones Diferenciales', 'Ecuaciones diferenciales lineales', 3),
+(10, 'Ecuaciones Diferenciales', 'Transformada de Laplace', 3),
+(11, 'Geometria Analitica', 'Curvas en el plano polar', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -108,10 +141,24 @@ CREATE TABLE `sesiones` (
   `id_sesion` int(80) NOT NULL,
   `dia_semana` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
   `horario_sesion` time NOT NULL,
-  `lugar_sesion` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
+  `lugar_sesion` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `id_asesor` int(80) NOT NULL,
   `id_clase` int(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `sesiones`
+--
+
+INSERT INTO `sesiones` (`id_sesion`, `dia_semana`, `horario_sesion`, `lugar_sesion`, `id_asesor`, `id_clase`) VALUES
+(1, 'Viernes', '18:00:00', 'Cafe 76', 10, 11),
+(2, 'Lunes', '11:00:00', 'Banquitas del J', 1, 5),
+(3, 'Martes', '12:45:00', 'La Leonardita (Pokebola Anexo)', 4, 2),
+(4, 'Jueves', '16:30:00', 'Bancas del Principal', 10, 3),
+(5, 'Miercoles', '12:45:00', 'Biblioteca Enrique Rivero Borrell', 9, 9),
+(6, 'Martes', '13:15:00', 'Banquitas bajo el I', 3, 6),
+(7, 'Viernes', '08:30:00', 'Biblioteca Antonio Dovali Jaime', 8, 8),
+(8, 'Miercoles', '12:00:00', 'jardin del Postgrado', 7, 2);
 
 --
 -- Índices para tablas volcadas
@@ -159,31 +206,31 @@ ALTER TABLE `sesiones`
 -- AUTO_INCREMENT de la tabla `alumnos`
 --
 ALTER TABLE `alumnos`
-  MODIFY `id_alumno` int(80) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_alumno` int(80) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `asesor`
 --
 ALTER TABLE `asesor`
-  MODIFY `id_asesor` int(80) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_asesor` int(80) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
-  MODIFY `id_cita` int(80) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_cita` int(80) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `clase`
 --
 ALTER TABLE `clase`
-  MODIFY `id_asig` int(80) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_asig` int(80) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `sesiones`
 --
 ALTER TABLE `sesiones`
-  MODIFY `id_sesion` int(80) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_sesion` int(80) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas
