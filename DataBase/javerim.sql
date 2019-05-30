@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-05-2019 a las 21:04:25
+-- Tiempo de generación: 31-05-2019 a las 00:03:42
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -89,7 +89,8 @@ CREATE TABLE `cita` (
   `id_cita` int(80) NOT NULL,
   `fecha_cita` varchar(80) COLLATE utf8_spanish_ci NOT NULL,
   `hora_cita` time NOT NULL,
-  `rating_asesor` int(80) NOT NULL,
+  `nombre_materia` varchar(80) COLLATE utf8_spanish_ci NOT NULL,
+  `lugar_cita` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
   `id_alumno` int(80) NOT NULL,
   `id_asesor` int(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -98,9 +99,9 @@ CREATE TABLE `cita` (
 -- Volcado de datos para la tabla `cita`
 --
 
-INSERT INTO `cita` (`id_cita`, `fecha_cita`, `hora_cita`, `rating_asesor`, `id_alumno`, `id_asesor`) VALUES
-(28, '21-05-2019', '12:45:00', 5, 2, 4),
-(29, '22-05-2019', '12:00:00', 5, 2, 7);
+INSERT INTO `cita` (`id_cita`, `fecha_cita`, `hora_cita`, `nombre_materia`, `lugar_cita`, `id_alumno`, `id_asesor`) VALUES
+(9, '31-05-2019', '08:30:00', 'Cinematica y Dinamica', 'Biblioteca Antonio Dovali Jaime', 2, 8),
+(10, '31-05-2019', '18:00:00', 'Geometria Analitica', 'Cafe 76', 2, 10);
 
 -- --------------------------------------------------------
 
@@ -141,7 +142,8 @@ CREATE TABLE `sesiones` (
   `id_sesion` int(80) NOT NULL,
   `dia_semana` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
   `horario_sesion` time NOT NULL,
-  `lugar_sesion` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `lugar_sesion` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
+  `Estado` int(4) NOT NULL,
   `id_asesor` int(80) NOT NULL,
   `id_clase` int(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -150,15 +152,15 @@ CREATE TABLE `sesiones` (
 -- Volcado de datos para la tabla `sesiones`
 --
 
-INSERT INTO `sesiones` (`id_sesion`, `dia_semana`, `horario_sesion`, `lugar_sesion`, `id_asesor`, `id_clase`) VALUES
-(1, 'Viernes', '18:00:00', 'Cafe 76', 10, 11),
-(2, 'Lunes', '11:00:00', 'Banquitas del J', 1, 5),
-(3, 'Martes', '12:45:00', 'La Leonardita (Pokebola Anexo)', 4, 2),
-(4, 'Jueves', '16:30:00', 'Bancas del Principal', 10, 3),
-(5, 'Miercoles', '12:45:00', 'Biblioteca Enrique Rivero Borrell', 9, 9),
-(6, 'Martes', '13:15:00', 'Banquitas bajo el I', 3, 6),
-(7, 'Viernes', '08:30:00', 'Biblioteca Antonio Dovali Jaime', 8, 8),
-(8, 'Miercoles', '12:00:00', 'jardin del Postgrado', 7, 2);
+INSERT INTO `sesiones` (`id_sesion`, `dia_semana`, `horario_sesion`, `lugar_sesion`, `Estado`, `id_asesor`, `id_clase`) VALUES
+(1, 'Viernes', '18:00:00', 'Cafe 76', 1, 10, 11),
+(2, 'Lunes', '11:00:00', 'Banquitas del J', 0, 1, 5),
+(3, 'Martes', '12:45:00', 'La Leonardita (Pokebola Anexo)', 0, 4, 2),
+(4, 'Jueves', '16:30:00', 'Bancas del Principal', 0, 10, 3),
+(5, 'Miercoles', '12:45:00', 'Biblioteca Enrique Rivero Borrell', 0, 9, 9),
+(6, 'Martes', '13:15:00', 'Banquitas bajo el I', 0, 3, 6),
+(7, 'Viernes', '08:30:00', 'Biblioteca Antonio Dovali Jaime', 1, 8, 8),
+(8, 'Miercoles', '12:00:00', 'jardin del Postgrado', 0, 7, 2);
 
 --
 -- Índices para tablas volcadas
@@ -218,7 +220,7 @@ ALTER TABLE `asesor`
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
-  MODIFY `id_cita` int(80) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_cita` int(80) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `clase`

@@ -67,6 +67,7 @@
             <!--Conectando con la base de datos-->
         <?php
             $nombreMat = $_GET['nomMat'];
+            $idclase = $_GET['idclass'];
             $servername = "localhost";
             $username = "root";
             $password = "";
@@ -74,7 +75,7 @@
             try {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
-            $stmt = $conn->prepare("SELECT asesor.id_asesor, asesor.nombre_asesor, clase.nombre_asig, clase.Tema_asig, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig WHERE clase.nombre_asig ='$nombreMat'"); 
+            $stmt = $conn->prepare("SELECT asesor.id_asesor, asesor.nombre_asesor, clase.nombre_asig, clase.Tema_asig, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion, sesiones.Estado FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig WHERE clase.nombre_asig ='$nombreMat'"); 
                 
             $stmt->execute();
             $resultado =$stmt->fetchAll();
@@ -112,10 +113,16 @@
                                 
                             </div>
                             <div class="col-12"><!--Boton/cuadro de dialogo-->
+                                <?php if($dato['Estado'] != 1){ ?>
                                 <button type='submit' class='btn btn-success btn-block' data-toggle="modal" data-target="#diag_conf" 
-                                    onclick="verDatos('<?php echo $dato['id_asesor']?>','<?php echo $dato['nombre_asesor']?>','<?php echo $dato['dia_semana'] ?>','<?php echo $dato['horario_sesion']?>','<?php echo $dato['lugar_sesion'] ?>')">
+                                    onclick="verDatos('<?php echo $dato['id_asesor']?>','<?php echo $idclase?>','<?php echo $dato['nombre_asesor']?>','<?php echo $dato['dia_semana'] ?>','<?php echo $dato['horario_sesion']?>','<?php echo $dato['lugar_sesion'] ?>', '<?php echo $nombreMat ?>')">
                                     Agendar Asesoria
                                 </button>
+                                <?php } else { ?>
+                                    <button type='Button' class='btn btn-danger btn-block'>
+                                    Actualmente ocupado
+                                </button>
+                                <?php } ?>
                                 <div class="modal fade" id="diag_conf">
                                     <div class="modal-dialog modal-md modal-dialog-centered">
                                         <div class="modal-content">
@@ -136,6 +143,7 @@
                                                                     <img src="../img/iconos/contacts_3695.ico" class="card-img-top rounded-circle" alt="photo">            
                                                                     <div class="card-body">
                                                                         <input type="text" id="hideID" name="getID" readonly="readonly" class="noborder"/>
+                                                                        <input type="text" id="hideIDC" name="getIDC" readonly="readonly" class="noborder"/>
                                                                         <h4 class="card-title"><input type="text" id="showName" name="getName" readonly="readonly" class="noborder"/></h4>
                                                                         <span class="fa fa-star checked"></span>
                                                                         <span class="fa fa-star checked"></span>
@@ -145,6 +153,7 @@
                                                                         <p class="card-text"><input type = "text" id="showDate" name="getDate" readonly="readonly" class="noborder"/></p>
                                                                         <p class="card-text"><input type = "text" id="showTime" name="getTime" readonly="readonly" class="noborder"/></p>
                                                                         <p class="card-text"><input type = "text" id="showSite" name="getSite" readonly="readonly" class="noborder"/></p>
+                                                                        <p class="card-text"><input type = "text" id="materia" name="materia" readonly="readonly" class="noborder"/></p>
                                                                     </div>
                                                                 </div>          
                                                             </div>   
@@ -175,15 +184,19 @@
         <script src="../js/bootstrap.min.js"></script>
         <script type="text/javascript">
         //recibe los datsos a mostrar desde la targeta y los envia al modal
-        function verDatos(id, name, fecha, hora, lugar) {
+        function verDatos(id, idCl,name, fecha, hora, lugar, materia) {
             
             $('#hideID').val(id);
+            $('#hideIDC').val(idCl);
             $('#showName').val(name);
             $('#showDate').val(fecha);
             $('#showTime').val(hora);
             $('#showSite').val(lugar);
+            $('#materia').val(materia);
 
             $('#hideID').css("display","none");
+            $('#hideIDC').css("display","none");
+
         }
         </script>
         <script type="text/javascript">

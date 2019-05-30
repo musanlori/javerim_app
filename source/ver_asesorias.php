@@ -76,7 +76,7 @@
 
           $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
           $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-          $stmt = $conn->prepare("SELECT nombre_asig FROM clase"); 
+          $stmt = $conn->prepare("SELECT nombre_asig, id_asig FROM clase"); 
           $stmt->execute();
           $resultado =$stmt->fetchAll();
           }
@@ -91,7 +91,7 @@
                 foreach ($resultado as $dato):
                   if($depName != $dato['nombre_asig']){ ?>
                   <div class="col-sm-3 mt-3 ml-3 mr-3 border shadow text-center cartas">
-                    <a href="tabla_asesores.php?nomMat=<?php echo $dato['nombre_asig'] ?>">
+                    <a href="tabla_asesores.php?nomMat=<?php echo $dato['nombre_asig'] ?>&idclass=<?php echo $dato['id_asig']?>">
                       <img src="../img/iconos/contacts_3695.ico" height="100" alt="">
                       <br>
                       <?php echo $dato['nombre_asig'] ?> <br>

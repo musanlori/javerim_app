@@ -66,10 +66,12 @@
         $password = ''; 
         $dbname = "javerim";
         $clv_asesor = $_POST['getID'];
+        $clv_materia = $_POST['getIDC'];
         $asesor_Nom = $_POST['getName'];
         $diaSesion = $_POST['getDate'];
         $horaSesion = $_POST['getTime'];
         $sitioSesion = $_POST['getSite'];
+        $materia = $_POST['materia'];
         $valor_Dia_Actual = date("N", time() - 25200); //horario Actual Zona-Horaria CDMX
         $fecha_actual = date("d-m-Y", time() - 25200);//fecha del sistema MX
         $hora_actual = date("H:i:s", time()-25200);//hora del sistema CDMX
@@ -110,8 +112,23 @@
             }
             #cita para la otra semana
             elseif ($FechaProx < 0) {
-                $FechaProx = $FechaProx + 7;
-                $Cita = date("d-m-Y",strtotime($fecha_actual."+ ". $FechaProx ." days"));
+                #$FechaProx = $FechaProx + 7;
+                #$Cita = date("d-m-Y",strtotime($fecha_actual."+ ". $FechaProx ." days"));
+                $Cita = NULL;
+                    ?>
+                        <div class="container-fluid">
+                            <div class="row justify-content-around bordered">
+                                <div class="col-8 text-center jumbotron">
+                                    <h1 class="text-Danger"> :( </h1>
+                                    <p >No se ha pidido agendar</p>
+                                    <p>Lamentamos Decirte que el dia de atencion de este asesor ya pasó<br>
+                                        Debes de esperar hasta la siguiente semana para agendarlo<br>
+                                    </p>
+                                    <a href="ver_asesorias.php"> Continuar </a>
+                                </div>
+                            </div>
+                        </div> 
+                    <?php
             }
             #mismo dia
             else{
@@ -121,19 +138,34 @@
                 }
                 #aun se puede agendar
                 else {
-                    $Cita = date("d-m-Y",strtotime($fecha_actual."+ 7 days"))."<br>";
+                    #$Cita = date("d-m-Y",strtotime($fecha_actual."+ 7 days"))."<br>";
+                    $Cita = NULL;
+                    ?>
+                        <div class="container-fluid">
+                            <div class="row justify-content-around bordered">
+                                <div class="col-8 text-center jumbotron">
+                                    <h1 class="text-Danger"> :( </h1>
+                                    <p >No se ha pidido agendar</p>
+                                    <p>Lamentamos Decirte que el dia de atencion de este asesor ya pasó<br>
+                                        Debes de esperar hasta la siguiente semana para agendarlo<br>
+                                    </p>
+                                    <a href="ver_asesorias.php"> Continuar </a>
+                                </div>
+                            </div>
+                        </div> 
+                    <?php
                 }
             }
         }
-        #fin algoritmo
-        #Conexion con la base de datos para insertar Info.
+        #fin algoritmo 
+        if ($Cita != NULL){
+            #Conexion con la base de datos para insertar Info.
             $conn = new mysqli($servername, $username, $password, $dbname);
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
-            } 
-
-            $tabla_Cita = "INSERT INTO cita (fecha_cita,hora_cita,rating_asesor,id_alumno,id_asesor)
-            VALUES ('$Cita', '$horaSesion', '5', '2', '$clv_asesor')";
+            }
+            $tabla_Cita = "INSERT INTO cita (fecha_cita,hora_cita, nombre_materia, lugar_cita,id_alumno,id_asesor)
+            VALUES ('$Cita', '$horaSesion', '$materia', '$sitioSesion','2','$clv_asesor')";
 
             if ($conn->query($tabla_Cita) === TRUE) {
             ?>
@@ -153,6 +185,12 @@
                     </div>
                 </div> 
             <?php
+                 $tabla_Cita = "UPDATE sesiones SET  Estado='1' WHERE dia_semana='$diaSesion' and id_asesor = '$clv_asesor' and id_clase = '$clv_materia'";
+                 if ($conn->query($tabla_Cita) === TRUE) {
+                     echo "actulizado correctamente";
+                 }else{
+                     echo "Error en la actualizaciono ".$conn->error;
+                 }
             } else {
             ?>
                <div class="container">
@@ -170,7 +208,8 @@
                </div> 
             
             <?php }
-
+           
+        }
         ?>
         <!-- Termina el Contenido -->
         <script src="../js/jquery-3.3.1.slim.min.js"></script>
