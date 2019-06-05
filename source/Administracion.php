@@ -325,7 +325,7 @@ if( isset($_SESSION['admin']) ):
     <?php
 else:
 ?>
-    <h3>Tienes que iniciar sesión</h3>
+    <h3>Tienes que iniciar sesión como Asesor</h3>
     <?php endif;
 ?>
     <script src="../js/jquery-3.3.1.slim.min.js"></script>
