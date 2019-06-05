@@ -173,7 +173,7 @@ if( isset($_SESSION['alumno']) ):
                       </div>
                       <div class="col-6">
                         <a href="">
-                          <img src="../img/iconos/2x/baseline_delete_black_18dp.png" align="right" alt="calendar"> <br>
+                          <img src="../img/iconos/2x/baseline_delete_black_18dp.png" align="right" alt="eliminar"> <br>
                         </a>
                           <b> </b> <?php echo $dato['nombre_materia'] ?> <br>
                           <b> </b> <?php echo "Asesor: ". $dato['nombre_asesor'] ?> <br>
@@ -197,9 +197,31 @@ if( isset($_SESSION['alumno']) ):
               <?php endforeach ?>
           </div>
       </div>
+      
+      
+      
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#')
+        });
+
+        function verDatos(id, name, fecha, hora, lugar) {
+            $('#showId').val(id);
+            $('#showName').val(name);
+            $('#showDate').val(fecha);
+            $('#showTime').val(hora);
+            $('#showSite').val(lugar);
+
+            console.info("Mesaje de log, ", n1);
+
+        }
+
+    </script>
 
 <?php endif;
 ?>
+
+
 
 <!--Termina el Contenido -->
         <script src="../js/jquery-3.3.1.slim.min.js"></script>
