@@ -1,3 +1,33 @@
+<?php
+session_start();
+//CONECCION 
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "javerim";
+
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=javerim", $username, $password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //echo "Connected successfully"; 
+    }
+catch(PDOException $e)
+    {
+    echo "Connection failed: " . $e->getMessage();
+    }
+
+//------------------------SE NECESITA TENER LA UNA SESION INICIADA PARA VER ESTA PAGINA
+//if( isset($_SESSION['admin']) ){
+//    echo 'Bienvenido! '.$_SESSION['admin'];
+//    echo '<br><a href="cerrar.php">Cerrar Sesión</a>';
+//}else{
+//    header('Location:form.php');
+//}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +69,23 @@
               </li> 
               <li>
                 <a class="nav-link" href="#">acerca de</a>
-              </li>           
+              </li>
+              <?php
+                if( isset($_SESSION['alumno']) ):
+                    $sesion=$_SESSION['alumno'];
+                ?>
+                <li class="nav-item dropdown">
+                 
+                  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    <?php echo 'Bienvenido! '.$sesion;?>
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="cerrar.php">Cerrar Sesión</a>
+                  </div>
+              </li>
+            <?php
+                endif;
+                ?>            
             </ul>
           </div>
         </nav>
@@ -55,6 +101,35 @@
             </div>
           </div>
         </div>
+        
+        
+<!----Buscando el id del alumno-------------------------------->
+ <?php
+if( isset($_SESSION['alumno']) ):
+    $sesion=$_SESSION['alumno'];
+    
+    
+    try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   // $stmt = $conn->prepare("SELECT clase.nombre_asig, sesiones.id_sesion, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig"); 
+    $stmt = $conn->prepare("SELECT id_alumno FROM alumnos WHERE correo_alumno='$sesion'"); 
+        
+    $stmt->execute();
+    $resul =$stmt->fetchAll();
+    }
+    catch(PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+//
+    foreach($resul as $iden){
+        //echo $iden['id_asesor'];
+        $idalumno=$iden['id_alumno'];
+    }
+    
+    
+    //echo $idasesor;
+?>
   <!--lista de asesorias a Cursar-->
   <?php
     try {
@@ -77,7 +152,7 @@
 
           $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
           $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-          $stmt = $conn->prepare("SELECT cita.fecha_cita, cita.hora_cita, asesor.nombre_asesor,cita.lugar_cita ,cita.nombre_materia  FROM `cita` INNER JOIN asesor ON cita.id_asesor=asesor.id_asesor INNER JOIN alumnos ON cita.id_alumno= alumnos.id_alumno WHERE alumnos.id_alumno=2");
+          $stmt = $conn->prepare("SELECT cita.fecha_cita, cita.hora_cita, asesor.nombre_asesor,cita.lugar_cita ,cita.nombre_materia  FROM `cita` INNER JOIN asesor ON cita.id_asesor=asesor.id_asesor INNER JOIN alumnos ON cita.id_alumno= alumnos.id_alumno WHERE alumnos.id_alumno=$idalumno");
           $stmt->execute();
           $resultado =$stmt->fetchAll();
       }
@@ -123,6 +198,8 @@
           </div>
       </div>
 
+<?php endif;
+?>
 
 <!--Termina el Contenido -->
         <script src="../js/jquery-3.3.1.slim.min.js"></script>

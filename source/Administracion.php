@@ -44,38 +44,51 @@ catch(PDOException $e)
 <body>
 
     <!-------------------------------------------------NavBar--------------------------------------------------------->
-    <!--barra de navegacion-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-jav">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
+  <!--barra de navegacion-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-jav">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones" >
             <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- logo -->
-        <a class="navbar-brand" href="#">
+          </button>
+          
+          <!-- logo -->
+          <a class="navbar-brand" href="#">
             <img src="../img/iconos/unam.jpg" width="30" height="30" alt="">
-        </a>
-
-        <!-- enlaces -->
-        <div class="collapse navbar-collapse" id="opciones">
+          </a>
+          
+          <!-- enlaces -->
+          <div class="collapse navbar-collapse" id="opciones">   
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link " href="ver_asesorias.php">Asesorías</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Administracion.php">Administracion</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="agenda.php">Agenda</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="form.php">Registro e Inicio</a>
-                </li>
-                <li>
-                    <a class="nav-link" href="#">acerca de</a>
-                </li>
+              <li class="nav-item">
+                <a class="nav-link " href="ver_asesorias.php">Asesorías</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Administracion.php">Administracion</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="agenda.php">Agenda</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="form.php">Registro e Inicio</a>
+              </li> 
+              <?php
+                if( isset($_SESSION['admin']) ):
+                    $sesion=$_SESSION['admin'];
+                ?>
+                <li class="nav-item dropdown">
+                 
+                  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    <?php echo 'Bienvenido! '.$sesion;?>
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="cerrar.php">Cerrar Sesión</a>
+                  </div>
+              </li>
+            <?php
+                endif;
+                ?>         
             </ul>
-        </div>
-    </nav>
+          </div>
+        </nav>
     <!--Titulo-->
     <div class="container">
         <div class="row">
@@ -97,8 +110,6 @@ catch(PDOException $e)
     <?php
 if( isset($_SESSION['admin']) ):
     $sesion=$_SESSION['admin'];
-    echo 'Bienvenido! '.$sesion;
-    echo '<br><a href="cerrar.php">Cerrar Sesión</a>';
     
     
     try {
@@ -112,6 +123,7 @@ if( isset($_SESSION['admin']) ):
     }
     catch(PDOException $e) {
         echo "Error: " . $e->getMessage();
+        echo "no eres Asesor";
     }
 //
     foreach($resul as $iden){
@@ -134,7 +146,10 @@ if( isset($_SESSION['admin']) ):
              
              $campos =array();
              if($lugar==""){
-                 echo "<div class='alert alert-danger'>El tema esta vacio</div>";
+                 echo "<div class='alert alert-danger'>El Lugar esta vacio</div>";
+                 die();
+                 header('Location:Administracion.php');
+
              }
              
              try {
@@ -170,7 +185,7 @@ if( isset($_SESSION['admin']) ):
                            while($row=$sqlquery->fetch(PDO::FETCH_ASSOC)){
                                extract($row)    
                         ?>
-                                <option value="<?php echo $row['id_asig']; ?>"> <?php echo $row['id_asig']; echo $row['nombre_asig']; ?></option>
+                                <option value="<?php echo $row['id_asig']; ?>"> <?php echo $row['nombre_asig']; ?></option>
                                 <?php } ?>
                             </select>
                             <!--<label name="tema"><b>Tema: </b></label>
@@ -220,6 +235,7 @@ if( isset($_SESSION['admin']) ):
     }
     catch(PDOException $e) {
         echo "Error: " . $e->getMessage();
+        echo "No eres Asesor";
     }
          
 		
@@ -234,9 +250,7 @@ if( isset($_SESSION['admin']) ):
 
                         <img src="../img/iconos/1x/baseline_delete_black_18dp.png" class="card-img-top rounded-circle" alt="trash">
                     </a>
-                    <?php
-    echo $dato['id_sesion']
-        ?>
+                    
                     <!-- The Modal -->
                     <div class="modal" id="myModal">
                         <div class="modal-dialog">

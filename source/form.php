@@ -40,17 +40,23 @@ session_start();
               <li class="nav-item">
                 <a class="nav-link" href="form.php">Registro e Inicio</a>
               </li> 
-              <li class="nav-item dropdown">
+              <?php
+                if( isset($_SESSION['admin'])):
+                    $sesion=$_SESSION['admin'];
+                
+                ?>
+                <li class="nav-item dropdown">
                  
                   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    Dropdown link
+                    <?php echo 'Bienvenido! '.$sesion;?>
                   </a>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Link 1</a>
-                    <a class="dropdown-item" href="#">Link 2</a>
-                    <a class="dropdown-item" href="#">Link 3</a>
+                    <a class="dropdown-item" href="cerrar.php">Cerrar Sesión</a>
                   </div>
-              </li>         
+              </li>
+            <?php
+                endif;
+                ?>         
             </ul>
           </div>
         </nav>
@@ -93,7 +99,7 @@ else:
         <div class="row">
             <div class="col-md-6 form-group float-right">
                 <h2>Registro</h2>
-                <form action="user.php" method="POST" class="was-validated">
+                <form action="user.php" method="POST" class="needs-validated">
                 <div class="form-group">
                     <input type="text" class="form-control" name="nombre" placeholder="Nombre" required>
                     <div class="valid-feedback">:).</div>
@@ -106,7 +112,7 @@ else:
                     <div id="checkusername" class=""></div>
                 </div>
                 <div class="form-group">
-                    <select class="form-group" name="carrera" id="carrera">
+                    <select class="form-control" name="carrera" id="carrera">
                        <option selected>Carrera</option>
                         <option value="Ingeniería Ambiental">Ingeniería Ambiental</option>
                         <option value="Ingeniería Civil">Ingeniería Civil</option>
@@ -120,7 +126,7 @@ else:
                         <option value="Ingeniería Petrolera">Ingeniería Petrolera</option>
                         <option value="Ingeniería en Sistemas Biomédicos">Ingeniería en Sistemas Biomédicos</option>
                         <option value="Ingeniería en Telecomunicaciones">Ingeniería en Telecomunicaciones</option>
-                    </select><br>
+                    </select>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="celular" placeholder="Celular" required>
@@ -128,7 +134,7 @@ else:
                     <div class="invalid-feedback">Falta celular.</div>
                 </div>
                 <div class="form-group">
-                    <select name="semestre" id="semestre">
+                    <select name="semestre" class="form-control" id="semestre">
                       <option selected>Semestre</option>
                        <option value="1">1</option>
                        <option value="2">2</option>
@@ -141,7 +147,7 @@ else:
                        <option value="9">9</option>
                        <option value="10">10</option>
 
-                    </select><br>
+                    </select>
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control" name="contrasena" placeholder="********" required>
@@ -154,10 +160,10 @@ else:
                     <div class="invalid-feedback">Ingrese nuevamente.</div>
                 </div>
                 <div class="form-group">
-                    <select name="escoger" id="escoger">
+                    <select name="escoger" class="form-control" id="escoger">
                         <option value="asesor">Asesor</option>
                         <option value="alumnos">Alumno</option>
-                    </select><br>
+                    </select>
                 </div>
                     
                     
@@ -173,15 +179,16 @@ else:
             <div class="container" >
                 <div class="row">
                     <div class="col-md-6 form-group">
-                        <form action="login.php" method="POST" class="was-validated">
+                        <form action="login.php" method="POST" class="needs-validated">
                           <br>
                            <h2>Iniciar Sesión</h2>
-                            <input type="text" name="correo" placeholder="correo"><br>
-                            <input type="password" name="contrasena" placeholder="********"><br>
-                            <select name="escoger" id="escoger">
+                            <input type="text" class="form-control" name="correo" placeholder="correo" required><br>
+                            <input type="password" class="form-control" name="contrasena" placeholder="********" required><br>
+                            <select name="escoger" class="form-control" id="escoger">
                                 <option value="asesor">Asesor</option>
                                 <option value="alumnos">Alumno</option>
-                            </select><br>
+                            </select>
+                            <br>
                             <button type="sunmit" class="btn btn-primary">Iniciar sesion</button>
                         </form>
                     </div>
@@ -271,29 +278,7 @@ else:
     </div>
 -->
     
-<div class="modal" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Ya puedes iniciar Sesión</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-        Modal body..
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-
-    </div>
-  </div>
-</div>
     
 <!--
     <div class="container collapse" id="iniciarSesion">
