@@ -135,6 +135,7 @@ if( isset($_SESSION['alumno']) ):
                 $intDay = 2;
                 break;
             case 'Miercoles':
+            case 'Miércoles':
                 $intDay = 3;            
                 break;
             case 'Jueves':
@@ -144,6 +145,7 @@ if( isset($_SESSION['alumno']) ):
                 $intDay = 5;
                 break;
             case 'Sabado':
+            case 'Sábado':
                 $intDay = 6;
                 break;
             case 'Domingo':
@@ -235,8 +237,8 @@ if( isset($_SESSION['alumno']) ):
                     </div>
                 </div> 
             <?php
-                 $tabla_Cita = "UPDATE sesiones SET  Estado='1' WHERE dia_semana='$diaSesion' and id_asesor = '$clv_asesor' and id_clase = '$clv_materia'";
-                 if ($conn->query($tabla_Cita) === TRUE) {
+                 $update_Cita = "UPDATE sesiones SET  Estado='1' WHERE dia_semana='$diaSesion' and id_asesor='$clv_asesor' and id_clase='$clv_materia'";
+                 if ($conn->query($update_Cita) === TRUE) {
                      echo "actulizado correctamente";
                  }else{
                      echo "Error en la actualizaciono ".$conn->error;
