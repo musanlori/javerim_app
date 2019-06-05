@@ -1,3 +1,25 @@
+<?php
+session_start();
+//CONECCION 
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "javerim";
+
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=javerim", $username, $password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //echo "Connected successfully"; 
+    }
+catch(PDOException $e)
+    {
+    echo "Connection failed: " . $e->getMessage();
+    }
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -60,6 +82,34 @@
             </div>
             <br><br>
             <div class="container-fluid">
+            
+        <!----Buscando el id del alumno-------------------------------->
+ <?php
+if( isset($_SESSION['alumno']) ):
+    $sesion=$_SESSION['alumno'];
+    
+    
+    try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   // $stmt = $conn->prepare("SELECT clase.nombre_asig, sesiones.id_sesion, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig"); 
+    $stmt = $conn->prepare("SELECT id_alumno FROM alumnos WHERE correo_alumno='$sesion'"); 
+        
+    $stmt->execute();
+    $resul =$stmt->fetchAll();
+    }
+    catch(PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+//
+    foreach($resul as $iden){
+        //echo $iden['id_asesor'];
+        $idalumno=$iden['id_alumno'];
+    }
+    
+    
+    //echo $idasesor;
+?>
         <?php 
         $servername = "localhost"; 
         $username = "root"; 
@@ -165,7 +215,7 @@
                 die("Connection failed: " . $conn->connect_error);
             }
             $tabla_Cita = "INSERT INTO cita (fecha_cita,hora_cita, nombre_materia, lugar_cita,id_alumno,id_asesor)
-            VALUES ('$Cita', '$horaSesion', '$materia', '$sitioSesion','2','$clv_asesor')";
+            VALUES ('$Cita', '$horaSesion', '$materia', '$sitioSesion','$idalumno','$clv_asesor')";
 
             if ($conn->query($tabla_Cita) === TRUE) {
             ?>
@@ -211,6 +261,9 @@
            
         }
         ?>
+        
+        <?php endif;
+                ?>
         <!-- Termina el Contenido -->
         <script src="../js/jquery-3.3.1.slim.min.js"></script>
         <script src="../js/popper.min.js"></script>
