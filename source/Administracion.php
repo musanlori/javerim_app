@@ -141,7 +141,7 @@ if( isset($_SESSION['admin']) ):
                 $conn = new PDO("mysql:host=$servername;dbname=javerim", $username, $password);
                 // set the PDO error mode to exception
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $sql = "INSERT INTO `sesiones` (`id_sesion`, `dia_semana`, `horario_sesion`, `lugar_sesion`, `id_asesor`, `id_clase`) VALUES (NULL, '$dia', '$hora', '$lugar', '$idasesor', '$materia')";
+                $sql = "INSERT INTO `sesiones` (`id_sesion`, `dia_semana`, `horario_sesion`, `lugar_sesion`,`Estado`, `id_asesor`, `id_clase`) VALUES (NULL, '$dia', '$hora', '$lugar', '0', '$idasesor', '$materia')";
                 // use exec() because no results are returned
                 $conn->exec($sql);
                 //echo "New record created successfully";
@@ -204,52 +204,7 @@ if( isset($_SESSION['admin']) ):
     </form>
 
     <!---------------------------------------------EDITAR---------------------------------------------------------------------------------->
-    <?php
-
-         
-//         if($_GET) {
-//
-//			$id=$_GET['id_sesion'];
-//
-//			$sql_unico= "SELECT * FROM sesiones WHERE id_sesion=?";
-//			$gsent_unico = $conn->prepare($sql_unico);
-//			$gsent_unico->execute(array($id));
-//			$resultado_unico = $gsent_unico->fetch();
-//			//var_dump($resultado_unico);
-//			
-//		}
-    ?>
-
-    <!--
-    <div class="container">
-        <div class="row">
-            <div class="col">
-               <?php //if($_GET):  ?>
-               <div class="alert alert-primary">
-                  <form action="edit.php" method="GET"></form>
-                    <label name="materia"><b>Materia: </b></label>
-                    <input type="text" name="tema" value="<?php //echo $resultado_unico['idC'] ?>">
-                    <br>
-                    <label name="dia"><b>Dia: </b></label>
-                    <input type="text" name="dia" value="<?php //echo $resultado_unico['dia'] ?>">
-                    <br>
-                    <label name="hora"><b>Hora</b></label>
-                    <input type="text" name="hora" value="<?php //echo $resultado_unico['horario'] ?>">
-                    <br>
-                    <label name="lugar">Lugar</label>
-                    <input type="text" name="lugar" value="<?php //echo $resultado_unico['lugar'] ?>">
-                    <input type="hidden" name="id" value="<?php //echo $resultado_unico['id_sesion'] ?>">
-                    <br>
-
-                    <button class="btn  btn-primary" name="editar">Editar</button>
-                   
-               </div>
-               <?php  //endif ?>
-            </div>
-        </div>
-    </div>
--->
-
+  
 
 
     <!-----------------------------------------------------------MOSTRAR---------------------------------------------------------------------->
