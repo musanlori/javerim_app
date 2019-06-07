@@ -42,14 +42,14 @@ catch(PDOException $e)
 <body>
   <!--Pantalla Agenda Javerim-->
   <!--barra de navegacion-->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-jav">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1976D2;">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones" >
             <span class="navbar-toggler-icon"></span>
           </button>
           
           <!-- logo -->
           <a class="navbar-brand" href="#">
-            <img src="../img/iconos/unam.jpg" width="30" height="30" alt="">
+            <img src="../img/iconos/javerim.ico" width="50" height="50" alt="javerin_ico">
           </a>
           
           <!-- enlaces -->
@@ -63,16 +63,11 @@ catch(PDOException $e)
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="agenda.php">Agenda</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="form.php">Registro e Inicio</a>
               </li> 
-              <li>
-                <a class="nav-link" href="#">acerca de</a>
-              </li>
               <?php
-                if( isset($_SESSION['alumno']) ):
-                    $sesion=$_SESSION['alumno'];
+                if( isset($_SESSION['admin'])):
+                    $sesion=$_SESSION['admin'];
+                
                 ?>
                 <li class="nav-item dropdown">
                  
@@ -85,7 +80,7 @@ catch(PDOException $e)
               </li>
             <?php
                 endif;
-                ?>            
+                ?>         
             </ul>
           </div>
         </nav>
