@@ -246,6 +246,7 @@ if( isset($_SESSION['admin']) ):
             <?php foreach ($resultado as $dato): ?>
             <div class="col-md-6">
                 <div class="card-body bg-light text-dark">
+                   
                     <a href="" class="float-right ml-3" data-toggle="modal" data-target="#myModal" onclick="verDatos('<?php echo $dato['id_sesion']?>','<?php echo $dato['nombre_asig']?>','<?php echo $dato['dia_semana'] ?>','<?php echo $dato['horario_sesion']?>','<?php echo $dato['lugar_sesion'] ?>')">
 
                         <img src="../img/iconos/1x/baseline_delete_black_18dp.png" class="card-img-top rounded-circle" alt="trash">
