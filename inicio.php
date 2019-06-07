@@ -8,21 +8,50 @@
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="css_javerim/javerim_style.css">
     </head>
-    <body>
+    <style type="text/css">
+        .contIndex{
+            height: 100%;
+        }
+        .footer{
+            height: 50px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+        img{
+            display: block;
+            margin: auto;
+        }
+    </style>
+    <body style="background-color: #1976D2;">
         <!--Inicia el contenido-->
-        <div class="container-fluid text-white" style="background-color: #1976D2;">
+        <div class="container-fluid contIndex text-white">
+            <div class="row justify-content-center">
+                <div class="col align-items-end text-center">
+                    <h1>¡Bienvenido!</h1>
+                </div>
+            </div>
             <div class="row justify-content-center">
                 <div class="col text-center">
                     <h1>Javerim</h1>
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col text-center">
-                    <img src="img/" alt="logo">
+                <div class="col">
+                    <a href="source/form.php">
+                        <img src="img/javerim_Inicio.png" alt="logo" width="256px" height="256px">
+                    </a>
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col align-items-end text-center">
+                <div class="col text-center">
+                    <br><br>
+                        <p>Pulsa el logo para iniciar</p>
+                    <br>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col footer text-center">
                     <h5>UNAM mobile</h5>
                 </div>
             </div>

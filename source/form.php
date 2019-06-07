@@ -15,14 +15,14 @@ session_start();
 
 <!-------------------------------------------------NavBar--------------------------------------------------------->
   <!--barra de navegacion-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-jav">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1976D2;">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones" >
             <span class="navbar-toggler-icon"></span>
           </button>
           
           <!-- logo -->
           <a class="navbar-brand" href="#">
-            <img src="../img/iconos/unam.jpg" width="30" height="30" alt="">
+            <img src="../img/iconos/javerim.ico" width="50" height="50" alt="javerin_ico">
           </a>
           
           <!-- enlaces -->
@@ -61,10 +61,10 @@ session_start();
           </div>
         </nav>
         <!--Titulo-->
-        <div class="container">
+        <div class="container-fluid">
           <div class="row">
-            <div class="col-6">
-              <h1>Registro e inicio de Sesión</h1>
+            <div class="col-12 text-center">
+              <img src="../img/javerim_loging.jpg" class="img-fluid" alt="login" width="512">
             </div>
           </div>
         </div>
@@ -84,21 +84,23 @@ if( isset($_SESSION['admin']) ):
     echo '<br><a href="cerrar.php">Cerrar Sesión</a>';
 else:
     ?>
-    <div class="text-center">
-       <div class="btn-group btn-group-lg btn-center">
-          <button id="iniciarSesion1" type="button" class="btn btn-primary" data-target="#iniciarSesion" data-toggle="collapse" aria-expanded="false" aria-controls="iniciarSesion">Iniciar Sesión</button>
-          <button id="registro1" type="button" class="btn btn-primary" data-target="#registro" data-toggle="collapse" aria-expanded="false" aria-controls="registro">Registrarse</button>
-          <br>
-          
+    <div class="container">
+      <div class="row">
+       <div class="col-6">
+          <button id="iniciarSesion1" type="button" class="btn btn-outline-dark btn-block" data-target="#iniciarSesion" data-toggle="collapse" aria-expanded="false" aria-controls="iniciarSesion">Iniciar Sesión</button>
+       </div>
+       <div class="col-6">
+          <button id="registro1" type="button" class="btn btn-outline-dark btn-block" data-target="#registro" data-toggle="collapse" aria-expanded="false" aria-controls="registro">Registrarse</button>
         </div>
-        
+      </div>
     </div>
 
-        <div class="collapse col-md-6 form-group float-right center" id="registro">
-                   <div class="container">
-        <div class="row">
-            <div class="col-md-6 form-group float-right">
-                <h2>Registro</h2>
+      <div class="collapse col-md-6 form-group float-right center" id="registro">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 form-group float-right">
+              <br> 
+              <h4>Registro</h4>
                 <form action="user.php" method="POST" class="needs-validated">
                 <div class="form-group">
                     <input type="text" class="form-control" name="nombre" placeholder="Nombre" required>
@@ -167,35 +169,34 @@ else:
                 </div>
                     
                     
-                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Registrarse</button>
+                    <button type="submit" class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal">Registrarse</button>
                 </form>
             </div>
             
         </div>
-    </div>
-            </div> 
+      </div>
+    </div> 
              
     <div class="collapse col-md-6 form-group float-left center" id="iniciarSesion">
-            <div class="container" >
-                <div class="row">
-                    <div class="col-md-6 form-group">
-                        <form action="login.php" method="POST" class="needs-validated">
-                          <br>
-                           <h2>Iniciar Sesión</h2>
-                            <input type="text" class="form-control" name="correo" placeholder="correo" required><br>
-                            <input type="password" class="form-control" name="contrasena" placeholder="********" required><br>
-                            <select name="escoger" class="form-control" id="escoger">
-                                <option value="asesor">Asesor</option>
-                                <option value="alumnos">Alumno</option>
-                            </select>
-                            <br>
-                            <button type="sunmit" class="btn btn-primary">Iniciar sesion</button>
-                        </form>
-                    </div>
-                </div>
-    </div>
-                
-            </div>  
+      <div class="container" >
+        <div class="row">
+                  <div class="col-md-12 form-group">
+                  <form action="login.php" method="POST" class="needs-validated">
+                      <br>
+                      <h4>Iniciar Sesión</h4>
+                      <input type="text" class="form-control" name="correo" placeholder="correo" required><br>
+                      <input type="password" class="form-control" name="contrasena" placeholder="********" required><br>
+                      <select name="escoger" class="form-control" id="escoger">
+                      <option value="asesor">Asesor</option>
+                    <option value="alumnos">Alumno</option>
+                  </select>
+                <br>
+              <button type="submit" class="btn btn-success btn-block">Iniciar sesion</button>
+            </form>
+          </div>
+        </div>
+      </div>          
+    </div>  
     
 <!--
     <div class="container collapse" id="registro">
