@@ -37,6 +37,12 @@ catch(PDOException $e)
   <meta http-equiv="x-ua-compatible" content="ie-edge">
   <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="../css_javerim/javerim_style.css">
+  <style type="text/css">
+        .noborder{
+            border: 0;
+            text-align: center;
+        }
+        </style>
 </head>
 
 <body>
@@ -147,7 +153,7 @@ if( isset($_SESSION['alumno']) ):
 
           $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
           $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-          $stmt = $conn->prepare("SELECT cita.fecha_cita, cita.hora_cita, asesor.nombre_asesor,cita.lugar_cita ,cita.nombre_materia, cita.id_cita  FROM `cita` INNER JOIN asesor ON cita.id_asesor=asesor.id_asesor INNER JOIN alumnos ON cita.id_alumno= alumnos.id_alumno WHERE alumnos.id_alumno=$idalumno");
+          $stmt = $conn->prepare("SELECT cita.fecha_cita, cita.hora_cita, asesor.nombre_asesor,cita.lugar_cita ,cita.nombre_materia, cita.id_cita, cita.id_asesor  FROM `cita` INNER JOIN asesor ON cita.id_asesor=asesor.id_asesor INNER JOIN alumnos ON cita.id_alumno= alumnos.id_alumno WHERE alumnos.id_alumno=$idalumno");
           $stmt->execute();
           $resultado =$stmt->fetchAll();
       }
@@ -167,7 +173,7 @@ if( isset($_SESSION['alumno']) ):
                           <img src="../img/iconos/contacts_3695.ico" class="rounded-circle" alt="photo">
                       </div>
                       <div class="col-6">
-                        <a href="" data-toggle="modal" data-target="#myModal" onclick="verDatos('<?php echo $dato['id_cita']?>','<?php echo $dato['fecha_cita']?>','<?php echo $dato['hora_cita'] ?>','<?php echo $dato['nombre_asesor']?>','<?php echo $dato['lugar_cita'] ?>','<?php echo $dato['nombre_materia'] ?>')">
+                        <a href="" data-toggle="modal" data-target="#myModal" onclick="verDatos('<?php echo $dato['id_cita']?>','<?php echo $dato['id_asesor']?>','<?php echo $dato['fecha_cita']?>','<?php echo $dato['hora_cita'] ?>','<?php echo $dato['nombre_asesor']?>','<?php echo $dato['lugar_cita'] ?>','<?php echo $dato['nombre_materia'] ?>')">
                           <img src="../img/iconos/2x/baseline_delete_black_18dp.png" align="right" alt="eliminar"> <br>
                         </a>
                         <!-- The Modal -->
@@ -187,13 +193,15 @@ if( isset($_SESSION['alumno']) ):
                                     
                                         <div class="car-body bg-light text-dark">
                                            
-                                            <input type="hidden" id="showId" name="id"><br>
-                                            <b>Fecha: </b><output id="showFecha"></output><br>
+                                            <input type="text" id="showId" name="id" readonly="readonly" class="noborder"><br>
+                                            <input type="text" id="showIdasesor" name="idAsesor" readonly="readonly" class="noborder"><br>
+                                            
                                             <p class="card-text">
-                                                <b>Hora: </b><output id="showHora"></output><br>
-                                                <b>Asesor: </b><output id="showAsesor"></output><br>
-                                                <b>Lugar: </b><output id="showLugar"></output>
-                                                <b>Materia: </b><output id="showMateria"></output>
+                                                <b>Fecha: </b><input type="text" id="showFecha" name="fecha" readonly="readonly" class="noborder"><br>
+                                                <b>Hora: </b><input type="text" id="showHora" name="hora" readonly="readonly" class="noborder"><br>
+                                                <b>Asesor: </b><input type="text" id="showAsesor" readonly="readonly" class="noborder"><br>
+                                                <b>Lugar: </b><input type="text" id="showLugar" name="lugar" readonly="readonly" class="noborder"><br>
+                                                <b>Materia: </b><input type="text" id="showMateria" name="materia" readonly="readonly" class="noborder"><br>
                                                 
                                             </p>
                                         </div>
@@ -212,8 +220,6 @@ if( isset($_SESSION['alumno']) ):
                             </div>
                         </div>
                     </div>
-                         
-                          <b> </b> <?php echo $dato['id_cita'] ?> <br>
                           <b> </b> <?php echo $dato['nombre_materia'] ?> <br>
                           <b> </b> <?php echo "Asesor: ". $dato['nombre_asesor'] ?> <br>
                           <img src="../img/iconos/1x/baseline_calendar_today_black_18dp.png" alt="calendar">
@@ -244,8 +250,9 @@ if( isset($_SESSION['alumno']) ):
             $('#')
         });
 
-        function verDatos(id, fecha, hora, asesor, lugar, materia) {
+        function verDatos(id, idasesor, fecha, hora, asesor, lugar, materia) {
             $('#showId').val(id);
+            $('#showIdasesor').val(idasesor);
             $('#showFecha').val(fecha);
             $('#showHora').val(hora);
             $('#showAsesor').val(asesor);
