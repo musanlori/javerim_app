@@ -225,9 +225,6 @@ if( isset($_SESSION['alumno']) ):
                             </div>
                         </div>
                     </div>
-                         
-                          <b> </b> <?php echo $dato['id_cita'] ?> <br>
-                          <b> </b> <?php echo $dato['id_asesor'] ?> <br>
                           <b> </b> <?php echo $dato['nombre_materia'] ?> <br>
                           <b> </b> <?php echo "Asesor: ". $dato['nombre_asesor'] ?> <br>
                           <img src="../img/iconos/1x/baseline_calendar_today_black_18dp.png" alt="calendar">
@@ -266,17 +263,6 @@ if( isset($_SESSION['alumno']) ):
             $('#showAsesor').val(asesor);
             $('#showLugar').val(lugar);
             $('#showMateria').val(materia);
-
-            console.info("Mesaje de log, ", n1);
-
-        }
-        function enviarDatos(id, fecha, hora, asesor, lugar, materia) {
-            $('#showIdA').val(id);
-            $('#showDate').val(fecha);
-            $('#showTime').val(hora);
-            $('#showTeacher').val(asesor);
-            $('#showSite').val(lugar);
-            $('#showMater').val(materia);
 
             console.info("Mesaje de log, ", n1);
 

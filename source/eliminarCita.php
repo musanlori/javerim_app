@@ -36,6 +36,7 @@
         echo "aas";
         echo $iden['id_asig'];
     }
+
     $idAsignatura=$iden['id_asig'];
     echo $idAsignatura;
 
@@ -50,7 +51,7 @@
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql = "UPDATE sesiones SET Estado='0' WHERE dia_semana='$fec' and id_asesor = '$idAsesor' and id_clase = '$idAsignatura'";
+    $sql = "UPDATE sesiones SET Estado='0' WHERE dia_semana='$fec' and id_asesor = '$idAsesor' and id_clase = '$idAsignatura' and horario_sesion='$hora'";
 
     // Prepare statement
     $stmt = $conn->prepare($sql);
@@ -79,7 +80,7 @@ catch(PDOException $e)
         // use exec() because no results are returned
         $conn->exec($sql);
         echo "Record deleted successfully";
-        //('Location:agenda.php');
+        ('Location:agenda.php');
         }
     catch(PDOException $e)
         {

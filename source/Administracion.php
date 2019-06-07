@@ -218,8 +218,94 @@ if( isset($_SESSION['admin']) ):
         </button>
     </form>
 
-    <!---------------------------------------------EDITAR---------------------------------------------------------------------------------->
-  
+    <!---------------------------------------------Dias ocupados---------------------------------------------------------------------------------->
+     <?php
+    try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   // $stmt = $conn->prepare("SELECT clase.nombre_asig, sesiones.id_sesion, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig"); 
+    $stmt = $conn->prepare("SELECT cita.fecha_cita, cita.hora_cita, alumnos.correo_alumno, cita.lugar_cita ,cita.nombre_materia, cita.id_cita, cita.id_asesor FROM `cita` INNER JOIN asesor ON cita.id_asesor=asesor.id_asesor INNER JOIN alumnos ON cita.id_alumno= alumnos.id_alumno WHERE asesor.id_asesor='$idasesor'"); 
+        
+    $stmt->execute();
+    $rocupado =$stmt->fetchAll();
+    }
+    catch(PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+        
+//    foreach($rocupado as $iden){
+//        echo $iden['fecha_cita'];
+//        $idasesor=$iden['fecha_cita'];
+//    }
+        
+    
+		
+    ?>
+    
+    
+    <div class="container">
+        <div class="row">
+           <?php foreach($rocupado as $iden):?>
+            <div class="col-md-6">
+               <div class="card-body bg-danger">
+                 <a href="" class="float-right ml-3" data-toggle="modal" data-target="#modalOcupado" onclick="seeDatos('<?php echo $iden['id_cita']?>', '<?php echo $iden['id_asesor']?>', '<?php echo $iden['nombre_materia'] ?>', '<?php echo $iden['correo_alumno'] ?>', '<?php echo $iden['fecha_cita'] ?>', '<?php echo $iden['hora_cita'] ?>', '<?php echo $iden['lugar_cita'] ?>')">
+
+                        <img src="../img/iconos/1x/baseline_delete_black_18dp.png" class="card-img-top rounded-circle" alt="trash">
+                    </a>
+                    
+<!-- The Modal -->
+<div class="modal" id="modalOcupado">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <form action="eliminarCita.php" method="GET" >
+      <div class="modal-body">
+        <input type="text" id="showIdcita" name="id" readonly="readonly" class="noborder"><br>
+        <input type="text" id="showIdasesor" name="idAsesor" readonly="readonly" class="noborder"><br>
+        <b>Materia: </b><input type="text" id="showMateria" name="materia" readonly="readonly" class="noborder"><br>
+        <b>Alumno: </b><input type="text" id="showAlumno" name="alumno" readonly="readonly" class="noborder"><br>
+        <b>Fecha: </b><input type="text" id="showFecha" name="fecha" readonly="readonly" class="noborder"><br>
+        <b>Hora: </b><input type="text" id="showHora" name="hora" readonly="readonly" class="noborder"><br>
+        <b>Lugar: </b><input type="text" id="showLugar" name="lugar" readonly="readonly" class="noborder"><br>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success btn-block">Eliminar</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+                    
+                    <div class="card-tex">
+                     <b> </b> <?php echo $iden['id_cita'] ?> <br>
+                          <b> </b> <?php echo $iden['id_asesor'] ?> <br>
+                      <b>Materia: </b> <?php echo $iden['nombre_materia'] ?>
+                      <b>Alumno: </b> <?php echo $iden['correo_alumno'] ?> <br>
+                      <b>Fecha: </b> <?php echo $iden['fecha_cita'] ?> <br>
+                      <b>Hora: </b> <?php echo $iden['hora_cita'] ?> <br>
+                      <b>Lugar: </b> <?php echo $iden['lugar_cita'] ?> <br>
+                   
+                    </div>
+                  
+               </div>
+               <br>
+                
+            </div>
+            <?php endforeach ?>
+        </div>
+    </div>
+
+     
+      
 
 
     <!-----------------------------------------------------------MOSTRAR---------------------------------------------------------------------->
@@ -317,6 +403,18 @@ if( isset($_SESSION['admin']) ):
             $('#showTime').val(hora);
             $('#showSite').val(lugar);
 
+            console.info("Mesaje de log, ", n1);
+
+        }
+        
+        function seeDatos(id, idasesor, materia, alumno, fecha, hora, lugar) {
+            $('#showIdcita').val(id);
+            $('#showIdasesor').val(idasesor);
+            $('#showMateria').val(materia);
+            $('#showAlumno').val(alumno);
+            $('#showFecha').val(fecha);
+            $('#showHora').val(hora);
+            $('#showLugar').val(lugar);
             console.info("Mesaje de log, ", n1);
 
         }
