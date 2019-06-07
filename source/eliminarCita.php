@@ -4,6 +4,7 @@
     $fecha = $_GET['fecha'];
     $hora = $_GET['hora'];
     $materia = $_GET['materia'];
+    $lugar = $_GET['lugar'];
     $idAsesor = $_GET['idAsesor'];
 
     $servername = "localhost";
@@ -51,7 +52,7 @@
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql = "UPDATE sesiones SET Estado='0' WHERE dia_semana='$fec' and id_asesor = '$idAsesor' and id_clase = '$idAsignatura' and horario_sesion='$hora'";
+    $sql = "UPDATE sesiones SET Estado='0' WHERE dia_semana='$fec' and id_asesor = '$idAsesor' and id_clase = '$idAsignatura' and horario_sesion='$hora' and lugar_sesion='$lugar'";
 
     // Prepare statement
     $stmt = $conn->prepare($sql);
