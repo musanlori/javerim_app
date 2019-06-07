@@ -284,8 +284,6 @@ if( isset($_SESSION['admin']) ):
 </div>
                     
                     <div class="card-tex">
-                     <b> </b> <?php echo $iden['id_cita'] ?> <br>
-                          <b> </b> <?php echo $iden['id_asesor'] ?> <br>
                       <b>Materia: </b> <?php echo $iden['nombre_materia'] ?>
                       <b>Alumno: </b> <?php echo $iden['correo_alumno'] ?> <br>
                       <b>Fecha: </b> <?php echo $iden['fecha_cita'] ?> <br>

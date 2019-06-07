@@ -153,7 +153,7 @@ if( isset($_SESSION['alumno']) ):
 
           $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
           $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-          $stmt = $conn->prepare("SELECT cita.fecha_cita, cita.hora_cita, asesor.nombre_asesor,cita.lugar_cita ,cita.nombre_materia, cita.id_cita, cita.id_asesor  FROM `cita` INNER JOIN asesor ON cita.id_asesor=asesor.id_asesor INNER JOIN alumnos ON cita.id_alumno= alumnos.id_alumno WHERE alumnos.id_alumno=$idalumno");
+          $stmt = $conn->prepare("SELECT cita.fecha_cita, cita.hora_cita, asesor.nombre_asesor,cita.lugar_cita ,cita.nombre_materia, cita.id_cita, cita.id_asesor,asesor.correo_asesor  FROM `cita` INNER JOIN asesor ON cita.id_asesor=asesor.id_asesor INNER JOIN alumnos ON cita.id_alumno=alumnos.id_alumno WHERE alumnos.id_alumno=$idalumno");
           $stmt->execute();
           $resultado =$stmt->fetchAll();
       }
@@ -222,6 +222,7 @@ if( isset($_SESSION['alumno']) ):
                     </div>
                           <b> </b> <?php echo $dato['nombre_materia'] ?> <br>
                           <b> </b> <?php echo "Asesor: ". $dato['nombre_asesor'] ?> <br>
+                          <b> </b> <?php echo "Correo: ". $dato['correo_asesor'] ?> <br>
                           <img src="../img/iconos/1x/baseline_calendar_today_black_18dp.png" alt="calendar">
                           <b> </b> <?php echo $dato['fecha_cita'] ?>
                           <img src="../img/iconos/1x/baseline_query_builder_black_18dp.png" alt="calendar">
@@ -264,7 +265,10 @@ if( isset($_SESSION['alumno']) ):
         }
 
     </script>
-
+<?php
+else:
+?>
+    <h3>Tienes que iniciar sesión como Alumno</h3>
 <?php endif;
 ?>
 

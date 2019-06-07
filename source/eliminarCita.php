@@ -81,7 +81,7 @@ catch(PDOException $e)
         // use exec() because no results are returned
         $conn->exec($sql);
         echo "Record deleted successfully";
-        ('Location:agenda.php');
+        header('Location:ver_asesorias.php');
         }
     catch(PDOException $e)
         {
