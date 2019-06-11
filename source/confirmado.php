@@ -239,9 +239,9 @@ if( isset($_SESSION['alumno']) ):
             <?php
                  $update_Cita = "UPDATE sesiones SET  Estado='1' WHERE dia_semana='$diaSesion' and id_asesor='$clv_asesor' and id_clase='$clv_materia'";
                  if ($conn->query($update_Cita) === TRUE) {
-                     echo "actulizado correctamente";
+                     #echo "actulizado correctamente";
                  }else{
-                     echo "Error en la actualizaciono ".$conn->error;
+                     #echo "Error en la actualizaciono ".$conn->error;
                  }
             } else {
             ?>

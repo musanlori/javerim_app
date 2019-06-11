@@ -228,13 +228,12 @@ if( isset($_SESSION['alumno']) ):
                           <img src="../img/iconos/1x/baseline_query_builder_black_18dp.png" alt="calendar">
                           <b> </b> <?php echo $dato['hora_cita'] ?> <br>
                           <img src="../img/iconos/1x/baseline_location_on_black_18dp.png" alt="calendar">
-                          <b> </b> <?php echo $dato['lugar_cita'] ?> <br>
+                          <b> </b> <?php echo $dato['lugar_cita'] ?> <br><br>
 
                       </div>
-                      <div class="col-12">
-                          <a href="">
-                              <button type='submit' class='btn btn-success btn-block'>Calificar asesoría</button>
-                          </a>
+                      
+                      <div class="col-12 text-center" style="background-color: #1976D2;">
+                        <p> </p>
                       </div>
                   </div>
 

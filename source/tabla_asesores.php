@@ -88,7 +88,7 @@ session_start();
             try {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
-            $stmt = $conn->prepare("SELECT asesor.id_asesor, asesor.nombre_asesor, clase.nombre_asig, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion, sesiones.Estado FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig WHERE clase.nombre_asig ='$nombreMat'"); 
+            $stmt = $conn->prepare("SELECT asesor.id_asesor, asesor.nombre_asesor, asesor.carrera_asesor, asesor.semestre_asesor,clase.nombre_asig, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion, sesiones.Estado FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig WHERE clase.nombre_asig ='$nombreMat'"); 
                 
             $stmt->execute();
             $resultado =$stmt->fetchAll();
@@ -110,22 +110,19 @@ session_start();
                             <div class="col-4"><!--Foto-->
                                 <img src="../img/iconos/contacts_3695.ico" class="rounded-circle" alt="photo">
                             </div>
-                            <div class="col-6"><!--datos asesor-->
+                            <div class="col-8"><!--datos asesor-->
                                 <b> </b> <?php echo $dato['nombre_asesor'] ?> <br>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span> <br>
+                                <b> </b> <?php echo $dato['carrera_asesor'] ?> <br>
+                                <b>Semestre actual: </b> <?php echo $dato['semestre_asesor'] ?> <br>
                                 <img src="../img/iconos/1x/baseline_calendar_today_black_18dp.png" alt="calendar">
                                 <b> </b> <?php echo $dato['dia_semana'] ?>
                                 <img src="../img/iconos/1x/baseline_query_builder_black_18dp.png" alt="calendar">
                                 <b> </b> <?php echo $dato['horario_sesion'] ?> <br>
                                 <img src="../img/iconos/1x/baseline_location_on_black_18dp.png" alt="calendar">
-                                <b> </b> <?php echo $dato['lugar_sesion'] ?> <br>
+                                <b> </b> <?php echo $dato['lugar_sesion'] ?> <br><br><br>
                                 
                             </div>
-                            <div class="col-12"><!--Boton/cuadro de dialogo-->
+                            <div class="col-12" style="position: absolute; bottom: 0; left: 0;"><!--Boton/cuadro de dialogo-->
                                 <?php if($dato['Estado'] != 1){ ?>
                                 <button type='submit' class='btn btn-success btn-block' data-toggle="modal" data-target="#diag_conf" 
                                     onclick="verDatos('<?php echo $dato['id_asesor']?>','<?php echo $idclase?>','<?php echo $dato['nombre_asesor']?>','<?php echo $dato['dia_semana'] ?>','<?php echo $dato['horario_sesion']?>','<?php echo $dato['lugar_sesion'] ?>', '<?php echo $nombreMat ?>')">
@@ -158,11 +155,6 @@ session_start();
                                                                         <input type="text" id="hideID" name="getID" readonly="readonly" class="noborder"/>
                                                                         <input type="text" id="hideIDC" name="getIDC" readonly="readonly" class="noborder"/>
                                                                         <h4 class="card-title"><input type="text" id="showName" name="getName" readonly="readonly" class="noborder"/></h4>
-                                                                        <span class="fa fa-star checked"></span>
-                                                                        <span class="fa fa-star checked"></span>
-                                                                        <span class="fa fa-star checked"></span>
-                                                                        <span class="fa fa-star"></span>
-                                                                        <span class="fa fa-star"></span> <br>
                                                                         <p class="card-text"><input type = "text" id="showDate" name="getDate" readonly="readonly" class="noborder"/></p>
                                                                         <p class="card-text"><input type = "text" id="showTime" name="getTime" readonly="readonly" class="noborder"/></p>
                                                                         <p class="card-text"><input type = "text" id="showSite" name="getSite" readonly="readonly" class="noborder"/></p>
