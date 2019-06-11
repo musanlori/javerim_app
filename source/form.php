@@ -31,20 +31,15 @@ session_start();
               <li class="nav-item">
                 <a class="nav-link " href="ver_asesorias.php">Asesorías</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="Administracion.php">Administracion</a>
-              </li>
+              <?php
+                if( isset($_SESSION['alumno'])):
+                    $sesion=$_SESSION['alumno'];
+                
+                ?>
               <li class="nav-item">
                 <a class="nav-link" href="agenda.php">Agenda</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="form.php">Registro e Inicio</a>
-              </li> 
-              <?php
-                if( isset($_SESSION['admin'])):
-                    $sesion=$_SESSION['admin'];
-                
-                ?>
+              
                 <li class="nav-item dropdown">
                  
                   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -56,7 +51,38 @@ session_start();
               </li>
             <?php
                 endif;
-                ?>         
+                ?>  
+              <?php
+                if( isset($_SESSION['admin'])):
+                    $sesion=$_SESSION['admin'];
+                
+                ?>
+                <li class="nav-item">
+                <a class="nav-link" href="Administracion.php">Administracion</a>
+              </li>
+                <li class="nav-item dropdown">
+                 
+                  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    <?php echo 'Bienvenido! '.$sesion;?>
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="cerrar.php">Cerrar Sesión</a>
+                  </div>
+              </li>
+            
+            <?php
+                endif;
+                ?> 
+                <?php
+                if(empty($_SESSION['admin']) && empty($_SESSION['alumno'])):
+                
+                ?>
+                <li class="nav-item">
+                <a class="nav-link" href="form.php">Registro e Inicio</a>
+                </li> 
+                <?php
+                endif;
+                ?>       
             </ul>
           </div>
         </nav>
@@ -78,11 +104,8 @@ session_start();
 -->
 <!-- ------------------------------------------FORMULARIOS------------------------------------------------------------------->
    <?php
-if( isset($_SESSION['admin']) ):
-    $sesion=$_SESSION['admin'];
-    echo 'ya has iniciado sesión '.$sesion;
-    echo '<br><a href="cerrar.php">Cerrar Sesión</a>';
-else:
+
+if(empty($_SESSION['admin']) && empty($_SESSION['alumno'])):
     ?>
     <div class="container">
       <div class="row">
@@ -341,7 +364,13 @@ $(document).ready(function(){
 
 
     </script>
-<?php endif;
+    
+<?php 
+    else:
+?>
+<h3>Ya has iniciado sesión</h3>
+<?php 
+    endif;
 ?>
         
           

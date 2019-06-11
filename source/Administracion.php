@@ -39,13 +39,20 @@ catch(PDOException $e)
     <link rel="shortcut icon" type="image/x-icon" href="../img/iconos/javerim.png">
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../css_javerim/javerim_style.css">
+    <style type="text/css">
+        .noborder{
+            border: 0;
+            text-align: center;
+        }
+        </style>
 </head>
 
 <body>
 
     <!-------------------------------------------------NavBar--------------------------------------------------------->
   <!--barra de navegacion-->
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1976D2;">
+  <!--barra de navegacion-->
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1976D2;">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones" >
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -61,17 +68,15 @@ catch(PDOException $e)
               <li class="nav-item">
                 <a class="nav-link " href="ver_asesorias.php">Asesorías</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="Administracion.php">Administracion</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="agenda.php">Agenda</a>
-              </li> 
               <?php
-                if( isset($_SESSION['admin'])):
-                    $sesion=$_SESSION['admin'];
+                if( isset($_SESSION['alumno'])):
+                    $sesion=$_SESSION['alumno'];
                 
                 ?>
+              <li class="nav-item">
+                <a class="nav-link" href="agenda.php">Agenda</a>
+              </li>
+              
                 <li class="nav-item dropdown">
                  
                   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -83,7 +88,38 @@ catch(PDOException $e)
               </li>
             <?php
                 endif;
-                ?>         
+                ?>  
+              <?php
+                if( isset($_SESSION['admin'])):
+                    $sesion=$_SESSION['admin'];
+                
+                ?>
+                <li class="nav-item">
+                <a class="nav-link" href="Administracion.php">Administracion</a>
+              </li>
+                <li class="nav-item dropdown">
+                 
+                  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    <?php echo 'Bienvenido! '.$sesion;?>
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="cerrar.php">Cerrar Sesión</a>
+                  </div>
+              </li>
+            
+            <?php
+                endif;
+                ?> 
+                <?php
+                if(empty($_SESSION['admin']) && empty($_SESSION['alumno'])):
+                
+                ?>
+                <li class="nav-item">
+                <a class="nav-link" href="form.php">Registro e Inicio</a>
+                </li> 
+                <?php
+                endif;
+                ?>       
             </ul>
           </div>
         </nav>
@@ -265,8 +301,8 @@ if( isset($_SESSION['admin']) ):
       <!-- Modal body -->
       <form action="eliminarCita.php" method="GET" >
       <div class="modal-body">
-        <input type="text" id="showIdcita" name="id" readonly="readonly" class="noborder"><br>
-        <input type="text" id="showIdasesor" name="idAsesor" readonly="readonly" class="noborder"><br>
+        <input type="hidden" id="showIdcita" name="id" readonly="readonly" class="noborder"><br>
+        <input type="hidden" id="showIdasesor" name="idAsesor" readonly="readonly" class="noborder"><br>
         <b>Materia: </b><input type="text" id="showMateria" name="materia" readonly="readonly" class="noborder"><br>
         <b>Alumno: </b><input type="text" id="showAlumno" name="alumno" readonly="readonly" class="noborder"><br>
         <b>Fecha: </b><input type="text" id="showFecha" name="fecha" readonly="readonly" class="noborder"><br>
