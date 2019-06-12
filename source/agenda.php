@@ -48,7 +48,7 @@ catch(PDOException $e)
 <body>
   <!--Pantalla Agenda Javerim-->
   <!--barra de navegacion-->
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1976D2;">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1976D2;">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones" >
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -64,17 +64,15 @@ catch(PDOException $e)
               <li class="nav-item">
                 <a class="nav-link " href="ver_asesorias.php">Asesorías</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="Administracion.php">Administracion</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="agenda.php">Agenda</a>
-              </li> 
               <?php
-                if( isset($_SESSION['admin'])):
-                    $sesion=$_SESSION['admin'];
+                if( isset($_SESSION['alumno'])):
+                    $sesion=$_SESSION['alumno'];
                 
                 ?>
+              <li class="nav-item">
+                <a class="nav-link" href="agenda.php">Agenda</a>
+              </li>
+              
                 <li class="nav-item dropdown">
                  
                   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -86,7 +84,38 @@ catch(PDOException $e)
               </li>
             <?php
                 endif;
-                ?>         
+                ?>  
+              <?php
+                if( isset($_SESSION['admin'])):
+                    $sesion=$_SESSION['admin'];
+                
+                ?>
+                <li class="nav-item">
+                <a class="nav-link" href="Administracion.php">Administracion</a>
+              </li>
+                <li class="nav-item dropdown">
+                 
+                  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    <?php echo 'Bienvenido! '.$sesion;?>
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="cerrar.php">Cerrar Sesión</a>
+                  </div>
+              </li>
+            
+            <?php
+                endif;
+                ?> 
+                <?php
+                if(empty($_SESSION['admin']) && empty($_SESSION['alumno'])):
+                
+                ?>
+                <li class="nav-item">
+                <a class="nav-link" href="form.php">Registro e Inicio</a>
+                </li> 
+                <?php
+                endif;
+                ?>       
             </ul>
           </div>
         </nav>

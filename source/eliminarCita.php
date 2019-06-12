@@ -1,11 +1,22 @@
 <!------------------------------------------------------------------------ELIMINAR------------------------------------------------------->
     <?php 
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'PHPMailer/Exception.php';
+require 'PHPMailer/PHPMailer.php';
+require 'PHPMailer/SMTP.php';
+
+$mail = new PHPMailer(true);
+
     $id = $_GET['id'];
     $fecha = $_GET['fecha'];
     $hora = $_GET['hora'];
     $materia = $_GET['materia'];
     $lugar = $_GET['lugar'];
     $idAsesor = $_GET['idAsesor'];
+    $correo= $_GET['correo'];
 
     $servername = "localhost";
     $username = "root";
@@ -16,6 +27,7 @@
     var_dump($fecha);
     var_dump($materia);
     var_dump($idAsesor);
+    var_dump($correo);
 
     try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -68,6 +80,10 @@ catch(PDOException $e)
     echo $sql . "<br>" . $e->getMessage();
     }
 
+
+
+
+
     
     
     try {
@@ -87,6 +103,48 @@ catch(PDOException $e)
         {
         echo $sql . "<br>" . $e->getMessage();
         }
+
+
+
+try {
+    //Server settings
+    $mail->SMTPDebug = 0;                                       // Enable verbose debug output
+    $mail->isSMTP();                                            // Set mailer to use SMTP
+    $mail->Host       = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+    $mail->Username   = 'javerim.app@gmail.com';                     // SMTP username
+    $mail->Password   = 'UNAMmobile*1';                               // SMTP password
+    $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
+    $mail->Port       = 587;                                    // TCP port to connect to
+
+    //Recipients
+    $mail->setFrom('javerim.app@gmail.com', 'Javerim');
+    $mail->addAddress($correo);     // Add a recipient
+    //$mail->addAddress('ellen@example.com');               // Name is optional
+    //$mail->addReplyTo('info@example.com', 'Information');
+    //$mail->addCC('cc@example.com');
+    //$mail->addBCC('bcc@example.com');
+
+    // Attachments
+    //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+    //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+
+    // Content
+    $mail->isHTML(true);                                  // Set email format to HTML
+    $mail->Subject = 'Se elimino';
+    $mail->Body    = 'eli';
+    
+
+    $mail->send();
+    echo 'Message has been sent';
+} catch (Exception $e) {
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+}
+
+
+
+
+
 
     $conn = null;
 

@@ -304,7 +304,7 @@ if( isset($_SESSION['admin']) ):
         <input type="hidden" id="showIdcita" name="id" readonly="readonly" class="noborder"><br>
         <input type="hidden" id="showIdasesor" name="idAsesor" readonly="readonly" class="noborder"><br>
         <b>Materia: </b><input type="text" id="showMateria" name="materia" readonly="readonly" class="noborder"><br>
-        <b>Alumno: </b><input type="text" id="showAlumno" name="alumno" readonly="readonly" class="noborder"><br>
+        <b>Alumno: </b><input type="text" id="showAlumno" name="correo" readonly="readonly" class="noborder"><br>
         <b>Fecha: </b><input type="text" id="showFecha" name="fecha" readonly="readonly" class="noborder"><br>
         <b>Hora: </b><input type="text" id="showHora" name="hora" readonly="readonly" class="noborder"><br>
         <b>Lugar: </b><input type="text" id="showLugar" name="lugar" readonly="readonly" class="noborder"><br>
