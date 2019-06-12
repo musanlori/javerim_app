@@ -124,24 +124,16 @@ if(empty($_SESSION['admin']) && empty($_SESSION['alumno'])):
             <div class="col-md-12 form-group float-right">
               <br> 
               <h4>Registro</h4>
-                <form action="user.php" method="POST" class="needs-validated">
-                <div class="form-group">
-                    <input type="text" class="form-control" name="nombre" placeholder="Nombre" required>
-                    <div class="valid-feedback">:).</div>
-                    <div class="invalid-feedback">Falta nombre.</div>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="correo" placeholder="email" required>
-                    <div class="valid-feedback">:).</div>
-                    <div class="invalid-feedback">Falta correo.</div>
-                    <div id="checkusername" class=""></div>
-                </div>
-                <div class="form-group">
-                    <select class="form-control" name="carrera" id="carrera">
-                       <option selected>Carrera</option>
-                        <option value="Ingeniería Ambiental">Ingeniería Ambiental</option>
-                        <option value="Ingeniería Civil">Ingeniería Civil</option>
-                        <option value="Ingeniería en Computación">Ingeniería en Computación</option>
+                <form action="user.php" method="POST">
+                   <input type="text" class="form-control" name="nombre" placeholder="Nombre" maxlength="30" pattern="[A-Za-z' ']{2,30}" title="Introduce entre 2 y 30 letras" required>
+                   <br>
+                   <input type="email" class="form-control" name="correo" placeholder="email" required>
+                   <br>
+                   <select class="form-control" name="carrera" id="carrera" required>
+                       <option value="">Carrera</option>
+                       <option value="Ingeniería Ambiental">Ingeniería Ambiental</option>
+                       <option value="Ingeniería Civil">Ingeniería Civil</option>
+                       <option value="Ingeniería en Computación">Ingeniería en Computación</option>
                         <option value="Ingeniería Eléctrica y Electrónica">Ingeniería Eléctrica y Electrónica</option>
                         <option value="Ingeniería Geofísica">Ingeniería Geofísica</option>
                         <option value="Ingeniería Geológica">Ingeniería Geológica</option>
@@ -151,16 +143,12 @@ if(empty($_SESSION['admin']) && empty($_SESSION['alumno'])):
                         <option value="Ingeniería Petrolera">Ingeniería Petrolera</option>
                         <option value="Ingeniería en Sistemas Biomédicos">Ingeniería en Sistemas Biomédicos</option>
                         <option value="Ingeniería en Telecomunicaciones">Ingeniería en Telecomunicaciones</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="celular" placeholder="Celular" required>
-                    <div class="valid-feedback">:).</div>
-                    <div class="invalid-feedback">Falta celular.</div>
-                </div>
-                <div class="form-group">
-                    <select name="semestre" class="form-control" id="semestre">
-                      <option selected>Semestre</option>
+                   </select>
+                   <br>
+                   <input type="text" class="form-control" name="celular" placeholder="Celular" maxlength="30" pattern="[0-9]{10}" title="Introduce números entre el 1 y 9" required>
+                   <br>
+                   <select name="semestre" class="form-control" id="semestre" required>
+                       <option value="">Semestre</option>
                        <option value="1">1</option>
                        <option value="2">2</option>
                        <option value="3">3</option>
@@ -171,25 +159,17 @@ if(empty($_SESSION['admin']) && empty($_SESSION['alumno'])):
                        <option value="8">8</option>
                        <option value="9">9</option>
                        <option value="10">10</option>
-
-                    </select>
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" name="contrasena" placeholder="********" required>
-                    <div class="valid-feedback">:).</div>
-                    <div class="invalid-feedback">Falta contraseña.</div>
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" name="contrasena2" placeholder="Ingrese nuevamente Contraseña" required>
-                    <div class="valid-feedback">:).</div>
-                    <div class="invalid-feedback">Ingrese nuevamente.</div>
-                </div>
-                <div class="form-group">
-                    <select name="escoger" class="form-control" id="escoger">
+                   </select>
+                   <br>
+                   <input type="password" class="form-control" name="contrasena" placeholder="********" required>
+                   <br>
+                   <input type="password" class="form-control" name="contrasena2" placeholder="Ingrese nuevamente Contraseña" required>
+                   <br>
+                   <select name="escoger" class="form-control" id="escoger">
                         <option value="asesor">Asesor</option>
                         <option value="alumnos">Alumno</option>
-                    </select>
-                </div>
+                   </select>
+                   <br>
                     
                     
                     <button type="submit" class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal">Registrarse</button>
@@ -204,10 +184,10 @@ if(empty($_SESSION['admin']) && empty($_SESSION['alumno'])):
       <div class="container" >
         <div class="row">
                   <div class="col-md-12 form-group">
-                  <form action="login.php" method="POST" class="needs-validated">
+                  <form action="login.php" method="POST">
                       <br>
                       <h4>Iniciar Sesión</h4>
-                      <input type="text" class="form-control" name="correo" placeholder="correo" required><br>
+                      <input type="email" class="form-control" name="correo" placeholder="correo" required><br>
                       <input type="password" class="form-control" name="contrasena" placeholder="********" required><br>
                       <select name="escoger" class="form-control" id="escoger">
                       <option value="asesor">Asesor</option>
@@ -337,33 +317,8 @@ $(document).ready(function(){
 </script>    
     
     
-<script>
-// Disable form submissions if there are invalid fields
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Get the forms we want to add validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
-})();
-    
-    
-</script>
-
-<script>
 
 
-    </script>
     
 <?php 
     else:

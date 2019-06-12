@@ -100,7 +100,7 @@ if(password_verify($contrasena2,$contrasena)){
     
         $conn = null;
     //header('location:registroP.php');
-        header('location:form.php');
+        header('location:confirRegistro.php');
     echo "New record created successfully";
         
     }else{
@@ -112,13 +112,12 @@ if(password_verify($contrasena2,$contrasena)){
         $conn->exec($sql);
     
         $conn = null;
-        header('location:form.php');
+        header('location:confirRegistro.php');
         echo "New record created successfully";
     }
     
 }else{
-    header('location:bienvenido.php');
-    echo 'La contraseñano es valida';
+    echo 'La contraseñano no es valida';
     
 }
 
