@@ -9,7 +9,7 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=javerim", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connected successfully"; 
+    //echo "Connected successfully"; 
     }
 catch(PDOException $e)
     {
@@ -117,7 +117,7 @@ if(password_verify($contrasena2,$contrasena)){
     }
     
 }else{
-    echo 'La contraseñano no es valida';
+    echo 'La contraseñano no es la misma';
     
 }
 

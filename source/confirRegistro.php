@@ -101,9 +101,6 @@ session_start();
         <div class=" col alert alert-success">
            <p class="text-center">
               Ya puede iniciar Sesión :) <br>
-            Pero para permanecer en la plataforma tendrás que mandar lo siguiente: <br>
-            -<br>
-            o bien puede ir al laboratorio de UNAM mobile
             
             <br>
             <a href="form.php"><b>Iniciar Sesión</b></a>
