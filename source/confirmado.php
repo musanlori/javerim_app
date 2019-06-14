@@ -353,6 +353,17 @@ if( isset($_SESSION['alumno']) ):
         ?>
         
         <?php endif;
+                
+        if(empty($_SESSION['admin']) && empty($_SESSION['alumno'])):
+                ?>
+            <h3>Tienes que inicar sesión</h3>
+            
+        <?php endif;
+                
+        if(isset($_SESSION['admin'])):
+                ?>
+            <h3>Tienes que iniciar Sesión como alumno</h3>
+        <?php endif;
                 ?>
         <!-- Termina el Contenido -->
         <script src="../js/jquery-3.3.1.slim.min.js"></script>
