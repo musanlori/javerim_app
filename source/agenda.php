@@ -202,7 +202,7 @@ if( isset($_SESSION['alumno']) ):
                           <img src="../img/iconos/contacts_3695.ico" class="rounded-circle" alt="photo">
                       </div>
                       <div class="col-6">
-                        <a href="" data-toggle="modal" data-target="#myModal" onclick="verDatos('<?php echo $dato['id_cita']?>','<?php echo $dato['id_asesor']?>','<?php echo $dato['fecha_cita']?>','<?php echo $dato['hora_cita'] ?>','<?php echo $dato['nombre_asesor']?>','<?php echo $dato['lugar_cita'] ?>','<?php echo $dato['nombre_materia'] ?>')">
+                        <a href="" data-toggle="modal" data-target="#myModal" onclick="verDatos('<?php echo $dato['id_cita']?>','<?php echo $dato['id_asesor']?>','<?php echo $dato['fecha_cita']?>','<?php echo $dato['hora_cita'] ?>','<?php echo $dato['nombre_asesor']?>','<?php echo $dato['nombre_asesor']?>','<?php echo $dato['lugar_cita'] ?>','<?php echo $dato['nombre_materia'] ?>')">
                           <img src="../img/iconos/2x/baseline_delete_black_18dp.png" align="right" alt="eliminar"> <br>
                         </a>
                         <!-- The Modal -->
@@ -229,6 +229,7 @@ if( isset($_SESSION['alumno']) ):
                                                 <b>Fecha: </b><input type="text" id="showFecha" name="fecha" readonly="readonly" class="noborder"><br>
                                                 <b>Hora: </b><input type="text" id="showHora" name="hora" readonly="readonly" class="noborder"><br>
                                                 <b>Asesor: </b><input type="text" id="showAsesor" readonly="readonly" class="noborder"><br>
+                                                <b>Correo Asesor: </b><input type="text" id="showcorAsesor" name="corAsesor" readonly="readonly" class="noborder"><br>
                                                 <b>Lugar: </b><input type="text" id="showLugar" name="lugar" readonly="readonly" class="noborder"><br>
                                                 <b>Materia: </b><input type="text" id="showMateria" name="materia" readonly="readonly" class="noborder"><br>
                                                 

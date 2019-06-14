@@ -1,6 +1,5 @@
 <!------------------------------------------------------------------------ELIMINAR------------------------------------------------------->
     <?php 
-session_start();
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -17,9 +16,7 @@ $mail = new PHPMailer(true);
     $materia = $_GET['materia'];
     $lugar = $_GET['lugar'];
     $idAsesor = $_GET['idAsesor'];
-    $correoAlumno= $_GET['correoAlumno'];
-    $nomAsesor = $_GET['nomAsesor'];
-    $corAsesor = $_GET['corAsesor'];
+    $correo= $_GET['correo'];
 
     $servername = "localhost";
     $username = "root";
@@ -100,15 +97,51 @@ $mail = new PHPMailer(true);
 //        // use exec() because no results are returned
 //        $conn->exec($sql);
 //        echo "Record deleted successfully";
-//        //header('Location:ver_asesorias.php');
+//        header('Location:ver_asesorias.php');
 //        }
 //    catch(PDOException $e)
 //        {
 //        echo $sql . "<br>" . $e->getMessage();
 //        }
+//
+//
+//
+try {
+    //Server settings
+    $mail->SMTPDebug = 0;                                       // Enable verbose debug output
+    $mail->isSMTP();                                            // Set mailer to use SMTP
+    $mail->Host       = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+    $mail->Username   = 'javerim.app@gmail.com';                     // SMTP username
+    $mail->Password   = 'UNAMmobile*1';                               // SMTP password
+    $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
+    $mail->Port       = 587;                                    // TCP port to connect to
 
+    //Recipients
+    $mail->setFrom('javerim.app@gmail.com', 'Javerim');
+    $mail->addAddress($correo);     // Add a recipient
+    //$mail->addAddress('ellen@example.com');               // Name is optional
+    //$mail->addReplyTo('info@example.com', 'Information');
+    //$mail->addCC('cc@example.com');
+    //$mail->addBCC('bcc@example.com');
 
+    // Attachments
+    //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+    //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 
+    // Content
+    $mail->isHTML(true);                                  // Set email format to HTML
+    $mail->Subject = 'Se ha cancelado la cita :(';
+    $mail->Body    = '<div class="alert alert-danger">
+        Se cancelo la cita
+    </div>';
+    
+
+    $mail->send();
+    echo 'Message has been sent';
+} catch (Exception $e) {
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+}
 
 
 
@@ -116,73 +149,5 @@ $mail = new PHPMailer(true);
 
 
     $conn = null;
-
-
-if( isset($_SESSION['alumno'])){
-echo "hola";
-    //header('Location:agenda.php');
-}
-
-
-if(isset($_SESSION['admin'])){
-    echo "asesor";
-        try {
-    //Server settings
-    $mail->SMTPDebug = 0;                                       // Enable verbose debug output
-    $mail->isSMTP();                                            // Set mailer to use SMTP
-    $mail->Host       = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-    $mail->Username   = 'javerim.app@gmail.com';                     // SMTP username
-    $mail->Password   = 'UNAMmobile*1';                               // SMTP password
-    $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
-    $mail->Port       = 587;                                    // TCP port to connect to
-
-    //Recipients
-    $mail->setFrom('javerim.app@gmail.com', 'Javerim');
-    $mail->addAddress($correoAlumno);     // Add a recipient
-    // Content
-    $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = 'El asesor: '.$nomAsesor.' a cancelado la cita';
-    $mail->Body    = 'Se ha cancelado la siguiente cita:<br>'.'<b>Fecha: <b/>'.$fecha.'<br><b>Hora: <b/>'.$hora.'<br><b>Materia: <b/>'.$materia.'<br><b>Lugar: <b/>'.$lugar;
-    
-
-    $mail->send();
-    echo 'Message has been sent';
-    } catch (Exception $e) {
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    }
-    
-    
-    //correo al asesor
-    try {
-    //Server settings
-    $mail->SMTPDebug = 0;                                       // Enable verbose debug output
-    $mail->isSMTP();                                            // Set mailer to use SMTP
-    $mail->Host       = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-    $mail->Username   = 'javerim.app@gmail.com';                     // SMTP username
-    $mail->Password   = 'UNAMmobile*1';                               // SMTP password
-    $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
-    $mail->Port       = 587;                                    // TCP port to connect to
-
-    //Recipients
-    $mail->setFrom('javerim.app@gmail.com', 'Javerim');
-    $mail->addAddress($corAsesor);     // Add a recipient
-    // Content
-    $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = $nomAsesor.' haz cancelado la asesoria';
-    $mail->Body    = 'Se ha cancelado la siguiente asesoria:<br>'.'<b>Fecha: <b/>'.$fecha.'<br><b>Hora: <b/>'.$hora.'<br><b>Materia: <b/>'.$materia.'<br><b>Lugar: <b/>'.$lugar;
-    
-
-    $mail->send();
-    echo 'Message has been sent';
-    } catch (Exception $e) {
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    }
-    
-    
-
-    header('Location:Administracion.php');
-}
 
     ?>

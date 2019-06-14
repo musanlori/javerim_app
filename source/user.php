@@ -34,18 +34,7 @@ catch(PDOException $e)
     $contrasena=$_POST['contrasena'];
     $contrasena2=$_POST['contrasena2'];
     $escoger=$_POST['escoger'];
-
-
-//COMPROBAR QUE NO ESTE VACIO
-//if($nombre==""||$celular=""||$correo=""||$carrera=""||$semestre=""||$contrasena=""||$contrasena2=""){
-  //  echo "Campo vacio";
-    //header('location:form.php');
-//}else{
-//if($nombre==""){
-  //      echo 'no hay nombre';
-        
-    //    die();
-    //}  
+ 
 
 //COMPROBAR SI EXISTE EL USUARIO
 if($escoger=="alumnos"){
@@ -122,14 +111,6 @@ if(password_verify($contrasena2,$contrasena)){
     //Recipients
     $mail->setFrom('javerim.app@gmail.com', 'Javerim');
     $mail->addAddress($correo, $nombre);     // Add a recipient
-    //$mail->addAddress('ellen@example.com');               // Name is optional
-    //$mail->addReplyTo('info@example.com', 'Information');
-    //$mail->addCC('cc@example.com');
-    //$mail->addBCC('bcc@example.com');
-
-    // Attachments
-    //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-    //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 
     // Content
     $mail->isHTML(true);                                  // Set email format to HTML
@@ -170,14 +151,6 @@ if(password_verify($contrasena2,$contrasena)){
     //Recipients
     $mail->setFrom('javerim.app@gmail.com', 'Javerim');
     $mail->addAddress($correo, $nombre);     // Add a recipient
-    //$mail->addAddress('ellen@example.com');               // Name is optional
-    //$mail->addReplyTo('info@example.com', 'Information');
-    //$mail->addCC('cc@example.com');
-    //$mail->addBCC('bcc@example.com');
-
-    // Attachments
-    //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-    //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 
     // Content
     $mail->isHTML(true);                                  // Set email format to HTML

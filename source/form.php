@@ -10,6 +10,20 @@ session_start();
     <link rel="shortcut icon" type="image/x-icon" href="../img/iconos/javerim.png" >
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../css_javerim/javerim_style.css">
+    
+    <script>
+function validateForm() {
+  var x = document.forms["regis"]["contrasena"].value;
+  var x2 = document.forms["regis"]["contrasena2"].value;
+  
+  if(x2!=x){
+  	alert("La contraseña no es la misma");
+    return false;
+  }
+}
+</script>
+
+
 </head>
 <body>
 
@@ -124,7 +138,7 @@ if(empty($_SESSION['admin']) && empty($_SESSION['alumno'])):
             <div class="col-md-12 form-group float-right">
               <br> 
               <h4>Registro</h4>
-                <form action="user.php" method="POST">
+                <form name="regis" action="user.php" method="POST" onsubmit="return validateForm()">
                    <input type="text" class="form-control" name="nombre" placeholder="Nombre" maxlength="30" pattern="[A-Za-z' ']{2,30}" title="Introduce entre 2 y 30 letras" required>
                    <br>
                    <input type="email" class="form-control" name="correo" placeholder="email" required>

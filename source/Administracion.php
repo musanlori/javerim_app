@@ -258,7 +258,7 @@ if( isset($_SESSION['admin']) ):
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    // $stmt = $conn->prepare("SELECT clase.nombre_asig, sesiones.id_sesion, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig"); 
-    $stmt = $conn->prepare("SELECT cita.fecha_cita, cita.hora_cita, alumnos.correo_alumno, cita.lugar_cita ,cita.nombre_materia, cita.id_cita, cita.id_asesor FROM `cita` INNER JOIN asesor ON cita.id_asesor=asesor.id_asesor INNER JOIN alumnos ON cita.id_alumno= alumnos.id_alumno WHERE asesor.id_asesor='$idasesor'"); 
+    $stmt = $conn->prepare("SELECT asesor.correo_asesor, asesor.nombre_asesor, cita.fecha_cita, cita.hora_cita, alumnos.correo_alumno, cita.lugar_cita ,cita.nombre_materia, cita.id_cita, cita.id_asesor FROM `cita` INNER JOIN asesor ON cita.id_asesor=asesor.id_asesor INNER JOIN alumnos ON cita.id_alumno= alumnos.id_alumno WHERE asesor.id_asesor='$idasesor'"); 
         
     $stmt->execute();
     $rocupado =$stmt->fetchAll();
@@ -282,7 +282,7 @@ if( isset($_SESSION['admin']) ):
            <?php foreach($rocupado as $iden):?>
             <div class="col-md-6">
                <div class="card-body bg-danger">
-                 <a href="" class="float-right ml-3" data-toggle="modal" data-target="#modalOcupado" onclick="seeDatos('<?php echo $iden['id_cita']?>', '<?php echo $iden['id_asesor']?>', '<?php echo $iden['nombre_materia'] ?>', '<?php echo $iden['correo_alumno'] ?>', '<?php echo $iden['fecha_cita'] ?>', '<?php echo $iden['hora_cita'] ?>', '<?php echo $iden['lugar_cita'] ?>')">
+                 <a href="" class="float-right ml-3" data-toggle="modal" data-target="#modalOcupado" onclick="seeDatos('<?php echo $iden['nombre_asesor']?>', '<?php echo $iden['correo_asesor']?>', '<?php echo $iden['id_cita']?>', '<?php echo $iden['id_asesor']?>', '<?php echo $iden['nombre_materia'] ?>', '<?php echo $iden['correo_alumno'] ?>', '<?php echo $iden['fecha_cita'] ?>', '<?php echo $iden['hora_cita'] ?>', '<?php echo $iden['lugar_cita'] ?>')">
 
                         <img src="../img/iconos/1x/baseline_delete_black_18dp.png" class="card-img-top rounded-circle" alt="trash">
                     </a>
@@ -294,17 +294,19 @@ if( isset($_SESSION['admin']) ):
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
+        <h4 class="modal-title">¿Seguro que desea eliminar esta cita?</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
       <!-- Modal body -->
       <form action="eliminarCita.php" method="GET" >
       <div class="modal-body">
-        <input type="hidden" id="showIdcita" name="id" readonly="readonly" class="noborder"><br>
-        <input type="hidden" id="showIdasesor" name="idAsesor" readonly="readonly" class="noborder"><br>
+        <input type="hidden" id="shownomAsesor" name="nomAsesor" readonly="readonly">
+        <input type="hidden" id="showcorAsesor" name="corAsesor" readonly="readonly">
+        <input type="hidden" id="showIdcita" name="id" readonly="readonly">
+        <input type="hidden" id="showIdasesor" name="idAsesor" readonly="readonly" class="noborder">
         <b>Materia: </b><input type="text" id="showMateria" name="materia" readonly="readonly" class="noborder"><br>
-        <b>Alumno: </b><input type="text" id="showAlumno" name="correo" readonly="readonly" class="noborder"><br>
+        <b>Alumno: </b><input type="text" id="showAlumno" name="correoAlumno" readonly="readonly" class="noborder"><br>
         <b>Fecha: </b><input type="text" id="showFecha" name="fecha" readonly="readonly" class="noborder"><br>
         <b>Hora: </b><input type="text" id="showHora" name="hora" readonly="readonly" class="noborder"><br>
         <b>Lugar: </b><input type="text" id="showLugar" name="lugar" readonly="readonly" class="noborder"><br>
@@ -439,7 +441,9 @@ if( isset($_SESSION['admin']) ):
 
         }
         
-        function seeDatos(id, idasesor, materia, alumno, fecha, hora, lugar) {
+        function seeDatos(nomAsesor, corAsesor, id, idasesor, materia, alumno, fecha, hora, lugar) {
+            $('#shownomAsesor').val(nomAsesor);
+            $('#showcorAsesor').val(corAsesor);
             $('#showIdcita').val(id);
             $('#showIdasesor').val(idasesor);
             $('#showMateria').val(materia);
