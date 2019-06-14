@@ -118,7 +118,7 @@ session_start();
             try {
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
-            $stmt = $conn->prepare("SELECT asesor.id_asesor, asesor.nombre_asesor, asesor.carrera_asesor, asesor.semestre_asesor,clase.nombre_asig, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion, sesiones.Estado FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig WHERE clase.nombre_asig ='$nombreMat'"); 
+            $stmt = $conn->prepare("SELECT asesor.id_asesor, asesor.nombre_asesor, asesor.correo_asesor, asesor.carrera_asesor, asesor.semestre_asesor,clase.nombre_asig, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion, sesiones.Estado FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig WHERE clase.nombre_asig ='$nombreMat'"); 
                 
             $stmt->execute();
             $resultado =$stmt->fetchAll();
@@ -155,7 +155,7 @@ session_start();
                             <div class="col-12" style="position: absolute; bottom: 0; left: 0;"><!--Boton/cuadro de dialogo-->
                                 <?php if($dato['Estado'] != 1){ ?>
                                 <button type='submit' class='btn btn-success btn-block' data-toggle="modal" data-target="#diag_conf" 
-                                    onclick="verDatos('<?php echo $dato['id_asesor']?>','<?php echo $idclase?>','<?php echo $dato['nombre_asesor']?>','<?php echo $dato['dia_semana'] ?>','<?php echo $dato['horario_sesion']?>','<?php echo $dato['lugar_sesion'] ?>', '<?php echo $nombreMat ?>')">
+                                    onclick="verDatos('<?php echo $dato['id_asesor']?>','<?php echo $idclase?>','<?php echo $dato['nombre_asesor']?>','<?php echo $dato['correo_asesor']?>','<?php echo $dato['dia_semana'] ?>','<?php echo $dato['horario_sesion']?>','<?php echo $dato['lugar_sesion'] ?>', '<?php echo $nombreMat ?>')">
                                     Agendar Asesoria
                                 </button>
                                 <?php } else { ?>
@@ -185,6 +185,7 @@ session_start();
                                                                         <input type="text" id="hideID" name="getID" readonly="readonly" class="noborder"/>
                                                                         <input type="text" id="hideIDC" name="getIDC" readonly="readonly" class="noborder"/>
                                                                         <h4 class="card-title"><input type="text" id="showName" name="getName" readonly="readonly" class="noborder"/></h4>
+                                                                        <p class="card-text"><input type = "text" id="correo" name="getmail" readonly="readonly" class="noborder"/></p>
                                                                         <p class="card-text"><input type = "text" id="showDate" name="getDate" readonly="readonly" class="noborder"/></p>
                                                                         <p class="card-text"><input type = "text" id="showTime" name="getTime" readonly="readonly" class="noborder"/></p>
                                                                         <p class="card-text"><input type = "text" id="showSite" name="getSite" readonly="readonly" class="noborder"/></p>
@@ -219,11 +220,12 @@ session_start();
         <script src="../js/bootstrap.min.js"></script>
         <script type="text/javascript">
         //recibe los datsos a mostrar desde la targeta y los envia al modal
-        function verDatos(id, idCl,name, fecha, hora, lugar, materia) {
+        function verDatos(id, idCl, name, correo, fecha, hora, lugar, materia) {
             
             $('#hideID').val(id);
             $('#hideIDC').val(idCl);
             $('#showName').val(name);
+            $('#correo').val(correo);
             $('#showDate').val(fecha);
             $('#showTime').val(hora);
             $('#showSite').val(lugar);
@@ -231,6 +233,7 @@ session_start();
 
             $('#hideID').css("display","none");
             $('#hideIDC').css("display","none");
+            $('#correo').css("display","none");
 
         }
         </script>
