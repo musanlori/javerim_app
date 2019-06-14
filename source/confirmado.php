@@ -1,5 +1,15 @@
 <?php
 session_start();
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'PHPMailer/Exception.php';
+require 'PHPMailer/PHPMailer.php';
+require 'PHPMailer/SMTP.php';
+
+$mail = new PHPMailer(true);
+
 //CONECCION 
 
 $servername = "localhost";
@@ -161,6 +171,7 @@ if( isset($_SESSION['alumno']) ):
         $clv_asesor = $_POST['getID'];
         $clv_materia = $_POST['getIDC'];
         $asesor_Nom = $_POST['getName'];
+        $asesorCorreo = $_POST['getmail'];
         $diaSesion = $_POST['getDate'];
         $horaSesion = $_POST['getTime'];
         $sitioSesion = $_POST['getSite'];
@@ -283,6 +294,40 @@ if( isset($_SESSION['alumno']) ):
                  $update_Cita = "UPDATE sesiones SET  Estado='1' WHERE dia_semana='$diaSesion' and id_asesor='$clv_asesor' and id_clase='$clv_materia'";
                  if ($conn->query($update_Cita) === TRUE) {
                      #echo "actulizado correctamente";
+                     try {
+                        //Server settings
+                        $mail->SMTPDebug = 0;                                       // Enable verbose debug output
+                        $mail->isSMTP();                                            // Set mailer to use SMTP
+                        $mail->Host       = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+                        $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+                        $mail->Username   = 'javerim.app@gmail.com';                     // SMTP username
+                        $mail->Password   = 'UNAMmobile*1';                               // SMTP password
+                        $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
+                        $mail->Port       = 587;                                    // TCP port to connect to
+                    
+                        //Recipients
+                        $mail->setFrom('javerim.app@gmail.com', 'Javerim');
+                        $mail->addAddress($asesorCorreo, $asesor_Nom);     // Add a recipient
+                        //$mail->addAddress('ellen@example.com');               // Name is optional
+                        //$mail->addReplyTo('info@example.com', 'Information');
+                        //$mail->addCC('cc@example.com');
+                        //$mail->addBCC('bcc@example.com');
+                    
+                        // Attachments
+                        //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+                        //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+                    
+                        // Content
+                        $mail->isHTML(true);                                  // Set email format to HTML
+                        $mail->Subject = 'Cita Agendada';
+                        $mail->Body    = 'Hola '.$asesor_Nom.'. Han agendado una nueva cita contigo para la materia '.$materia.' El dia '. $diaSesion.'.';
+                        
+                    
+                        $mail->send();
+                        #echo 'Message has been sent';
+                    } catch (Exception $e) {
+                        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                    }
                  }else{
                      #echo "Error en la actualizaciono ".$conn->error;
                  }
