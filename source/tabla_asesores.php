@@ -116,7 +116,7 @@ session_start();
             $password = "";
             $dbname = "javerim";
             try {
-            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
             $stmt = $conn->prepare("SELECT asesor.id_asesor, asesor.nombre_asesor, asesor.correo_asesor, asesor.carrera_asesor, asesor.semestre_asesor,clase.nombre_asig, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion, sesiones.Estado FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig WHERE clase.nombre_asig ='$nombreMat'"); 
                 
