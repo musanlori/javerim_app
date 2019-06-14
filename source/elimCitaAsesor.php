@@ -132,9 +132,7 @@ try {
     // Content
     $mail->isHTML(true);                                  // Set email format to HTML
     $mail->Subject = 'Se ha cancelado la cita :(';
-    $mail->Body    = '<div class="alert alert-danger">
-        Se cancelo la cita
-    </div>';
+    $mail->Body    = 'Se ha cancelado esta cita';
     
 
     $mail->send();
@@ -149,5 +147,7 @@ try {
 
 
     $conn = null;
+
+
 
     ?>
