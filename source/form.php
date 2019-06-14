@@ -139,7 +139,7 @@ if(empty($_SESSION['admin']) && empty($_SESSION['alumno'])):
               <br> 
               <h4>Registro</h4>
                 <form name="regis" action="user.php" method="POST" onsubmit="return validateForm()">
-                   <input type="text" class="form-control" name="nombre" placeholder="Nombre" maxlength="30" pattern="[A-Za-z' ']{2,30}" title="Introduce entre 2 y 30 letras" required>
+                   <input type="text" class="form-control" name="nombre" placeholder="Nombre" maxlength="30" pattern="[A-Za-z' 'ZñÑáéíóúÁÉÍÓÚ]{2,30}" title="Introduce entre 2 y 30 letras" required>
                    <br>
                    <input type="email" class="form-control" name="correo" placeholder="email" required>
                    <br>
