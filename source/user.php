@@ -16,7 +16,7 @@ $password = "";
 $dbname = "javerim";
 
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=javerim", $username, $password);
+    $conn = new PDO("mysql:host=$servername;dbname=javerim", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     //echo "Connected successfully"; 
@@ -90,7 +90,7 @@ if($escoger=="alumnos"){
 if(password_verify($contrasena2,$contrasena)){
     echo 'La contrasena es valida<br>';
     if($escoger=="alumnos"){
-        $conn = new PDO("mysql:host=$servername;dbname=javerim", $username, $password);
+        $conn = new PDO("mysql:host=$servername;dbname=javerim", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
                 // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "INSERT INTO `alumnos` (`nombre_alumno`, `cel_alumno`,`correo_alumno`,`carrera_alumno`,`semestre_alumno`,`contrasena_alumno`) VALUES ('$nombre','$celular', '$correo','$carrera', '$semestre', '$contrasena')";

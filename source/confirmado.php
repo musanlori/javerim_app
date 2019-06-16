@@ -18,7 +18,7 @@ $password = "";
 $dbname = "javerim";
 
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=javerim", $username, $password);
+    $conn = new PDO("mysql:host=$servername;dbname=javerim", $username, $password,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     //echo "Connected successfully"; 
