@@ -115,7 +115,10 @@ catch(PDOException $e)
                 </li> 
                 <?php
                 endif;
-                ?>       
+                ?>
+              <li class="nav-item">
+                <button type="button" class="btn btn-sm text-white" style="background-color: #1976D2;" data-toggle="modal" data-target="#myModal"> ? Acerca De</button>
+              </li>       
             </ul>
           </div>
         </nav>
@@ -305,7 +308,7 @@ else:
 ?>
 
 
-
+        <?php include "acercaDe.php"; ?>
 <!--Termina el Contenido -->
         <script src="../js/jquery-3.3.1.slim.min.js"></script>
         <script src="../js/popper.min.js"></script>
