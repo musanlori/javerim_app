@@ -58,7 +58,7 @@ $mail = new PHPMailer(true);
     $idAsignatura=$iden['id_asig'];
     echo $idAsignatura;
 
-    $dias = array('Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado');
+    $dias = array('Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado');
     $fec = $dias[date('N', strtotime($fecha))];
     $fech = $dias[date('N', strtotime('05-06-2019'))];
     echo $fec;

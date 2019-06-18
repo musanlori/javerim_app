@@ -177,7 +177,16 @@ if( isset($_SESSION['admin']) ):
          if (isset($_POST['agregar'])) {
              $materia=$_POST['materia'];
              //$tema=$_POST['tema'];
-             $dia=$_POST['dia'];
+             $rdia=$_POST['dia'];
+            if($rdia == 'Miércoles'){
+              $dia = 'Miercoles';
+            }
+            elseif($rdia == 'Sábado'){
+              $dia = 'Sabado';
+            }
+            else{
+             $dia = $rdia;
+            }
              $hora=$_POST['hora'];
              $lugar=$_POST['lugar'];
              
@@ -417,7 +426,15 @@ if( isset($_SESSION['admin']) ):
                     </div>
                     <b>Materia: </b> <?php echo $dato['nombre_asig'] ?> <br>
                     <p class="card-text">
-                        <b>Dia: </b> <?php echo $dato['dia_semana'] ?><br>
+                        <b>Dia: </b> <?php
+                            if($dato['dia_semana'] == 'Miercoles'){
+                              echo 'Miércoles';
+                            }elseif($dato['dia_semana'] == 'Sabado'){
+                              echo 'Sábado';
+                            }else{
+                              echo $dato['dia_semana'];
+                            } 
+                             ?><br>
                         <b>Hora: </b> <?php echo $dato['horario_sesion'] ?><br>
                         <b>Lugar: </b> <?php echo $dato['lugar_sesion'] ?>
                     </p>

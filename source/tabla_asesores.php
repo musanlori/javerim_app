@@ -148,7 +148,13 @@ session_start();
                                 <b> </b> <?php echo $dato['carrera_asesor'] ?> <br>
                                 <b>Semestre actual: </b> <?php echo $dato['semestre_asesor'] ?> <br>
                                 <img src="../img/iconos/1x/baseline_calendar_today_black_18dp.png" alt="calendar">
-                                <b> </b> <?php echo $dato['dia_semana'] ?>
+                                <b> </b> <?php if($dato['dia_semana'] == 'Miercoles'){
+                                                echo 'Miércoles';
+                                            }elseif($dato['dia_semana'] == 'Sabado'){
+                                                echo 'Sábado';
+                                            }else{
+                                                echo $dato['dia_semana'];
+                                            }  ?>
                                 <img src="../img/iconos/1x/baseline_query_builder_black_18dp.png" alt="calendar">
                                 <b> </b> <?php echo $dato['horario_sesion'] ?> <br>
                                 <img src="../img/iconos/1x/baseline_location_on_black_18dp.png" alt="calendar">
