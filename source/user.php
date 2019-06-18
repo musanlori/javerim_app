@@ -155,7 +155,9 @@ if(password_verify($contrasena2,$contrasena)){
     // Content
     $mail->isHTML(true);                                  // Set email format to HTML
     $mail->Subject = 'Bienvenido a Javerim';
-    $mail->Body    = 'Hola '.$nombre.', Bienvenido a  <b>Javerim</b>';
+    $mail->Body    = 'Hola '.$nombre.', Bienvenido a  <b>Javerim</b> <br>'.'Para permanecer en la plataforma tienes que mandar un foto de tu credencial o tira de materias al correo javerim.app@gmail.com junto con el correo con el que te inscribiste. <br>
+              También puedes asistir al Laboratorio de UNAM mobile ubicado en el Anexo de ingeniería Edicio Q Salón 308. <br>
+              Tienes un límite de una semana';
     
 
     $mail->send();
