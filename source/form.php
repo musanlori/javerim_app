@@ -162,7 +162,7 @@ if(empty($_SESSION['admin']) && empty($_SESSION['alumno'])):
                         <option value="Ingeniería en Telecomunicaciones">Ingeniería en Telecomunicaciones</option>
                    </select>
                    <br>
-                   <input type="text" class="form-control" name="celular" placeholder="Celular" maxlength="30" pattern="[0-9]{10}" title="Introduce números entre el 1 y 9" required>
+                   <input type="text" class="form-control" name="celular" placeholder="Celular" maxlength="30" pattern="[0-9]{10}" title="Introduce números entre el 1 y 9| Máximo 10 números" required>
                    <br>
                    <select name="semestre" class="form-control" id="semestre" required>
                        <option value="">Semestre</option>

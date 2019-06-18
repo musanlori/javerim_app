@@ -101,6 +101,9 @@ session_start();
         <div class=" col alert alert-success">
            <p class="text-center">
               Ya puede iniciar Sesión :) <br>
+              Para permanecer en la plataforma tienes que mandar un foto de tu credencial o tira de materias al correo javerim.app@gmail.com junto con el correo con el que te inscribiste. <br>
+              También puedes asistir al Laboratorio de UNAM mobile ubicado en el Anexo de ingeniería Edicio Q Salón 308. <br>
+              Tienes un límite de una semana
             
             <br>
             <a href="form.php"><b>Iniciar Sesión</b></a>

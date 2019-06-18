@@ -370,13 +370,13 @@ if( isset($_SESSION['admin']) ):
             <div class="col-md-6">
                 <div class="card-body bg-light text-dark">
                    
-                    <a href="" class="float-right ml-3" data-toggle="modal" data-target="#myModal" onclick="verDatos('<?php echo $dato['id_sesion']?>','<?php echo $dato['nombre_asig']?>','<?php echo $dato['dia_semana'] ?>','<?php echo $dato['horario_sesion']?>','<?php echo $dato['lugar_sesion'] ?>')">
+                    <a href="" class="float-right ml-3" data-toggle="modal" data-target="#ModalAdmin" onclick="verDatos('<?php echo $dato['id_sesion']?>','<?php echo $dato['nombre_asig']?>','<?php echo $dato['dia_semana'] ?>','<?php echo $dato['horario_sesion']?>','<?php echo $dato['lugar_sesion'] ?>')">
 
                         <img src="../img/iconos/1x/baseline_delete_black_18dp.png" class="card-img-top rounded-circle" alt="trash">
                     </a>
                     
                     <!-- The Modal -->
-                    <div class="modal" id="myModal">
+                    <div class="modal" id="ModalAdmin">
                         <div class="modal-dialog">
                             <div class="modal-content">
 
