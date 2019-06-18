@@ -82,7 +82,10 @@ session_start();
                 </li> 
                 <?php
                 endif;
-                ?>       
+                ?>
+                <li class="nav-item">
+                <button type="button" class="btn btn-sm text-white" style="background-color: #1976D2;" data-toggle="modal" data-target="#myModal"> ? Acerca De</button>
+              </li>          
             </ul>
           </div>
         </nav>
@@ -117,7 +120,7 @@ session_start();
           
             
               
-                
+        <?php include "acercaDe.php"; ?>        
         <script src="../js/jquery-3.3.1.slim.min.js"></script>
         <script src="../js/popper.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
