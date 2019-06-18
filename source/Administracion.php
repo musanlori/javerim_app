@@ -258,7 +258,7 @@ if( isset($_SESSION['admin']) ):
     <!---------------------------------------------Dias ocupados---------------------------------------------------------------------------------->
      <?php
     try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    // $stmt = $conn->prepare("SELECT clase.nombre_asig, sesiones.id_sesion, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig"); 
     $stmt = $conn->prepare("SELECT asesor.correo_asesor, asesor.nombre_asesor, cita.fecha_cita, cita.hora_cita, alumnos.correo_alumno, cita.lugar_cita ,cita.nombre_materia, cita.id_cita, cita.id_asesor FROM `cita` INNER JOIN asesor ON cita.id_asesor=asesor.id_asesor INNER JOIN alumnos ON cita.id_alumno= alumnos.id_alumno WHERE asesor.id_asesor='$idasesor'"); 
