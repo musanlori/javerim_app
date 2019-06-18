@@ -189,7 +189,7 @@ if(empty($_SESSION['admin']) && empty($_SESSION['alumno'])):
                    <br>
                     
                     
-                    <button type="submit" class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal">Registrarse</button>
+                    <button type="submit" class="btn btn-success btn-block" >Registrarse</button>
                 </form>
             </div>
             

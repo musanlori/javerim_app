@@ -39,7 +39,7 @@ catch(PDOException $e)
 //COMPROBAR SI EXISTE EL USUARIO
 if($escoger=="alumnos"){
     try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $stmt = $conn->prepare("SELECT*FROM alumnos WHERE correo_alumno='$correo'"); 
     $stmt->execute();
@@ -59,7 +59,7 @@ if($escoger=="alumnos"){
     }else{
     
     try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $stmt = $conn->prepare("SELECT*FROM asesor WHERE correo_asesor='$correo'"); 
     $stmt->execute();
@@ -131,7 +131,7 @@ if(password_verify($contrasena2,$contrasena)){
     echo "New record created successfully";
         
     }else{
-        $conn = new PDO("mysql:host=$servername;dbname=javerim", $username, $password);
+        $conn = new PDO("mysql:host=$servername;dbname=javerim", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
                 // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "INSERT INTO `asesor` (`nombre_asesor`, `celular_asesor`,`correo_asesor`,`carrera_asesor`,`semestre_asesor`,`contrasena_asesor`) VALUES ('$nombre','$celular', '$correo','$carrera', '$semestre', '$contrasena')";
