@@ -18,14 +18,6 @@ catch(PDOException $e)
     echo "Connection failed: " . $e->getMessage();
     }
 
-//------------------------SE NECESITA TENER LA UNA SESION INICIADA PARA VER ESTA PAGINA
-//if( isset($_SESSION['admin']) ){
-//    echo 'Bienvenido! '.$_SESSION['admin'];
-//    echo '<br><a href="cerrar.php">Cerrar Sesión</a>';
-//}else{
-//    header('Location:form.php');
-//}
-
 ?>
 
 
@@ -50,7 +42,6 @@ catch(PDOException $e)
 <body>
 
     <!-------------------------------------------------NavBar--------------------------------------------------------->
-  <!--barra de navegacion-->
   <!--barra de navegacion-->
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1976D2;">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones" >
@@ -134,15 +125,6 @@ catch(PDOException $e)
             </div>
         </div>
     </div>
-    <!--Titulo 1: asesorias a cursar-->
-    <!--
-  <div class= "container">
-    <div class="row ">
-      <div class="col-12 bg-primary"><h3 class="text-center">Administración</h3></div>
-    </div>
-  </div>
--->
-
 
     <?php
 if( isset($_SESSION['admin']) ):
@@ -152,7 +134,6 @@ if( isset($_SESSION['admin']) ):
     try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   // $stmt = $conn->prepare("SELECT clase.nombre_asig, sesiones.id_sesion, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig"); 
     $stmt = $conn->prepare("SELECT id_asesor FROM asesor WHERE correo_asesor='$sesion'"); 
         
     $stmt->execute();
@@ -162,14 +143,9 @@ if( isset($_SESSION['admin']) ):
         echo "Error: " . $e->getMessage();
         echo "no eres Asesor";
     }
-//
     foreach($resul as $iden){
-        //echo $iden['id_asesor'];
         $idasesor=$iden['id_asesor'];
     }
-    
-    
-    //echo $idasesor;
 ?>
     <!---------------------------------------------------AGREGAR--------------------------------------------------------->
     <form action="Administracion.php" method="POST">
@@ -191,12 +167,6 @@ if( isset($_SESSION['admin']) ):
              $lugar=$_POST['lugar'];
              
              $campos =array();
-             if($lugar==""){
-                 echo "<div class='alert alert-danger'>El Lugar esta vacio</div>";
-                 die();
-                 header('Location:Administracion.php');
-
-             }
              
              try {
                 $conn = new PDO("mysql:host=$servername;dbname=javerim", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
@@ -234,8 +204,6 @@ if( isset($_SESSION['admin']) ):
                                 <option value="<?php echo $row['id_asig']; ?>"> <?php echo $row['nombre_asig']; ?></option>
                                 <?php } ?>
                             </select>
-                            <!--<label name="tema"><b>Tema: </b></label>
-                       <input type="text" name="tema">-->
                             <br>
                             <label name="dia"><b>Dia: </b></label>
                             <select name="dia">
@@ -269,7 +237,6 @@ if( isset($_SESSION['admin']) ):
     try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   // $stmt = $conn->prepare("SELECT clase.nombre_asig, sesiones.id_sesion, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig"); 
     $stmt = $conn->prepare("SELECT asesor.correo_asesor, asesor.nombre_asesor, cita.fecha_cita, cita.hora_cita, alumnos.correo_alumno, cita.lugar_cita ,cita.nombre_materia, cita.id_cita, cita.id_asesor FROM `cita` INNER JOIN asesor ON cita.id_asesor=asesor.id_asesor INNER JOIN alumnos ON cita.id_alumno= alumnos.id_alumno WHERE asesor.id_asesor='$idasesor'"); 
         
     $stmt->execute();
@@ -278,14 +245,6 @@ if( isset($_SESSION['admin']) ):
     catch(PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
-        
-//    foreach($rocupado as $iden){
-//        echo $iden['fecha_cita'];
-//        $idasesor=$iden['fecha_cita'];
-//    }
-        
-    
-		
     ?>
     
     
@@ -299,39 +258,39 @@ if( isset($_SESSION['admin']) ):
                         <img src="../img/iconos/1x/baseline_delete_black_18dp.png" class="card-img-top rounded-circle" alt="trash">
                     </a>
                     
-<!-- The Modal -->
-<div class="modal" id="modalOcupado">
-  <div class="modal-dialog">
-    <div class="modal-content">
+                      <!-- The Modal -->
+                      <div class="modal" id="modalOcupado">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">¿Seguro que desea eliminar esta cita?</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                              <h4 class="modal-title">¿Seguro que desea eliminar esta cita?</h4>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
 
-      <!-- Modal body -->
-      <form action="eliminarCita.php" method="GET" >
-      <div class="modal-body">
-        <input type="hidden" id="shownomAsesor" name="nomAsesor" readonly="readonly">
-        <input type="hidden" id="showcorAsesor" name="corAsesor" readonly="readonly">
-        <input type="hidden" id="showIdcita" name="id" readonly="readonly">
-        <input type="hidden" id="showIdasesor" name="idAsesor" readonly="readonly" class="noborder">
-        <b>Materia: </b><input type="text" id="showMateria" name="materia" readonly="readonly" class="noborder"><br>
-        <b>Alumno: </b><input type="text" id="showAlumno" name="correoAlumno" readonly="readonly" class="noborder"><br>
-        <b>Fecha: </b><input type="text" id="showFecha" name="fecha" readonly="readonly" class="noborder"><br>
-        <b>Hora: </b><input type="text" id="showHora" name="hora" readonly="readonly" class="noborder"><br>
-        <b>Lugar: </b><input type="text" id="showLugar" name="lugar" readonly="readonly" class="noborder"><br>
-      </div>
+                            <!-- Modal body -->
+                            <form action="eliminarCita.php" method="GET" >
+                            <div class="modal-body">
+                              <input type="hidden" id="shownomAsesor" name="nomAsesor" readonly="readonly">
+                              <input type="hidden" id="showcorAsesor" name="corAsesor" readonly="readonly">
+                              <input type="hidden" id="showIdcita" name="id" readonly="readonly">
+                              <input type="hidden" id="showIdasesor" name="idAsesor" readonly="readonly" class="noborder">
+                              <b>Materia: </b><input type="text" id="showMateria" name="materia" readonly="readonly" class="noborder"><br>
+                              <b>Alumno: </b><input type="text" id="showAlumno" name="correoAlumno" readonly="readonly" class="noborder"><br>
+                              <b>Fecha: </b><input type="text" id="showFecha" name="fecha" readonly="readonly" class="noborder"><br>
+                              <b>Hora: </b><input type="text" id="showHora" name="hora" readonly="readonly" class="noborder"><br>
+                              <b>Lugar: </b><input type="text" id="showLugar" name="lugar" readonly="readonly" class="noborder"><br>
+                            </div>
 
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-success btn-block">Eliminar</button>
-      </div>
-    </form>
-    </div>
-  </div>
-</div>
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                              <button type="submit" class="btn btn-success btn-block">Eliminar</button>
+                            </div>
+                          </form>
+                          </div>
+                        </div>
+                      </div>
                     
                     <div class="card-tex">
                       <b>Materia: </b> <?php echo $iden['nombre_materia'] ?>
@@ -359,7 +318,6 @@ if( isset($_SESSION['admin']) ):
     try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   // $stmt = $conn->prepare("SELECT clase.nombre_asig, sesiones.id_sesion, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig"); 
     $stmt = $conn->prepare("SELECT clase.nombre_asig, sesiones.id_sesion, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig WHERE sesiones.id_asesor='$idasesor'"); 
         
     $stmt->execute();
@@ -369,17 +327,27 @@ if( isset($_SESSION['admin']) ):
         echo "Error: " . $e->getMessage();
         echo "No eres Asesor";
     }
-         
-		
     ?>
 
     <div class="container">
         <div class="row">
-            <?php foreach ($resultado as $dato): ?>
+            <?php foreach ($resultado as $dato):
+              if($dato['dia_semana'] == 'Miercoles'){
+                $comodin = 'Miércoles';
+              }
+              elseif($dato['dia_semana'] == 'Sabado'){
+                $comodin = 'Sábado';
+              }
+              else{
+              $comodin = $dato['dia_semana'];
+              }
+            
+              ?>
+
             <div class="col-md-6">
                 <div class="card-body bg-light text-dark">
                    
-                    <a href="" class="float-right ml-3" data-toggle="modal" data-target="#ModalAdmin" onclick="verDatos('<?php echo $dato['id_sesion']?>','<?php echo $dato['nombre_asig']?>','<?php echo $dato['dia_semana'] ?>','<?php echo $dato['horario_sesion']?>','<?php echo $dato['lugar_sesion'] ?>')">
+                    <a href="" class="float-right ml-3" data-toggle="modal" data-target="#ModalAdmin" onclick="verDatos('<?php echo $dato['id_sesion']?>','<?php echo $dato['nombre_asig']?>','<?php echo $comodin ?>','<?php echo $dato['horario_sesion']?>','<?php echo $dato['lugar_sesion'] ?>')">
 
                         <img src="../img/iconos/1x/baseline_delete_black_18dp.png" class="card-img-top rounded-circle" alt="trash">
                     </a>
@@ -450,12 +418,13 @@ if( isset($_SESSION['admin']) ):
             $('#')
         });
 
-        function verDatos(id, name, fecha, hora, lugar) {
+        function verDatos(id, name, comodin, hora, lugar) {
             $('#showId').val(id);
             $('#showName').val(name);
-            $('#showDate').val(fecha);
+            $('#showDate').val(comodin);
             $('#showTime').val(hora);
             $('#showSite').val(lugar);
+
 
             console.info("Mesaje de log, ", n1);
 

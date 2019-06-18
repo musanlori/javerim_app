@@ -19,7 +19,6 @@ session_start();
     </head>
     <body>
         <!-- Empieza el Contenido -->
-   <!--barra de navegacion-->
   <!--barra de navegacion-->
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1976D2;">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones" >
@@ -150,10 +149,13 @@ session_start();
                                 <img src="../img/iconos/1x/baseline_calendar_today_black_18dp.png" alt="calendar">
                                 <b> </b> <?php if($dato['dia_semana'] == 'Miercoles'){
                                                 echo 'Miércoles';
+                                                $comodin = 'Miércoles';
                                             }elseif($dato['dia_semana'] == 'Sabado'){
                                                 echo 'Sábado';
+                                                $comodin = 'Sábado';
                                             }else{
                                                 echo $dato['dia_semana'];
+                                                $comodin = $dato['dia_semana'];
                                             }  ?>
                                 <img src="../img/iconos/1x/baseline_query_builder_black_18dp.png" alt="calendar">
                                 <b> </b> <?php echo $dato['horario_sesion'] ?> <br>
@@ -164,7 +166,7 @@ session_start();
                             <div class="col-12" style="position: absolute; bottom: 0; left: 0;"><!--Boton/cuadro de dialogo-->
                                 <?php if($dato['Estado'] != 1){ ?>
                                 <button type='submit' class='btn btn-success btn-block' data-toggle="modal" data-target="#diag_conf" 
-                                    onclick="verDatos('<?php echo $dato['id_asesor']?>','<?php echo $idclase?>','<?php echo $dato['nombre_asesor']?>','<?php echo $dato['correo_asesor']?>','<?php echo $dato['dia_semana'] ?>','<?php echo $dato['horario_sesion']?>','<?php echo $dato['lugar_sesion'] ?>', '<?php echo $nombreMat ?>')">
+                                    onclick="verDatos('<?php echo $dato['id_asesor']?>','<?php echo $idclase?>','<?php echo $dato['nombre_asesor']?>','<?php echo $dato['correo_asesor']?>','<?php echo $dato['dia_semana'] ?>','<?php echo $dato['horario_sesion']?>','<?php echo $dato['lugar_sesion'] ?>', '<?php echo $nombreMat ?>', '<?php echo $comodin?>')">
                                     Agendar Asesoria
                                 </button>
                                 <?php } else { ?>
@@ -196,6 +198,7 @@ session_start();
                                                                         <h4 class="card-title"><input type="text" id="showName" name="getName" readonly="readonly" class="noborder"/></h4>
                                                                         <p class="card-text"><input type = "text" id="correo" name="getmail" readonly="readonly" class="noborder"/></p>
                                                                         <p class="card-text"><input type = "text" id="showDate" name="getDate" readonly="readonly" class="noborder"/></p>
+                                                                        <p class="card-text"><input type = "text" id="Scomodin"  readonly="readonly" class="noborder"/></p>
                                                                         <p class="card-text"><input type = "text" id="showTime" name="getTime" readonly="readonly" class="noborder"/></p>
                                                                         <p class="card-text"><input type = "text" id="showSite" name="getSite" readonly="readonly" class="noborder"/></p>
                                                                         <p class="card-text"><input type = "text" id="materia" name="materia" readonly="readonly" class="noborder"/></p>
@@ -230,7 +233,7 @@ session_start();
         <script src="../js/bootstrap.min.js"></script>
         <script type="text/javascript">
         //recibe los datsos a mostrar desde la targeta y los envia al modal
-        function verDatos(id, idCl, name, correo, fecha, hora, lugar, materia) {
+        function verDatos(id, idCl, name, correo, fecha, hora, lugar, materia, com) {
             
             $('#hideID').val(id);
             $('#hideIDC').val(idCl);
@@ -240,10 +243,13 @@ session_start();
             $('#showTime').val(hora);
             $('#showSite').val(lugar);
             $('#materia').val(materia);
+            $('#Scomodin').val(com);
 
             $('#hideID').css("display","none");
             $('#hideIDC').css("display","none");
             $('#correo').css("display","none");
+            $('#showDate').css("display","none");
+
 
         }
         </script>

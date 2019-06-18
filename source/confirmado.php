@@ -39,7 +39,6 @@ catch(PDOException $e)
         <meta http-equiv="x-ua-compatible" content="ie-edge">
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="../css_javerim/javerim_style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style type="text/css">
         .noborder{
             border: 0;
@@ -145,7 +144,6 @@ if( isset($_SESSION['alumno']) ):
     try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   // $stmt = $conn->prepare("SELECT clase.nombre_asig, sesiones.id_sesion, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig"); 
     $stmt = $conn->prepare("SELECT id_alumno FROM alumnos WHERE correo_alumno='$sesion'"); 
         
     $stmt->execute();
@@ -308,15 +306,6 @@ if( isset($_SESSION['alumno']) ):
                         //Recipients
                         $mail->setFrom('javerim.app@gmail.com', 'Javerim');
                         $mail->addAddress($asesorCorreo, $asesor_Nom);     // Add a recipient
-                        //$mail->addAddress('ellen@example.com');               // Name is optional
-                        //$mail->addReplyTo('info@example.com', 'Information');
-                        //$mail->addCC('cc@example.com');
-                        //$mail->addBCC('bcc@example.com');
-                    
-                        // Attachments
-                        //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-                        //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-                    
                         // Content
                         $mail->isHTML(true);                                  // Set email format to HTML
                         $mail->Subject = 'Cita Agendada';

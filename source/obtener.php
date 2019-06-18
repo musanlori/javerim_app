@@ -1,8 +1,4 @@
 <?php
-//$servername = "localhost";
-//$username = "root";
-//$password = "";
-//$dbname = "javerim";
 
 if(!empty($_GET['id_sesion'])){
     //DB detalles de conexion
@@ -38,29 +34,4 @@ if(!empty($_GET['id_sesion'])){
     echo 'No hay contenido...';
 }
 
-//////////////////////////
-
-
-
-//    $id_sesion=$_GET['id_sesion'];
-//    $materia1=$_GET['materia'];
-//    $dia1=$_GET['dia'];
-//    $hora1=$_GET['horario'];
-//    $lugar1=$_GET['lugar'];
-//
-//	echo $id;
-//	echo '<br>';
-//	echo $materia1;
-//	echo '<br>';
-//	echo $dia1;
-//	echo '<br>';
-//	echo $hora1;
-//	echo '<br>';
-//	echo $lugar1;
-//	echo '<br>';
-//
-//	$sql_editar = "UPDATE sesiones SET dia_semana='$dia1', horario='$hora1', lugar='$lugar1', id_asesor='2', WHERE id='$id_sesion'";
-//	$sentencia_editar= $conn->prepare($sql_editar);
-//	$sentencia_editar->execute();
-//	header('location:Administracion.php');
 ?>

@@ -79,13 +79,6 @@ if($escoger=="alumnos"){
     
 
     $contrasena=password_hash($contrasena, PASSWORD_DEFAULT);
-
-//	echo '<pre>';
-//    var_dump($usuario);
-//    var_dump($contrasena);
-//    var_dump($contrasena2);
-//    echo '</pre>';
-
                 
 if(password_verify($contrasena2,$contrasena)){
     echo 'La contrasena es valida<br>';

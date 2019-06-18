@@ -17,15 +17,6 @@ catch(PDOException $e)
     {
     echo "Connection failed: " . $e->getMessage();
     }
-
-//------------------------SE NECESITA TENER LA UNA SESION INICIADA PARA VER ESTA PAGINA
-//if( isset($_SESSION['admin']) ){
-//    echo 'Bienvenido! '.$_SESSION['admin'];
-//    echo '<br><a href="cerrar.php">Cerrar Sesión</a>';
-//}else{
-//    header('Location:form.php');
-//}
-
 ?>
 
 <!DOCTYPE html>
@@ -145,7 +136,6 @@ if( isset($_SESSION['alumno']) ):
     try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   // $stmt = $conn->prepare("SELECT clase.nombre_asig, sesiones.id_sesion, sesiones.dia_semana, sesiones.horario_sesion, sesiones.lugar_sesion FROM `sesiones` INNER JOIN asesor ON sesiones.id_asesor=asesor.id_asesor INNER JOIN clase ON sesiones.id_clase= clase.id_asig"); 
     $stmt = $conn->prepare("SELECT id_alumno FROM alumnos WHERE correo_alumno='$sesion'"); 
         
     $stmt->execute();
@@ -154,7 +144,6 @@ if( isset($_SESSION['alumno']) ):
     catch(PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
-//
     foreach($resul as $iden){
         //echo $iden['id_asesor'];
         $idalumno=$iden['id_alumno'];
