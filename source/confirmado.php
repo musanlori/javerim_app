@@ -49,7 +49,7 @@ catch(PDOException $e)
     <body>
         <!-- Empieza el Contenido -->
   <!--barra de navegacion-->
-        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1976D2;">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1976D2;">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones" >
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -63,7 +63,7 @@ catch(PDOException $e)
           <div class="collapse navbar-collapse" id="opciones">   
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link " href="ver_asesorias.php">Asesorías</a>
+                <button type="button" class="btn btn-sm text-white" style="background-color: #1976D2;" onclick="location.href='ver_asesorias.php'">Asesorias</button></a>
               </li>
               <?php
                 if( isset($_SESSION['alumno'])):
@@ -71,14 +71,14 @@ catch(PDOException $e)
                 
                 ?>
               <li class="nav-item">
-                <a class="nav-link" href="agenda.php">Agenda</a>
+                <button type="button" class="btn btn-sm text-white" style="background-color: #1976D2;" onclick="location.href='agenda.php'">Agenda</button></a>
               </li>
               
                 <li class="nav-item dropdown">
                  
-                  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                  <button type= "button" class="btn btn-sm text-white dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                     <?php echo 'Bienvenido! '.$sesion;?>
-                  </a>
+                  </button>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="cerrar.php">Cerrar Sesión</a>
                   </div>
@@ -92,13 +92,13 @@ catch(PDOException $e)
                 
                 ?>
                 <li class="nav-item">
-                <a class="nav-link" href="Administracion.php">Administracion</a>
+                <button type="button" class="btn btn-sm text-white" style="background-color: #1976D2;" onclick="location.href='Administracion.php'">Administración</button></a>
               </li>
                 <li class="nav-item dropdown">
                  
-                  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                  <button type= "button" class="btn btn-sm text-white dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                     <?php echo 'Bienvenido! '.$sesion;?>
-                  </a>
+                  </button>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="cerrar.php">Cerrar Sesión</a>
                   </div>
@@ -112,14 +112,14 @@ catch(PDOException $e)
                 
                 ?>
                 <li class="nav-item">
-                <a class="nav-link" href="form.php">Registro e Inicio</a>
+                <button type="button" class="btn btn-sm text-white" style="background-color: #1976D2;" onclick="location.href='form.php'">Registro e Inicio de Sesión</button></a>
                 </li> 
                 <?php
                 endif;
                 ?>
-                <li class="nav-item">
-                <button type="button" class="btn btn-sm text-white" style="background-color: #1976D2;" data-toggle="modal" data-target="#myModal"> ? Acerca De</button>
-              </li>          
+              <li class="nav-item">
+                <button type="button" class="btn btn-sm text-white" style="background-color: #1976D2;" data-toggle="modal" data-target="#myModal"><span><img src="../img/iconos/1x/baseline_help_outline_white_18dp.png" alt="i"></span> Acerca de</button>
+              </li>       
             </ul>
           </div>
         </nav>
