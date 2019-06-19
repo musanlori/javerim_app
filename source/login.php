@@ -79,7 +79,8 @@ if($escoger_login=="alumnos"){
     header('Location:Administracion.php');
 
 }else{
-    echo 'No son iguales las contraseñas!';
+    echo '¡Tu contraseña esta mal!';
+    echo '<br><a href="form.php" class="text-white blockquote">Regresar</a>';
     die();
 }
     

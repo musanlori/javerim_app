@@ -118,10 +118,10 @@ catch(PDOException $e)
           </div>
         </nav>
     <!--Titulo-->
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-6">
-                <h1>Administración</h1>
+                <p class="blockquote">Agrega las asesorías que quieras impartir pulsando el botón azul</p>
             </div>
         </div>
     </div>
@@ -228,7 +228,7 @@ if( isset($_SESSION['admin']) ):
         </div>
         <?php endif ?>
         <button class="btn btn-primary btn-circle fixed float-right" name="añadir">
-            <img src="../img/iconos/2x/baseline_add_white_18dp.png" alt="add">
+            Agregar
         </button>
     </form>
 

@@ -174,9 +174,10 @@ if(empty($_SESSION['admin']) && empty($_SESSION['alumno'])):
                    <br>
                    <input type="password" class="form-control" name="contrasena2" placeholder="Ingrese nuevamente Contraseña" required>
                    <br>
+                   <label for="escoger">Elige:</label>
                    <select name="escoger" class="form-control" id="escoger">
-                        <option value="asesor">Asesor</option>
-                        <option value="alumnos">Alumno</option>
+                        <option value="asesor">Quiero ser asesor</option>
+                        <option value="alumnos">Quiero recibir asesorías</option>
                    </select>
                    <br>
                     

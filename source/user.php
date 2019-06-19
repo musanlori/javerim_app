@@ -50,7 +50,8 @@ if($escoger=="alumnos"){
     }
 
     if($resultado){
-        echo 'Existe este Usuario';
+        echo 'Este usuario ya existe';
+        echo '<br><a href="form.php" class="text-white blockquote">Regresar</a>';
         
         die();
     }
@@ -70,7 +71,8 @@ if($escoger=="alumnos"){
     }
 
     if($resultado2){
-        echo 'Existe este Usuario';
+        echo 'Este usuario ya existe';
+        echo '<br><a href="form.php" class="text-white blockquote">Regresar</a>';
         
         die();
     } 
