@@ -183,7 +183,7 @@ if( isset($_SESSION['alumno']) ):
           echo "Connection failed: " . $e->getMessage();
           }
 
-          $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+          $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
           $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           $stmt = $conn->prepare("SELECT cita.fecha_cita, cita.hora_cita, asesor.nombre_asesor,cita.lugar_cita ,cita.nombre_materia, cita.id_cita, cita.id_asesor,asesor.correo_asesor, alumnos.correo_alumno  FROM `cita` INNER JOIN asesor ON cita.id_asesor=asesor.id_asesor INNER JOIN alumnos ON cita.id_alumno=alumnos.id_alumno WHERE alumnos.id_alumno=$idalumno");
           $stmt->execute();
@@ -223,9 +223,9 @@ if( isset($_SESSION['alumno']) ):
                                 <form action="eliminarCita.php" method="GET" >
                                 <div class="modal-body">
                                     
-                                        <div class="car-body bg-light text-dark">
+                                        <div class="car-body  text-dark">
                                            <input type="hidden" id="showcorAlumno" name="correoAlumno" readonly="readonly" class="noborder">
-                                            <input type="hiden" id="showId" name="id" readonly="readonly" class="noborder">
+                                            <input type="hidden" id="showId" name="id" readonly="readonly" class="noborder">
                                             <input type="hidden" id="showIdasesor" name="idAsesor" readonly="readonly" class="noborder">
                                             
                                             <p class="card-text">
