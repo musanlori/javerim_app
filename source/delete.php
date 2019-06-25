@@ -3,7 +3,7 @@
     $id= $_GET['id'];
     $servername = "localhost";
     $username = "root";
-    $password = "";
+    $password = "J4v3rIm4pp_Db";
     $dbname = "javerim";
 
     try {

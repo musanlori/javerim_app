@@ -12,7 +12,7 @@ $mail = new PHPMailer(true);
 //coneccion a base de datoa
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "J4v3rIm4pp_Db";
 $dbname = "javerim";
 
 try {
