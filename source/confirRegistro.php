@@ -104,7 +104,7 @@ session_start();
                 <div class=" col alert alert-success">
                   <p class="text-center blockquote">
                       ¡Ya puedes iniciar Sesión! <br>
-                      Para permanecer en la plataforma es necesario mandar un foto de tu credencial o tira de materias al correo <a href="mailto:javerim.app@gmail.com">javerim.app@gmail.com</a> junto con el correo con el que te inscribiste. <br>
+                      Para permanecer en la plataforma es necesario mandar una foto de tu credencial o tira de materias al correo <a href="mailto:javerim.app@gmail.com">javerim.app@gmail.com</a> junto con el correo con el que te inscribiste. <br>
                       También puedes asistir al Laboratorio de UNAM mobile ubicado en el Anexo de ingeniería Edicio Q Salón 308. <br>
                       Tienes hasta el <b><?php $fecha_actual = date("d-m-Y", time() - 25200);
                       echo date("d-m-Y",strtotime($fecha_actual."+ 7 days"));?></b>

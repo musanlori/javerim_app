@@ -35,7 +35,8 @@ $id;
     }
         if(!$resultado){
         //matar la operación
-        echo 'No exite usuario';
+        echo 'El correo que haz introducido no coincide con ningún usuario';
+        echo '<br><a href="form.php" class="text-white blockquote">Regresar</a>';
         die();
         }
         
@@ -52,7 +53,8 @@ $id;
     }
         if(!$resultado){
         //matar la operación
-        echo 'No exite usuario';
+        echo 'El correo que haz introducido no coincide con ningún usuario';
+        echo '<br><a href="form.php" class="text-white blockquote">Regresar</a>';
         die();
         }
     }
