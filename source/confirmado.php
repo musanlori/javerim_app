@@ -167,7 +167,7 @@ if( isset($_SESSION['alumno']) ):
         <?php 
         $servername = "localhost"; 
         $username = "root"; 
-        $password = ''; 
+        $password = 'J4v3rIm4pp_Db'; 
         $dbname = "javerim";
         $clv_asesor = $_POST['getID'];
         $clv_materia = $_POST['getIDC'];
@@ -270,7 +270,7 @@ if( isset($_SESSION['alumno']) ):
             try{
                 $conn = new PDO("mysql:host=$servername;dbname=javerim", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $tabla_Cita = "INSERT INTO 'cita' ('fecha_cita','hora_cita', 'nombre_materia', 'lugar_cita','id_alumno','id_asesor')
+                $tabla_Cita = "INSERT INTO cita (fecha_cita, hora_cita, nombre_materia, lugar_cita,id_alumno,id_asesor)
                 VALUES ('$Cita', '$horaSesion', '$materia', '$sitioSesion','$idalumno','$clv_asesor')";
                 $conn->exec($tabla_Cita);
 
