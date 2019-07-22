@@ -118,10 +118,10 @@ catch(PDOException $e)
         <div class="container">
           <div class="row">
             <div class="col-6 titulo-nac text-center">
-              <a href="ver_asesorias.php"><h1 class="text-nac">Asesorías</h1></a>
+              <a href="ver_asesorias.php"><h3 class="text-nac">Asesorías</h3></a>
             </div>
             <div class="col-6 titulo-act text-center">
-              <a href="agenda.php"><h1 class="text-act">Agenda</h1></a>
+              <a href="agenda.php"><h3 class="text-act">Agenda</h3></a>
             </div>
           </div>
         </div>

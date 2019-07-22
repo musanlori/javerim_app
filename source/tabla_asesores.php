@@ -99,10 +99,10 @@ session_start();
             <div class="container">
                 <div class="row">
                     <div class="col-6 titulo-nac text-center">
-                        <a href="ver_asesorias.php"><h1 class="text-nac">Asesorías</h1></a>
+                        <a href="ver_asesorias.php"><h3 class="text-nac">Asesorías</h3></a>
                     </div>
                     <div class="col-6 titulo-nac text-center">
-                        <a href="agenda.php"><h1 class="text-nac">Agenda</h1></a>
+                        <a href="agenda.php"><h3 class="text-nac">Agenda</h3></a>
                     </div>
                 </div>
             </div>
@@ -175,7 +175,7 @@ session_start();
                                 </button>
                                 <?php } ?>
                                 <div class="modal fade" id="diag_conf">
-                                    <div class="modal-dialog modal-md modal-dialog-centered">
+                                    <div class="modal-dialog modal-sm modal-dialog-centered">
                                         <div class="modal-content">
                                     
                                             <!-- cabecera del diálogo -->
@@ -195,7 +195,7 @@ session_start();
                                                                     <div class="card-body">
                                                                         <input type="text" id="hideID" name="getID" readonly="readonly" class="noborder"/>
                                                                         <input type="text" id="hideIDC" name="getIDC" readonly="readonly" class="noborder"/>
-                                                                        <h4 class="card-title"><input type="text" id="showName" name="getName" readonly="readonly" class="noborder"/></h4>
+                                                                        <p class="card-text"><input type="text" id="showName" name="getName" readonly="readonly" class="noborder"/></p>
                                                                         <p class="card-text"><input type = "text" id="correo" name="getmail" readonly="readonly" class="noborder"/></p>
                                                                         <p class="card-text"><input type = "text" id="showDate" name="getDate" readonly="readonly" class="noborder"/></p>
                                                                         <p class="card-text"><input type = "text" id="Scomodin"  readonly="readonly" class="noborder"/></p>
