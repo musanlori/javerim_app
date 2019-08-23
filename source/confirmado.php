@@ -168,7 +168,7 @@ if( isset($_SESSION['alumno']) ):
         <?php 
         $servername = "localhost"; 
         $username = "root"; 
-        $password = ''; 
+        $password = 'J4v3rIm4pp_Db'; 
         $dbname = "javerim";
         $clv_asesor = $_POST['getID'];
         $clv_materia = $_POST['getIDC'];
@@ -268,33 +268,31 @@ if( isset($_SESSION['alumno']) ):
         #fin algoritmo 
         if ($Cita != NULL){
             #Conexion con la base de datos para insertar Info.
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-            $tabla_Cita = "INSERT INTO cita (fecha_cita,hora_cita, nombre_materia, lugar_cita,id_alumno,id_asesor)
-            VALUES ('$Cita', '$horaSesion', '$materia', '$sitioSesion','$idalumno','$clv_asesor')";
+            try{
+                $conn = new PDO("mysql:host=$servername;dbname=javerim", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $tabla_Cita = "INSERT INTO cita (fecha_cita, hora_cita, nombre_materia, lugar_cita,id_alumno,id_asesor)
+                VALUES ('$Cita', '$horaSesion', '$materia', '$sitioSesion','$idalumno','$clv_asesor')";
+                $conn->exec($tabla_Cita);
 
-            if ($conn->query($tabla_Cita) === TRUE) {
-            ?>
-                <div class="container-fluid">
-                    <div class="row justify-content-around bordered">
-                        <div class="col-8 text-center jumbotron">
-                            <h1 class="text-success">Solicitud Procesada</h1>
-                            <p>
-                                Se ha agendado correctamente la asesoria; Por favor, dirijase a 'Agenda' para verificar<br>
-                                o pulse en continuar (o pesataña 'Asesorias') para agregar una nueva cita<br>
-                                <?php echo "Prixima Cita: ". $Cita;?><br>
-                                <?php echo 'faltan : ' .$FechaProx. ' Dias para su Asesoria'?>
-                            </p>
-                            <a href="ver_asesorias.php"> Continuar </a>
+                ?>
+                    <div class="container-fluid">
+                        <div class="row justify-content-around bordered">
+                            <div class="col-8 text-center jumbotron">
+                                <h1 class="text-success">Solicitud Procesada</h1>
+                                <p>
+                                    Se ha agendado correctamente la asesoria; Por favor, dirijase a 'Agenda' para verificar<br>
+                                    o pulse en continuar (o pesataña 'Asesorias') para agregar una nueva cita<br>
+                                    <?php echo "Prixima Cita: ". $Cita;?><br>
+                                    <?php echo 'faltan : ' .$FechaProx. ' Dias para su Asesoria'?>
+                                </p>
+                                <a href="ver_asesorias.php"> Continuar </a>
 
+                            </div>
                         </div>
-                    </div>
-                </div> 
-            <?php
-                 $update_Cita = "UPDATE sesiones SET  Estado='1' WHERE dia_semana='$diaSesion' and id_asesor='$clv_asesor' and id_clase='$clv_materia'";
-                 if ($conn->query($update_Cita) === TRUE) {
+                    </div> 
+                <?php
+                $update_Cita = "UPDATE sesiones SET  Estado='1' WHERE dia_semana='$diaSesion' and id_asesor='$clv_asesor' and id_clase='$clv_materia'";
                      #echo "actulizado correctamente";
                      try {
                         //Server settings
@@ -321,10 +319,7 @@ if( isset($_SESSION['alumno']) ):
                     } catch (Exception $e) {
                         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
                     }
-                 }else{
-                     #echo "Error en la actualizaciono ".$conn->error;
-                 }
-            } else {
+            } catch(PDOException $e) {
             ?>
                <div class="container">
                     <div class="row justify-content-around">
@@ -340,7 +335,9 @@ if( isset($_SESSION['alumno']) ):
                     </div>
                </div> 
             
-            <?php }
+            <?php 
+                echo $tabla_Cita . "<br>" . $e->getMessage();
+            }
            
         }
         ?>

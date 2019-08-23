@@ -93,10 +93,10 @@ session_start();
         <div class="container">
           <div class="row">
             <div class="col-6 titulo-act text-center">
-              <a href="ver_asesorias.php"><h1 class="text-act">Asesorías</h1></a>
+              <a href="ver_asesorias.php"><h3 class="text-act">Asesorías</h3></a>
             </div>
             <div class="col-6 titulo-nac text-center">
-              <a href="agenda.php"><h1 class="text-nac">Agenda</h1></a>
+              <a href="agenda.php"><h3 class="text-nac">Agenda</h3></a>
             </div>
           </div>
         </div>
@@ -104,7 +104,7 @@ session_start();
     <div class="container">
       <div class="row">
         <div class="col-12 text-center">
-          <p class="display-4">Elige una asesoría que desees tomar</p>
+          <p class="h3">Elige una asesoría que desees tomar</p>
         </div>
       </div>
     </div>
