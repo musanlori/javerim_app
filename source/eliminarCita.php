@@ -21,10 +21,11 @@ $mail = new PHPMailer(true);
     $nomAsesor = $_GET['nomAsesor'];
     $corAsesor = $_GET['corAsesor'];
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "J4v3rIm4pp_Db";
-    $dbname = "javerim";
+//    $servername = "localhost";
+//    $username = "root";
+//    $password = "J4v3rIm4pp_Db";
+//    $dbname = "javerim";
+include_once 'infoDb.php';
 
     var_dump($id);
     var_dump($fecha);

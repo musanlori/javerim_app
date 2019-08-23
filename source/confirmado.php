@@ -12,10 +12,11 @@ $mail = new PHPMailer(true);
 
 //CONECCION 
 
-$servername = "localhost";
-$username = "root";
-$password = "J4v3rIm4pp_Db";
-$dbname = "javerim";
+//$servername = "localhost";
+//$username = "root";
+//$password = "J4v3rIm4pp_Db";
+//$dbname = "javerim";
+include_once 'infoDb.php';
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=javerim", $username, $password,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));

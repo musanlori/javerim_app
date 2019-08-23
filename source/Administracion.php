@@ -2,10 +2,12 @@
 session_start();
 //CONECCION 
 
-$servername = "localhost";
-$username = "root";
-$password = "J4v3rIm4pp_Db";
-$dbname = "javerim";
+//$servername = "localhost";
+//$username = "root";
+////$password = "J4v3rIm4pp_Db";
+//$password = "";
+//$dbname = "javerim";
+include_once 'infoDb.php';
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=javerim", $username, $password);

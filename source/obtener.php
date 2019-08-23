@@ -2,13 +2,14 @@
 
 if(!empty($_GET['id_sesion'])){
     //DB detalles de conexion
-    $Host = 'localhost';
-    $Username = 'root';
-    $Password = '';
-    $bdName = 'javerim';
+//    $servername = 'localhost';
+//    $username = 'root';
+//    $password = '';
+//    $bdname = 'javerim';
+    include_once 'infoDb.php';
     
     //Crear conexion y seleccioanr la base de datos
-    $conexion = new mysqli($Host, $Username, $Password, $bdName);
+    $conexion = new mysqli($servername, $username, $password, $bdname);
     
     if ($conexion->connect_error) {
         die("No hay conexion con la database: " . $db->connect_error);
