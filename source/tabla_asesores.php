@@ -181,7 +181,7 @@ session_start();
                                     
                                             <!-- cabecera del diálogo -->
                                             <div class="modal-header bg-primary text-light">
-                                                <h4 class="modal-title">Confirmar Asesoria</h4>
+                                                <h4 class="modal-title">Confirmar Asesoría</h4>
                                                 <button type="button" class="close" data-dismiss="modal">X</button>
                                             </div>
                                         

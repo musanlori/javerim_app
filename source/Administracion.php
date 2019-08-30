@@ -120,13 +120,7 @@ catch(PDOException $e)
           </div>
         </nav>
     <!--Titulo-->
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <p class="blockquote">Agrega las asesorías que quieras impartir pulsando el botón azul</p>
-            </div>
-        </div>
-    </div>
+    
 
     <?php
 if( isset($_SESSION['admin']) ):
@@ -149,6 +143,13 @@ if( isset($_SESSION['admin']) ):
         $idasesor=$iden['id_asesor'];
     }
 ?>
+   <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <p class="blockquote">Agrega las asesorías que quieras impartir pulsando el botón azul</p>
+            </div>
+        </div>
+    </div>
     <!---------------------------------------------------AGREGAR--------------------------------------------------------->
     <form action="Administracion.php" method="POST">
         <?php
