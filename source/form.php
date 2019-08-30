@@ -148,6 +148,7 @@ if(empty($_SESSION['admin']) && empty($_SESSION['alumno'])):
                         <option value="Ingeniería Geológica">Ingeniería Geológica</option>
                         <option value="Ingeniería Geomática">Ingeniería Geomática</option>
                         <option value="Ingeniería Mecánica">Ingeniería Mecánica</option>
+                        <option value="Ingeniería Mecatrónica">Ingeniería Mecatrónica</option>
                         <option value="Ingeniería de Minas y Metalurgia">Ingeniería de Minas y Metalurgia</option>
                         <option value="Ingeniería Petrolera">Ingeniería Petrolera</option>
                         <option value="Ingeniería en Sistemas Biomédicos">Ingeniería en Sistemas Biomédicos</option>
