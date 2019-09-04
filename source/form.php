@@ -233,7 +233,20 @@ $(document).ready(function(){
 <?php 
     endif;
 ?>
-        
+       
+       <!-- Footer -->
+<footer class="page-footer font-small fixed-bottom" style="background-color: #1976D2;">
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3" style="color:#FFFFFF";>© 2019 Copyright:
+    <a href="http://mobile.unam.mx/javerim/" style="color:#FFFFFF";> UNAMmobile</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+       
+       <!-- Footer -->
+
           
             
               
