@@ -216,7 +216,6 @@ if( isset($_SESSION['admin']) ):
                                 <option value="Jueves">Jueves</option>
                                 <option value="Viernes">Viernes</option>
                                 <option value="Sábado">Sábado</option>
-                                <option value="Domingo">Domingo</option>
                             </select>
                             <label name="hora"><b>Hora: </b></label>
                             <input name="hora" type="time" name="hora" value="11:45:00" max="22:30:00" min="10:00:00" step="1">

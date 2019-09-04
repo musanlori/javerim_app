@@ -195,12 +195,12 @@ if( isset($_SESSION['alumno']) ):
                       <div class="col-4">
                           <img src="../img/iconos/contacts_3695.ico" class="rounded-circle" alt="photo">
                       </div>
-                      <div class="col-6">
-                        <a href="" data-toggle="modal" data-target="#myModal" onclick="verDatos('<?php echo $dato['correo_alumno']?>','<?php echo $dato['id_cita']?>','<?php echo $dato['id_asesor']?>','<?php echo $dato['fecha_cita']?>','<?php echo $dato['hora_cita'] ?>','<?php echo $dato['nombre_asesor']?>','<?php echo $dato['correo_asesor']?>','<?php echo $dato['lugar_cita'] ?>','<?php echo $dato['nombre_materia'] ?>')">
+                      <div class="col-8">
+                        <a href="" data-toggle="modal" data-target="#miModal" onclick="verDatos('<?php echo $dato['correo_alumno']?>','<?php echo $dato['id_cita']?>','<?php echo $dato['id_asesor']?>','<?php echo $dato['fecha_cita']?>','<?php echo $dato['hora_cita'] ?>','<?php echo $dato['nombre_asesor']?>','<?php echo $dato['correo_asesor']?>','<?php echo $dato['lugar_cita'] ?>','<?php echo $dato['nombre_materia'] ?>')">
                           <img src="../img/iconos/2x/baseline_delete_black_18dp.png" align="right" alt="eliminar"> <br>
                         </a>
                         <!-- The Modal -->
-                    <div class="modal" id="myModal">
+                    <div class="modal" id="miModal">
                         <div class="modal-dialog">
                             <div class="modal-content">
 
@@ -246,8 +246,8 @@ if( isset($_SESSION['alumno']) ):
                         </div>
                     </div>
                           <b> </b> <?php echo $dato['nombre_materia'] ?> <br>
-                          <b> </b> <?php echo "Asesor: ". $dato['nombre_asesor'] ?> <br>
-                          <b> </b> <?php echo "Correo: ". $dato['correo_asesor'] ?> <br>
+                          <b> </b> <?php echo " ". $dato['nombre_asesor'] ?> <br>
+                          <b> </b> <?php echo " ". $dato['correo_asesor'] ?> <br>
                           <img src="../img/iconos/1x/baseline_calendar_today_black_18dp.png" alt="calendar">
                           <b> </b> <?php echo $dato['fecha_cita'] ?>
                           <img src="../img/iconos/1x/baseline_query_builder_black_18dp.png" alt="calendar">

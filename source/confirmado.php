@@ -14,7 +14,7 @@ $mail = new PHPMailer(true);
 
 //$servername = "localhost";
 //$username = "root";
-//$password = "J4v3rIm4pp_Db";
+$password = "J4v3rIm4pp_Db";
 //$dbname = "javerim";
 include_once 'infoDb.php';
 
@@ -168,7 +168,7 @@ if( isset($_SESSION['alumno']) ):
         <?php 
         $servername = "localhost"; 
         $username = "root"; 
-        $password = ''; 
+        //$password = ''; 
         $dbname = "javerim";
         //include_once 'infoDb.php';
         $clv_asesor = $_POST['getID'];
