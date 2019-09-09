@@ -221,8 +221,6 @@ if( isset($_SESSION['admin']) ):
                             <input name="hora" type="time" name="hora" value="11:45:00" max="22:30:00" min="10:00:00" step="1">
                             <br>
                             <label name="lugar"><b>Lugar: </b></label>
-
-                            <input type="text" name="lugar" required>
                             <input type="text" name="lugar" placeholder="Sitio dentro del campus" data-toggle="tooltip" data-placement="bottom" title="Ejemplo: Biblioteca ADJ" required>
 
                             <button class="btn  btn-primary" name="agregar">Agregar</button>
