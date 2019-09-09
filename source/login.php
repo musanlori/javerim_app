@@ -71,7 +71,7 @@ if($escoger_login=="alumnos"){
     header('Location:ver_asesorias.php');
 
 }else{
-    echo '¡Tu contraseña esta mal!';
+    echo '¡Contraseña incorrecta!';
     echo '<br><a href="form.php" class="text-white blockquote">Regresar</a>';
     die();
 }
@@ -84,7 +84,7 @@ if($escoger_login=="alumnos"){
     header('Location:Administracion.php');
 
 }else{
-    echo '¡Tu contraseña esta mal!';
+    echo '¡Contraseña incorrecta!';
     echo '<br><a href="form.php" class="text-white blockquote">Regresar</a>';
     die();
 }
