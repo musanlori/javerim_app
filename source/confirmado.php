@@ -359,6 +359,7 @@ if( isset($_SESSION['alumno']) ):
             <h3>Tienes que iniciar Sesión como alumno</h3>
         <?php endif;
                 ?>
+        <?php include "footer.php"; ?>
         <?php include "acercaDe.php"; ?>
         <!-- Termina el Contenido -->
         <script src="../js/jquery-3.3.1.slim.min.js"></script>

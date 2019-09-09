@@ -221,7 +221,7 @@ if( isset($_SESSION['admin']) ):
                             <input name="hora" type="time" name="hora" value="11:45:00" max="22:30:00" min="10:00:00" step="1">
                             <br>
                             <label name="lugar"><b>Lugar: </b></label>
-                            <input type="text" name="lugar" required>
+                            <input type="text" name="lugar" placeholder="Sitio dentro del campus" data-toggle="tooltip" data-placement="bottom" title="Ejemplo: Biblioteca ADJ" required>
                             <button class="btn  btn-primary" name="agregar">Agregar</button>
                         </p>
                     </div>
@@ -418,6 +418,7 @@ if( isset($_SESSION['admin']) ):
     <script type="text/javascript">
         $(document).ready(function() {
             $('#')
+            $('[data-toggle="tooltip"]').tooltip();
         });
 
         function verDatos(id, name, comodin, hora, lugar) {
@@ -446,6 +447,7 @@ if( isset($_SESSION['admin']) ):
 
         }
 
+
     </script>
 
     <?php
@@ -454,6 +456,7 @@ else:
     <h3>Tienes que iniciar sesión como Asesor</h3>
     <?php endif;
 ?>
+    <?php include "footer.php"; ?>
     <?php include "acercaDe.php"; ?>
     <script src="../js/jquery-3.3.1.slim.min.js"></script>
     <script src="../js/popper.min.js"></script>

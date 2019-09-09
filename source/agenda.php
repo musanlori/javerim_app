@@ -34,6 +34,9 @@ catch(PDOException $e)
             border: 0;
             text-align: center;
         }
+        b{
+          color:green;
+        }
         </style>
 </head>
 
@@ -245,15 +248,15 @@ if( isset($_SESSION['alumno']) ):
                             </div>
                         </div>
                     </div>
-                          <b> </b> <?php echo $dato['nombre_materia'] ?> <br>
-                          <b> </b> <?php echo " ". $dato['nombre_asesor'] ?> <br>
-                          <b> </b> <?php echo " ". $dato['correo_asesor'] ?> <br>
+                          <b> <?php echo $dato['nombre_materia'] ?> </b><br>
+                          <?php echo " ". $dato['nombre_asesor'] ?> <br>
+                          <?php echo " ". $dato['correo_asesor'] ?> <br>
                           <img src="../img/iconos/1x/baseline_calendar_today_black_18dp.png" alt="calendar">
-                          <b> </b> <?php echo $dato['fecha_cita'] ?>
+                          <?php echo $dato['fecha_cita'] ?>
                           <img src="../img/iconos/1x/baseline_query_builder_black_18dp.png" alt="calendar">
-                          <b> </b> <?php echo $dato['hora_cita'] ?> <br>
+                          <?php echo $dato['hora_cita'] ?> <br>
                           <img src="../img/iconos/1x/baseline_location_on_black_18dp.png" alt="calendar">
-                          <b> </b> <?php echo $dato['lugar_cita'] ?> <br><br>
+                          <?php echo $dato['lugar_cita'] ?> <br><br>
 
                       </div>
                       
@@ -297,8 +300,7 @@ else:
     <h3>Tienes que iniciar sesión como Alumno</h3>
 <?php endif;
 ?>
-
-
+        <?php include "footer.php"; ?>
         <?php include "acercaDe.php"; ?>
 <!--Termina el Contenido -->
         <script src="../js/jquery-3.3.1.slim.min.js"></script>
