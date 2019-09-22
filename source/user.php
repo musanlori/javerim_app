@@ -170,7 +170,7 @@ if(password_verify($contrasena2,$contrasena)){
     }
     
 }else{
-    echo 'La contraseñano no es la misma';
+    echo 'La contraseñano no es la misma.';
     
 }
 
