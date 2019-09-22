@@ -11,11 +11,11 @@
     <div class="modal-body text-center">
         <img src="../img/javerim_loging.jpg" alt="logo" height="128p">
         <p>javerim_APP version 1.0</p>
-        <p>Fomentando el apoyo entre estudiantes para profundizar y compartir el conocimiento</p>
+        <p>Fomentando el apoyo entre estudiantes para profundizar y compartir el conocimiento.</p>
         <p> </p>        
         <p>contacto: javerim.app@gmail.com</p>
         
-        <p>Desarrollado por el Laboratorio</p>
+        <p>Desarrollado por el Laboratorio:</p>
         <img src="../img/mobile.png" alt="mobile" height="64">
     </div>
     <div class="modal-footer">
