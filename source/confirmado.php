@@ -34,7 +34,7 @@ catch(PDOException $e)
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Asesores_Disponibles</title>
+        <title>Confirmación</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie-edge">
@@ -230,8 +230,8 @@ if( isset($_SESSION['alumno']) ):
                                 <div class="col-8 text-center jumbotron">
                                     <h1 class="text-Danger"> :( </h1>
                                     <p >No se ha pidido agendar</p>
-                                    <p>Lamentamos Decirte que el dia de atencion de este asesor ya pasó<br>
-                                        Debes de esperar hasta la siguiente semana para agendarlo<br>
+                                    <p>Lamentamos Decirte que el día de atención de este asesor ya pasó.<br>
+                                        Debes de esperar hasta la siguiente semana para agendarlo.<br>
                                     </p>
                                     <a href="ver_asesorias.php"> Continuar </a>
                                 </div>
@@ -255,8 +255,8 @@ if( isset($_SESSION['alumno']) ):
                                 <div class="col-8 text-center jumbotron">
                                     <h1 class="text-Danger"> :( </h1>
                                     <p >No se ha pidido agendar</p>
-                                    <p>Lamentamos Decirte que el dia de atencion de este asesor ya pasó<br>
-                                        Debes de esperar hasta la siguiente semana para agendarlo<br>
+                                    <p>Lamentamos Decirte que el día de atención de este asesor ya pasó.<br>
+                                        Debes de esperar hasta la siguiente semana para agendarlo.<br>
                                     </p>
                                     <a href="ver_asesorias.php"> Continuar </a>
                                 </div>
@@ -283,8 +283,8 @@ if( isset($_SESSION['alumno']) ):
                         <div class="col-8 text-center jumbotron">
                             <h1 class="text-success">Solicitud Procesada</h1>
                             <p>
-                                Se ha agendado correctamente la asesoria; Por favor, dirijase a 'Agenda' para verificar<br>
-                                o pulse en continuar (o pesataña 'Asesorias') para agregar una nueva cita<br>
+                                Se ha agendado correctamente la asesoría. Por favor, dirijase a 'Agenda' para verificar<br>
+                                o pulse en continuar (o pesataña 'Asesorías') para agregar una nueva cita<br>
                                 <?php echo "Prixima Cita: ". $Cita;?><br>
                                 <?php echo 'faltan : ' .$FechaProx. ' Dias para su Asesoria'?>
                             </p>
@@ -314,7 +314,7 @@ if( isset($_SESSION['alumno']) ):
                         // Content
                         $mail->isHTML(true);                                  // Set email format to HTML
                         $mail->Subject = 'Cita Agendada';
-                        $mail->Body    = 'Hola '.$asesor_Nom.'. Han agendado una nueva cita contigo para la materia '.$materia.' <br> El día '. $diaSesion.'.';
+                        $mail->Body    = 'Hola '.$asesor_Nom.'. Han agendado una nueva cita contigo para la matería '.$materia.' <br> El día '. $diaSesion.'.';
                         
                     
                         $mail->send();
@@ -331,8 +331,8 @@ if( isset($_SESSION['alumno']) ):
                     <div class="row justify-content-around">
                         <div class="col-8 text-center">
                             <div class="alert alert-danger">
-                                <h3>ERROR: insercion de Datos en tabla</h3>
-                                <p>Lo sentimos: se ha producido un Error al tratar de agendar su cita<br>
+                                <h3>ERROR: inserción de datos en tabla.</h3>
+                                <p>Lo sentimos: se ha producido un Error al tratar de agendar su cita.<br>
                                     Pongase en contacto con el equipo de UNAM Mobile para que se pueda corregir este Error
                                 </p>
                                 <a href="ver_asesorias.php">Continuar</a>
