@@ -314,7 +314,7 @@ if( isset($_SESSION['alumno']) ):
                         // Content
                         $mail->isHTML(true);                                  // Set email format to HTML
                         $mail->Subject = 'Cita Agendada';
-                        $mail->Body    = 'Hola '.$asesor_Nom.'. Han agendado una nueva cita contigo para la matería '.$materia.' <br> El día '. $diaSesion.'.';
+                        $mail->Body    = 'Hola '.$asesor_Nom.'. Han agendado una nueva cita contigo para la matería de '.$materia.' <br> El día: '. $diaSesion.'.';
                         
                     
                         $mail->send();

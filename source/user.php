@@ -16,7 +16,7 @@ $mail = new PHPMailer(true);
 //$password = "";
 //$dbname = "javerim";
 include_once 'infoDb.php';
-
+$fecha_actual = date("d-m-Y", time() - 25200);
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=javerim", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
@@ -38,6 +38,7 @@ catch(PDOException $e)
     $contrasena2=$_POST['contrasena2'];
     $escoger=$_POST['escoger'];
  
+
 
 //COMPROBAR SI EXISTE EL USUARIO
 if($escoger=="alumnos"){
@@ -153,10 +154,7 @@ if(password_verify($contrasena2,$contrasena)){
     // Content
     $mail->isHTML(true);                                  // Set email format to HTML
     $mail->Subject = 'Bienvenido a Javerim';
-    $mail->Body    = 'Hola '.$nombre.', Bienvenido a  <b>Javerim</b> <br>'.'Para permanecer en la plataforma tienes que mandar un foto de tu credencial o tira de materias al correo javerim.app@gmail.com junto con el correo con el que te inscribiste. <br>
-              También puedes asistir al Laboratorio de UNAM mobile ubicado en el Anexo de ingeniería Edicio Q Salón 308. <br>
-              Tienes un límite de una semana';
-    
+    $mail->Body    = 'Hola '.$nombre.', Bienvenido a  <b>Javerim</b> <br>'.'Para permanecer en la plataforma es necesario mandar una foto de tu credencial o tira de materias al correo <a href="mailto:javerim.app@gmail.com">javerim.app@gmail.com</a> junto con el correo con el que te inscribiste. <br>También puedes asistir al Laboratorio de UNAM mobile ubicado en el Anexo de ingeniería Edicio Q Salón 308. <br> Tienes hasta el: '.date("d-m-Y",strtotime($fecha_actual."+ 7 days"));
 
     $mail->send();
     echo 'Message has been sent';
