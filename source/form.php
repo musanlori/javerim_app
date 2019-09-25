@@ -116,6 +116,7 @@ function validateForm() {
 
 if(empty($_SESSION['admin']) && empty($_SESSION['alumno'])):
     ?>
+<div id="accordion">
     <div class="container">
       <div class="row">
        <div class="col-6">
@@ -127,7 +128,7 @@ if(empty($_SESSION['admin']) && empty($_SESSION['alumno'])):
       </div>
     </div>
 
-      <div class="collapse col-md-6 form-group float-right center" id="registro">
+      <div class="collapse col-md-6 form-group float-right center" id="registro" data-parent="#accordion">
         <div class="container">
           <div class="row">
             <div class="col-md-12 form-group float-right">
@@ -191,7 +192,7 @@ if(empty($_SESSION['admin']) && empty($_SESSION['alumno'])):
       </div>
     </div> 
              
-    <div class="collapse col-md-6 form-group float-left center" id="iniciarSesion">
+    <div class="collapse col-md-6 form-group float-left center" id="iniciarSesion" data-parent="#accordion">
       <div class="container" >
         <div class="row">
                   <div class="col-md-12 form-group">
@@ -211,17 +212,7 @@ if(empty($_SESSION['admin']) && empty($_SESSION['alumno'])):
         </div>
       </div>          
     </div>  
-    
-<script>
-$(document).ready(function(){
-  $(".registro1").click(function(){
-    $(".collapse").collapse('hide');
-  });
-  $(".iniciarSesion1").click(function(){
-    $(".collapse").collapse('hide');
-  });
-});
-</script>    
+</div> 
     
     
 
